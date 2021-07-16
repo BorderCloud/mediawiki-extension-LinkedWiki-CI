@@ -1,0 +1,7 @@
+{{#sparql:
+select * where
+ { <http://serverdev-mediawiki1.localdomain/wiki/testJob> ?y ?z . }
+LIMIT 15
+|config=http://database-test1.localdomain/data
+|cache=no
+}}

@@ -1,0 +1,9 @@
+<rdf>
+BASE <http://example.com>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+</rdf>
+
+== exemple ==
+<rdf>
+<http://wiki.serverdev-mediawiki/index.php/TestPageData> rdfs:label "testPageData" .
+</rdf>

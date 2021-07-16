@@ -1,0 +1,6 @@
+BASE <http://serverdev-mediawiki1.localdomain/wiki/Data:Test32_page>
+
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+<> rdfs:label "testPageData" .
+

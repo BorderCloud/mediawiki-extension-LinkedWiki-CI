@@ -1,0 +1,8 @@
+{{#sparql:
+    select * 
+    where {
+        ?x ?y ?z .
+    }
+    LIMIT 15
+| preview = 5
+}} 

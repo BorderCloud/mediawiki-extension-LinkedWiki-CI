@@ -1,0 +1,4 @@
+{{#sparql:
+select * where { <PAGEIRI> ?y ?z . } LIMIT 5 
+| debug = 1
+}}

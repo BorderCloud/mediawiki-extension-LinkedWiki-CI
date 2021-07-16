@@ -1,0 +1,2 @@
+page_with_module
+{{#invoke:Test06 module1|print}}

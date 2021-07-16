@@ -1,0 +1,34 @@
+<rdf>
+@prefix laureate: <http://data.nobelprize.org/resource/laureate/> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+
+
+@prefix ex: <http://example.org#> .
+@prefix dash: <http://datashapes.org/dash#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+
+</rdf>
+
+== data  ==
+<rdf>
+laureate:935
+    a                foaf:Person ;
+    foaf:birthday    "1948-10-09"^^xsd:date ;
+    foaf:familyName  "Hart" ;
+    foaf:givenName   "Oliver" ;
+    foaf:name        "Oliver Hart" ;
+    foaf:gender      "male" .
+</rdf>
+
+
+== shacl  ==
+<rdf constraint='shacl'>
+ex:PersonShape a sh:NodeShape ;
+    sh:targetClass foaf:Person ;
+    sh:property [
+       sh:path foaf:birthday ;
+       sh:datatype xsd:string ;
+    ] .
+</rdf>

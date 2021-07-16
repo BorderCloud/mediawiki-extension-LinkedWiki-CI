@@ -1,0 +1,5 @@
+{{#sparql:
+select * where {?x ?y ?z . } LIMIT 5
+| log = 2
+| config = http://unknown.org
+}}

@@ -1,0 +1,5 @@
+{{#sparql:
+select * where { ?x ?y ?z . } LIMIT 5
+| config = http://database-test1.localdomain/data 
+| headers = name1,name2,name3
+}}

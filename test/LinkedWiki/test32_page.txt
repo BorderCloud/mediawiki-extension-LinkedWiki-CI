@@ -1,0 +1,8 @@
+
+{{#sparql:
+select * where
+ { <DATAIRI> ?y ?z . }
+LIMIT 15
+| config = http://database-test1.localdomain/data
+| deb=2
+}}

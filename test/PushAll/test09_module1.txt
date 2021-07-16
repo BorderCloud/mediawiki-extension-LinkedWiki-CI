@@ -1,0 +1,7 @@
+local p = {} --p stands for package
+
+function p.print( frame )
+    return "test09 module1"
+end
+
+return p

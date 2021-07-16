@@ -1,0 +1,6 @@
+{{#sparql:
+select * where { ?x ?y ?z . } LIMIT 5
+| endpoint = http://database-test1.localdomain:8890/sparql
+| headers = &nbsp;&nbsp;,name2,name3
+| classHeaders= class="unsortable",,
+}}

@@ -1,0 +1,3 @@
+page with images
+[[File:test05 image1.png]]
+[[File:test05 image2.png]]

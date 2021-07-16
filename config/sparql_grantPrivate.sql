@@ -1,0 +1,8 @@
+ 
+grant select on "DB.DBA.SPARQL_SINV_2" to "SPARQL";
+grant execute on "DB.DBA.SPARQL_SINV_IMP" to "SPARQL";
+
+grant execute on DB.DBA.SPARQL_INSERT_DICT_CONTENT  to SPARQL_UPDATE;
+grant execute on DB.DBA.SPARQL_DELETE_DICT_CONTENT  to SPARQL_UPDATE;
+grant execute on DB.DBA.SPARUL_LOAD  to SPARQL_UPDATE;
+grant execute on DB.DBA.SPARUL_CLEAR to SPARQL_UPDATE;

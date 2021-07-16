@@ -1,0 +1,4 @@
+{{#sparql:
+select * where { ?x ?y ?z . } LIMIT 5
+| footer = NO
+}}

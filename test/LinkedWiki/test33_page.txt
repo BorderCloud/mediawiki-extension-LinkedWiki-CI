@@ -1,0 +1,31 @@
+{{#invoke:Test33 page|infobox
+| Label = test
+}}
+
+Current page:
+{{#sparql:
+select * where
+ { <PAGEIRI> ?y ?z . }
+LIMIT 15
+|config=http://database-test1.localdomain/data
+| debug=2
+}}
+
+
+Test33 page:
+{{#sparql:
+select * where
+ { <http://serverdev-mediawiki1.localdomain/wiki/Test33_page> ?y ?z . }
+LIMIT 15
+|config=http://database-test1.localdomain/data
+| log=2
+}}
+
+Test33 pageMoved:
+{{#sparql:
+select * where
+ { <http://serverdev-mediawiki1.localdomain/wiki/Test33_pageMoved> ?y ?z . }
+LIMIT 15
+|config=http://database-test1.localdomain/data
+| log=2
+}}

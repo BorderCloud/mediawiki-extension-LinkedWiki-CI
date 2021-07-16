@@ -1,0 +1,291 @@
+{
+  "id": "a49eaa47-02fa-4b1d-a4a6-abf31d11efcb",
+  "version": "2.0",
+  "name": "suite_tests",
+  "url": "http://serverdev-mediawiki1.localdomain/",
+  "tests": [{
+    "id": "35c0b104-c047-4e40-92c7-802effeccb20",
+    "name": "mediawiki1",
+    "commands": [{
+      "id": "e3359dfd-2d37-4ff7-9903-74c0bc448ad7",
+      "comment": "",
+      "command": "open",
+      "target": "http://serverdev-mediawiki1.localdomain/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "25e2f5c2-259a-4fda-8b03-1f629c261d02",
+      "comment": "",
+      "command": "waitForElementPresent",
+      "target": "xpath=//li[@id='pt-login-private']/a",
+      "targets": [],
+      "value": "30000"
+    }, {
+      "id": "ea04366d-5e8f-486b-985e-4693a66e0dbf",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//li[@id='pt-login-private']/a",
+      "targets": [
+        ["linkText=Se connecter", "linkText"],
+        ["css=#pt-login-private > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Se connecter')]", "xpath:link"],
+        ["xpath=//li[@id='pt-login-private']/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/w/index.php?title=Special:UserLogin&returnto=Main+Page')]", "xpath:href"],
+        ["xpath=//li[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Se connecter')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "d7e9b097-32fa-41cb-9577-50ed2889d4b8",
+      "comment": "",
+      "command": "type",
+      "target": "id=wpName1",
+      "targets": [],
+      "value": "Admin"
+    }, {
+      "id": "3158ff51-1930-47f3-84f2-e2bae1be6932",
+      "comment": "",
+      "command": "type",
+      "target": "id=wpPassword1",
+      "targets": [
+        ["id=wpPassword1", "id"],
+        ["name=wpPassword", "name"],
+        ["css=#wpPassword1", "css:finder"],
+        ["xpath=//input[@id='wpPassword1']", "xpath:attributes"],
+        ["xpath=//div[@id='userloginForm']/form/div/div[2]/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div/input", "xpath:position"]
+      ],
+      "value": "dockerpass"
+    }, {
+      "id": "fd9fdd83-82a0-43d7-81ed-232ed81261c9",
+      "comment": "",
+      "command": "click",
+      "target": "id=wpLoginAttempt",
+      "targets": [
+        ["id=wpLoginAttempt", "id"],
+        ["name=wploginattempt", "name"],
+        ["css=#wpLoginAttempt", "css:finder"],
+        ["xpath=//button[@id='wpLoginAttempt']", "xpath:attributes"],
+        ["xpath=//div[@id='userloginForm']/form/div/div[4]/div/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Se connecter')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "0c847719-1378-40ab-a4a2-70e693c05546",
+      "comment": "",
+      "command": "executeScript",
+      "target": "return \"TestPage\"",
+      "targets": [],
+      "value": "Title"
+    }, {
+      "id": "8aa5b2e1-dfa7-431a-b76c-8f1a88c8ea54",
+      "comment": "",
+      "command": "type",
+      "target": "id=searchInput",
+      "targets": [],
+      "value": "${Title}"
+    }, {
+      "id": "6ad069f4-c989-4038-b61b-3dec26ad90ce",
+      "comment": "",
+      "command": "click",
+      "target": "id=searchButton",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "4ffaa82c-14dd-4d49-8d25-e2d4da71ddd4",
+      "comment": "",
+      "command": "click",
+      "target": "link=${Title}",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "432aceb3-bd8e-44e1-9822-0346fb4d6a7c",
+      "comment": "",
+      "command": "type",
+      "target": "id=wpTextbox1",
+      "targets": [],
+      "value": "{{<page_test.wiki>}}"
+    }, {
+      "id": "a4bd2a72-bd5a-4382-9b4c-99efae3d813f",
+      "comment": "",
+      "command": "click",
+      "target": "name=wpSave",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "6f1a15fe-8932-4273-bb20-a4d67e5cf1ba",
+      "comment": "",
+      "command": "waitForElementPresent",
+      "target": "xpath=//div[@id='mw-content-text']/div/table/tbody/tr[6]/td[contains(.,'Duration of query')]",
+      "targets": [
+        ["css=tr:nth-child(6) > td", "css:finder"],
+        ["xpath=//div[@id='mw-content-text']/div/table/tbody/tr[6]/td", "xpath:idRelative"],
+        ["xpath=//tr[6]/td", "xpath:position"]
+      ],
+      "value": "30000"
+    }, {
+      "id": "f02a5f34-b4d1-4e75-8fe2-886022c1784e",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Log out",
+      "targets": [
+        ["linkText=Log out", "linkText"],
+        ["css=#pt-logout > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Log out')]", "xpath:link"],
+        ["xpath=//li[@id='pt-logout']/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/w/index.php?title=Special:UserLogout&returnto=Main+Page')]", "xpath:href"],
+        ["xpath=//li[7]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Log out')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "ee95489e-dec3-48ba-aafa-2800098edf3e",
+    "name": "mediawiki2",
+    "commands": [{
+      "id": "4bdca016-861b-486c-8816-e55a87ecbb2c",
+      "comment": "",
+      "command": "open",
+      "target": "http://serverdev-mediawiki2.localdomain/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "6fb0a016-667d-473d-90fd-c1a97ca60975",
+      "comment": "",
+      "command": "waitForElementPresent",
+      "target": "xpath=//li[@id='pt-login']/a",
+      "targets": [],
+      "value": "30000"
+    }, {
+      "id": "cf715163-c7bd-48e6-99f8-038dfc958f4c",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//li[@id='pt-login']/a",
+      "targets": [
+        ["linkText=Se connecter", "linkText"],
+        ["css=#pt-login > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Se connecter')]", "xpath:link"],
+        ["xpath=//li[@id='pt-login']/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/w/index.php?title=Special:UserLogin&returnto=Main+Page')]", "xpath:href"],
+        ["xpath=//nav/div/ul/li[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Se connecter')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "d0ecc190-93ed-4413-a02c-8c37804efaed",
+      "comment": "",
+      "command": "type",
+      "target": "id=wpName1",
+      "targets": [],
+      "value": "Admin"
+    }, {
+      "id": "e360090f-ca46-4926-a848-f7eb56d088c4",
+      "comment": "",
+      "command": "type",
+      "target": "id=wpPassword1",
+      "targets": [
+        ["id=wpPassword1", "id"],
+        ["name=wpPassword", "name"],
+        ["css=#wpPassword1", "css:finder"],
+        ["xpath=//input[@id='wpPassword1']", "xpath:attributes"],
+        ["xpath=//div[@id='userloginForm']/form/div/div[2]/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div/input", "xpath:position"]
+      ],
+      "value": "dockerpass"
+    }, {
+      "id": "d6870cc4-d523-4c99-b6aa-0659a1693246",
+      "comment": "",
+      "command": "click",
+      "target": "id=wpLoginAttempt",
+      "targets": [
+        ["id=wpLoginAttempt", "id"],
+        ["name=wploginattempt", "name"],
+        ["css=#wpLoginAttempt", "css:finder"],
+        ["xpath=//button[@id='wpLoginAttempt']", "xpath:attributes"],
+        ["xpath=//div[@id='userloginForm']/form/div/div[4]/div/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Se connecter')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "7b085137-789f-4b60-afb0-a8740197cb40",
+      "comment": "",
+      "command": "executeScript",
+      "target": "return \"TestPage\"",
+      "targets": [],
+      "value": "Title"
+    }, {
+      "id": "5dc5b771-3372-4683-935d-3735a468bb10",
+      "comment": "",
+      "command": "type",
+      "target": "id=searchInput",
+      "targets": [],
+      "value": "${Title}"
+    }, {
+      "id": "53c0dcdb-e04e-44fa-8344-0f33e255e007",
+      "comment": "",
+      "command": "click",
+      "target": "id=searchButton",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "a20326ef-7d85-41db-b73b-1132dc96286e",
+      "comment": "",
+      "command": "click",
+      "target": "link=${Title}",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "f3033787-c7cc-429c-ab61-0b767e75d145",
+      "comment": "",
+      "command": "type",
+      "target": "id=wpTextbox1",
+      "targets": [],
+      "value": "{{<page_test.wiki>}}"
+    }, {
+      "id": "ca300617-621a-4b84-bb52-d791f13b06b4",
+      "comment": "",
+      "command": "click",
+      "target": "name=wpSave",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "554e57d2-68b7-4c43-ad83-a8a9b2488c00",
+      "comment": "",
+      "command": "waitForElementPresent",
+      "target": "xpath=//div[@id='mw-content-text']/div/table/tbody/tr[6]/td[contains(.,'Duration of query')]",
+      "targets": [
+        ["css=tr:nth-child(6) > td", "css:finder"],
+        ["xpath=//div[@id='mw-content-text']/div/table/tbody/tr[6]/td", "xpath:idRelative"],
+        ["xpath=//tr[6]/td", "xpath:position"]
+      ],
+      "value": "30000"
+    }, {
+      "id": "f821f6c8-d048-4be1-aed6-cf9fe54ff0ea",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Log out",
+      "targets": [
+        ["linkText=Log out", "linkText"],
+        ["css=#pt-logout > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Log out')]", "xpath:link"],
+        ["xpath=//li[@id='pt-logout']/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/w/index.php?title=Special:UserLogout&returnto=Main+Page')]", "xpath:href"],
+        ["xpath=//li[7]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Log out')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "0cb0ea53-ed47-4a63-814e-200221144015",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 10000,
+    "tests": ["35c0b104-c047-4e40-92c7-802effeccb20", "ee95489e-dec3-48ba-aafa-2800098edf3e"]
+  }],
+  "urls": ["http://serverdev-mediawiki1.localdomain/"],
+  "plugins": []
+}

@@ -1,0 +1,3 @@
+page with image
+[[File:test04 image1.png]]
+

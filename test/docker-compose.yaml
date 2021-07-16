@@ -1,0 +1,57 @@
+# To execute this docker-compose yml file use `docker-compose -f <file_name> up`
+# Add the `-d` flag at the end for detached execution
+version: "3"
+services:
+  selenium-hub:
+    image: selenium/hub:3
+    container_name: selenium-hub
+    ports:
+      - "4444:4444"
+    extra_hosts:
+        - "serverdev-mediawiki1.localdomain:172.19.0.2"
+        - "serverdev-mediawiki2.localdomain:172.19.0.3"
+        - "database-test1.localdomain:172.19.0.4"
+        - "database-test2.localdomain:172.19.0.5"
+      
+  chrome:
+    image: selenium/node-chrome:3
+    shm_size: 2gb
+    volumes:
+      - /dev/shm:/dev/shm
+    depends_on:
+      - selenium-hub
+    environment:
+      - HUB_HOST=selenium-hub
+      - HUB_PORT=4444
+    container_name: selenium-hub-chrome
+    extra_hosts:
+        - "serverdev-mediawiki1.localdomain:172.19.0.2"
+        - "serverdev-mediawiki2.localdomain:172.19.0.3"
+        - "database-test1.localdomain:172.19.0.4"
+        - "database-test2.localdomain:172.19.0.5"
+    volumes:
+      - "${PWD}:/tmp/test"
+      
+  firefox:
+    image: selenium/node-firefox:3
+    shm_size: 2gb
+    volumes:
+      - /dev/shm:/dev/shm
+    depends_on:
+      - selenium-hub
+    environment:
+      - HUB_HOST=selenium-hub
+      - HUB_PORT=4444
+    container_name: selenium-hub-firefox
+    extra_hosts:
+        - "serverdev-mediawiki1.localdomain:172.19.0.2"
+        - "serverdev-mediawiki2.localdomain:172.19.0.3"
+        - "database-test1.localdomain:172.19.0.4"
+        - "database-test2.localdomain:172.19.0.5"
+    volumes:
+      - "${PWD}:/tmp/test"
+        
+networks:
+  default:
+    external:
+        name: mediawiki-extension-linkedwiki-ci_mediawiki-ci

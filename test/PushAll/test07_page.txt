@@ -1,0 +1,3 @@
+page with modules
+{{#invoke:Test07 module1|print}} 
+{{#invoke:Test07 module2|print}}

@@ -1,0 +1,8 @@
+<rdf>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+</rdf>
+
+== exemple ==
+<rdf>
+<http://serverdev-mediawiki1.localdomain/wiki/testJob> rdfs:label "dataC" .
+</rdf>

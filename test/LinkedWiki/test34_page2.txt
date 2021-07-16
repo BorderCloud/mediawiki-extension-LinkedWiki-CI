@@ -1,0 +1,11 @@
+{{#invoke:Test34 page infobox|infobox
+| Label = test
+}}
+
+
+{{#sparql:
+select * where
+ { <PAGEIRI> ?y ?z . }
+LIMIT 15
+| config = http://database-test1.localdomain/data
+}}

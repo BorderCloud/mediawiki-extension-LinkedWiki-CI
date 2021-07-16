@@ -1,0 +1,69 @@
+varnishtest "Testing URL rewriting for SPARQL Protocol"
+
+server s1 {
+    rxreq
+	txresp
+	expect req.url == "/sparql?query=test"
+	expect req.method == "GET"
+	expect req.http.accept == "application/sparql-results+xml"
+
+    rxreq
+	txresp
+	expect req.url == "/sparql"
+	expect req.method == "POST"
+	expect req.body == "query=test"
+	expect req.http.accept == "application/sparql-results+xml"
+
+    rxreq
+	txresp
+	expect req.url == "/sparql"
+	expect req.method == "POST"
+	expect req.body == "update=test"
+} -start
+
+varnish v1 -vcl+backend {
+	  vcl 4.0;
+
+	import std;
+	import bodyaccess;
+
+	sub vcl_recv {		
+		if (req.method == "GET" && ! req.http.accept) {
+			set req.http.accept = "application/sparql-results+xml";		
+		 } else if (req.method == "POST") {
+			std.cache_req_body(500KB);
+			set req.http.X-Body-Len = bodyaccess.len_req_body();
+			if (req.http.X-Body-Len == "-1") {
+				return(synth(400, "The request body size exceeds the limit"));
+			}
+				
+			if (bodyaccess.rematch_req_body("query=") == 1 && ! req.http.accept ) {
+				set req.http.accept = "application/sparql-results+xml";	
+			}
+			# else if (bodyaccess.rematch_req_body("update=") == 1) {
+				#NOTHING
+			#}
+			
+			return (pass);
+		}
+		#std.log(req.url)
+	}
+	
+} -start
+
+
+client c1 {
+	#GET http://example.org/XXXX/sparql?query=
+	txreq -req "GET" -url "/sparql?query=test"
+	rxresp
+
+	#POST http://example.org/XXXX/sparql?query=
+	txreq -req "POST" -url "/sparql" -body "query=test"
+	rxresp
+
+	#POST http://example.org/XXXX/sparql?update=
+	txreq -req "POST" -url "/sparql" -body "update=test"
+	rxresp
+} -run
+
+# varnishtest rewriting.vtc

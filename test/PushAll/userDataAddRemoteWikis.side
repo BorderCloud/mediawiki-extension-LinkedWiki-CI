@@ -1,0 +1,380 @@
+{
+  "id": "a49eaa47-02fa-4b1d-a4a6-abf31d11efcb",
+  "version": "2.0",
+  "name": "suite_tests",
+  "url": "http://serverdev-mediawiki1.localdomain/",
+  "tests": [{
+    "id": "35c0b104-c047-4e40-92c7-802effeccb20",
+    "name": "mediawiki1-insert-targeted-wikis",
+    "commands": [{
+      "id": "e3359dfd-2d37-4ff7-9903-74c0bc448ad7",
+      "comment": "",
+      "command": "open",
+      "target": "http://serverdev-mediawiki1.localdomain/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ea04366d-5e8f-486b-985e-4693a66e0dbf",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//li[@id='pt-login-private']/a",
+      "targets": [
+        ["linkText=Se connecter", "linkText"],
+        ["css=#pt-login-private > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Se connecter')]", "xpath:link"],
+        ["xpath=//li[@id='pt-login-private']/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/w/index.php?title=Special:UserLogin&returnto=Main+Page')]", "xpath:href"],
+        ["xpath=//li[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Se connecter')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "d7e9b097-32fa-41cb-9577-50ed2889d4b8",
+      "comment": "",
+      "command": "type",
+      "target": "id=wpName1",
+      "targets": [],
+      "value": "userData"
+    }, {
+      "id": "3158ff51-1930-47f3-84f2-e2bae1be6932",
+      "comment": "",
+      "command": "type",
+      "target": "id=wpPassword1",
+      "targets": [
+        ["id=wpPassword1", "id"],
+        ["name=wpPassword", "name"],
+        ["css=#wpPassword1", "css:finder"],
+        ["xpath=//input[@id='wpPassword1']", "xpath:attributes"],
+        ["xpath=//div[@id='userloginForm']/form/div/div[2]/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div/input", "xpath:position"]
+      ],
+      "value": "dockerpass"
+    }, {
+      "id": "fd9fdd83-82a0-43d7-81ed-232ed81261c9",
+      "comment": "",
+      "command": "click",
+      "target": "id=wpLoginAttempt",
+      "targets": [
+        ["id=wpLoginAttempt", "id"],
+        ["name=wploginattempt", "name"],
+        ["css=#wpLoginAttempt", "css:finder"],
+        ["xpath=//button[@id='wpLoginAttempt']", "xpath:attributes"],
+        ["xpath=//div[@id='userloginForm']/form/div/div[4]/div/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Se connecter')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "4eb3cf59-edcb-44f7-9e23-9992cbce5dd9",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Preferences",
+      "targets": [
+        ["linkText=Se connecter", "linkText"],
+        ["css=#pt-login-private > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Se connecter')]", "xpath:link"],
+        ["xpath=//li[@id='pt-login-private']/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '/w/index.php?title=Special:UserLogin&returnto=Special%3APreferences')])[2]", "xpath:href"],
+        ["xpath=//li[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Se connecter')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "3bf59963-01bb-4ca3-8d57-b3156009c22d",
+      "comment": "",
+      "command": "pause",
+      "target": "15000",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "0827a200-faa3-45af-8f0b-bddeb09e2aa0",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//span[contains(.,'Targeted wikis')]",
+      "targets": [
+        ["css=#ooui-php-182 > .oo-ui-labelElement-label", "css:finder"],
+        ["xpath=//div[@id='ooui-php-182']/span", "xpath:idRelative"],
+        ["xpath=//div[6]/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Targeted wikis')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "a37e4479-ba66-4790-b3b0-e283ccba34f8",
+      "comment": "",
+      "command": "waitForElementVisible",
+      "target": "xpath=//fieldset[@id='mw-prefsection-pushall-pushall-preference-targets']/fieldset/div/div/div/div/span/span/button/span[2]",
+      "targets": [],
+      "value": "30000"
+    }, {
+      "id": "1d393eb3-4434-43b7-a151-f7da8f695316",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//fieldset[@id='mw-prefsection-pushall-pushall-preference-targets']/fieldset/div/div/div/div/span/span/button/span[2]",
+      "targets": [
+        ["css=.oo-ui-actionFieldLayout-button > .oo-ui-widget > .oo-ui-inputWidget-input > .oo-ui-labelElement-label", "css:finder"],
+        ["xpath=//fieldset[@id='mw-prefsection-pushall-pushall-preference-targets']/fieldset/div/div/div/div/span/span/button/span[2]", "xpath:idRelative"],
+        ["xpath=//button/span[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c3ce891b-7bbf-47c3-8488-26bbdf834b5e",
+      "comment": "",
+      "command": "waitForElementVisible",
+      "target": "css=.oo-ui-processDialog > .oo-ui-window-frame",
+      "targets": [
+        ["css=.oo-ui-processDialog > .oo-ui-window-frame", "css:finder"],
+        ["xpath=//body/div[7]/div/div", "xpath:position"]
+      ],
+      "value": "30000"
+    }, {
+      "id": "46bde833-bec9-4765-a142-4d7d72ee012a",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//fieldset/div/div[2]/div/div/div/input",
+      "targets": [
+        ["id=ooui-4", "id"],
+        ["css=#ooui-4", "css:finder"],
+        ["xpath=//input[@id='ooui-4']", "xpath:attributes"],
+        ["xpath=//fieldset/div/div[2]/div/div/div/input", "xpath:position"]
+      ],
+      "value": "wiki2"
+    }, {
+      "id": "3228432e-adc2-4564-b5cc-ebd5377e0582",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//div[3]/div/div/div/input",
+      "targets": [
+        ["id=ooui-6", "id"],
+        ["css=#ooui-6", "css:finder"],
+        ["xpath=//input[@id='ooui-6']", "xpath:attributes"],
+        ["xpath=//div[3]/div/div/div/input", "xpath:position"]
+      ],
+      "value": "http://serverdev-mediawiki2.localdomain/wiki/"
+    }, {
+      "id": "f7b37e6e-b220-42af-bcb0-220f9563ce7e",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//div[4]/div/div/div/input",
+      "targets": [
+        ["id=ooui-8", "id"],
+        ["css=#ooui-8", "css:finder"],
+        ["xpath=//input[@id='ooui-8']", "xpath:attributes"],
+        ["xpath=//div[4]/div/div/div/input", "xpath:position"]
+      ],
+      "value": "http://serverdev-mediawiki2.localdomain/w/api.php"
+    }, {
+      "id": "fefc0d70-5be6-4a11-a366-445d6ddf9244",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//fieldset[2]/div/div/div/div/div/input",
+      "targets": [
+        ["id=ooui-10", "id"],
+        ["css=#ooui-10", "css:finder"],
+        ["xpath=//input[@id='ooui-10']", "xpath:attributes"],
+        ["xpath=//fieldset[2]/div/div/div/div/div/input", "xpath:position"]
+      ],
+      "value": "UserData@mediawiki1"
+    }, {
+      "id": "920c6cfe-6593-495d-b313-0b864ec9f184",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//fieldset[2]/div/div[2]/div/div/div/input",
+      "targets": [
+        ["id=ooui-12", "id"],
+        ["css=#ooui-12", "css:finder"],
+        ["xpath=//input[@id='ooui-12']", "xpath:attributes"],
+        ["xpath=//fieldset[2]/div/div[2]/div/div/div/input", "xpath:position"]
+      ],
+      "value": "ff38s9u4feh07vjs2s6t88dh2pv5cfgv"
+    }, {
+      "id": "4f5d0155-7cf2-4ed5-8a5a-a3304b3d8931",
+      "comment": "",
+      "command": "click",
+      "target": "css=.oo-ui-processDialog-actions-primary .oo-ui-labelElement-label",
+      "targets": [
+        ["css=.oo-ui-processDialog-actions-primary .oo-ui-labelElement-label", "css:finder"],
+        ["xpath=//div/div/div/span/a/span[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "bf72270d-b7fc-472c-94ef-6468053113d8",
+      "comment": "",
+      "command": "click",
+      "target": "css=.oo-ui-actionFieldLayout-button > .oo-ui-widget > .oo-ui-inputWidget-input > .oo-ui-labelElement-label",
+      "targets": [
+        ["css=.oo-ui-actionFieldLayout-button > .oo-ui-widget > .oo-ui-inputWidget-input > .oo-ui-labelElement-label", "css:finder"],
+        ["xpath=//fieldset[@id='mw-prefsection-pushall-pushall-preference-targets']/fieldset/div/div/div/div/span/span/button/span[2]", "xpath:idRelative"],
+        ["xpath=//button/span[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8966c335-6994-4669-b738-fd6fc3b7c1f3",
+      "comment": "",
+      "command": "waitForElementVisible",
+      "target": "css=.oo-ui-processDialog > .oo-ui-window-frame",
+      "targets": [
+        ["css=.oo-ui-processDialog > .oo-ui-window-frame", "css:finder"],
+        ["xpath=//body/div[7]/div/div", "xpath:position"]
+      ],
+      "value": "30000"
+    }, {
+      "id": "3df154a3-4180-42ac-9231-8426585b6939",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//fieldset/div/div[2]/div/div/div/input",
+      "targets": [
+        ["id=ooui-4", "id"],
+        ["css=#ooui-4", "css:finder"],
+        ["xpath=//input[@id='ooui-4']", "xpath:attributes"],
+        ["xpath=//fieldset/div/div[2]/div/div/div/input", "xpath:position"]
+      ],
+      "value": "wiki2Bis"
+    }, {
+      "id": "f435ecc1-1169-446e-aa4a-1fff58a502a2",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//div[3]/div/div/div/input",
+      "targets": [
+        ["id=ooui-6", "id"],
+        ["css=#ooui-6", "css:finder"],
+        ["xpath=//input[@id='ooui-6']", "xpath:attributes"],
+        ["xpath=//div[3]/div/div/div/input", "xpath:position"]
+      ],
+      "value": "http://serverdev-mediawiki2.localdomain/wiki/"
+    }, {
+      "id": "019e0045-18a0-41d7-9f8b-f81b196d843f",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//div[4]/div/div/div/input",
+      "targets": [
+        ["id=ooui-8", "id"],
+        ["css=#ooui-8", "css:finder"],
+        ["xpath=//input[@id='ooui-8']", "xpath:attributes"],
+        ["xpath=//div[4]/div/div/div/input", "xpath:position"]
+      ],
+      "value": "http://serverdev-mediawiki2.localdomain/w/api.php"
+    }, {
+      "id": "49af090a-8aab-43d2-9383-44c75f4877c5",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//fieldset[2]/div/div/div/div/div/input",
+      "targets": [
+        ["id=ooui-10", "id"],
+        ["css=#ooui-10", "css:finder"],
+        ["xpath=//input[@id='ooui-10']", "xpath:attributes"],
+        ["xpath=//fieldset[2]/div/div/div/div/div/input", "xpath:position"]
+      ],
+      "value": "UserData@mediawiki1"
+    }, {
+      "id": "d64666a2-aacc-4e95-abeb-b5913c9ccc1a",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//fieldset[2]/div/div[2]/div/div/div/input",
+      "targets": [
+        ["id=ooui-12", "id"],
+        ["css=#ooui-12", "css:finder"],
+        ["xpath=//input[@id='ooui-12']", "xpath:attributes"],
+        ["xpath=//fieldset[2]/div/div[2]/div/div/div/input", "xpath:position"]
+      ],
+      "value": "ff38s9u4feh07vjs2s6t88dh2pv5cfgv"
+    }, {
+      "id": "7977083d-3836-4d2e-a5bb-343ecf282dc8",
+      "comment": "",
+      "command": "click",
+      "target": "css=.oo-ui-processDialog-actions-primary .oo-ui-labelElement-label",
+      "targets": [
+        ["css=.oo-ui-processDialog-actions-primary .oo-ui-labelElement-label", "css:finder"],
+        ["xpath=//div/div/div/span/a/span[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "026d4426-95cc-402d-9f89-a6ab4f48d090",
+      "comment": "",
+      "command": "pause",
+      "target": "10000",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "934c5e22-9629-4f04-9d14-c9860f60b0ab",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//div/span/button/span[2]",
+      "targets": [
+        ["css=#prefcontrol .oo-ui-labelElement-label", "css:finder"],
+        ["xpath=//span[@id='prefcontrol']/button/span[2]", "xpath:idRelative"],
+        ["xpath=//div/span/button/span[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ae7c779b-b715-4592-b45c-fef24f84c627",
+      "comment": "",
+      "command": "pause",
+      "target": "10000",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "af8afdf6-b494-489a-9f1e-2bff3d7c275c",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//span[contains(.,'Targeted wikis')]",
+      "targets": [
+        ["css=#ooui-php-182 > .oo-ui-labelElement-label", "css:finder"],
+        ["xpath=//div[@id='ooui-php-182']/span", "xpath:idRelative"],
+        ["xpath=//div[6]/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Targeted wikis')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "2a1605b8-1121-4772-b1d3-0cebef9f5b50",
+      "comment": "",
+      "command": "waitForElementVisible",
+      "target": "xpath=//fieldset[@id='mw-prefsection-pushall-pushall-preference-targets']/fieldset/div/div[2]/div/div/div/div/input",
+      "targets": [
+        ["id=ooui-16", "id"],
+        ["css=#ooui-16", "css:finder"],
+        ["xpath=//input[@id='ooui-16']", "xpath:attributes"],
+        ["xpath=//fieldset[@id='mw-prefsection-pushall-pushall-preference-targets']/fieldset/div/div[2]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/div/div/input", "xpath:position"]
+      ],
+      "value": "30000"
+    }, {
+      "id": "57526064-4021-4075-b853-f6130929fcfa",
+      "comment": "",
+      "command": "waitForElementVisible",
+      "target": "xpath=//fieldset[@id='mw-prefsection-pushall-pushall-preference-targets']/fieldset/div/div[3]/div/div/div/div/input",
+      "targets": [
+        ["id=ooui-27", "id"],
+        ["css=#ooui-27", "css:finder"],
+        ["xpath=//input[@id='ooui-27']", "xpath:attributes"],
+        ["xpath=//fieldset[@id='mw-prefsection-pushall-pushall-preference-targets']/fieldset/div/div[5]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[5]/div/div/div/div/input", "xpath:position"]
+      ],
+      "value": "30000"
+    }, {
+      "id": "f02a5f34-b4d1-4e75-8fe2-886022c1784e",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Log out",
+      "targets": [
+        ["linkText=Log out", "linkText"],
+        ["css=#pt-logout > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Log out')]", "xpath:link"],
+        ["xpath=//li[@id='pt-logout']/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/w/index.php?title=Special:UserLogout&returnto=Main+Page')]", "xpath:href"],
+        ["xpath=//li[7]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Log out')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "0cb0ea53-ed47-4a63-814e-200221144015",
+    "name": "Default Suite",
+    "persistSession": true,
+    "parallel": false,
+    "timeout": 10000,
+    "tests": ["35c0b104-c047-4e40-92c7-802effeccb20"]
+  }],
+  "urls": ["http://serverdev-mediawiki1.localdomain/"],
+  "plugins": []
+}

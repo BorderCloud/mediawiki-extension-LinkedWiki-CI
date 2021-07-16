@@ -1,0 +1,5 @@
+{{#sparql:
+select * 
+where {?x ?y ?z . }
+LIMIT 5
+|endpoint=https://query.wikidata.org/sparql}}

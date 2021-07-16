@@ -1,0 +1,4 @@
+{{#sparql:
+select * where { ?x ?y ?z . } LIMIT 5
+| headers = name1,name2,name3
+}}

@@ -1,0 +1,38 @@
+--[[
+-- Debug console
+
+frame = mw.getCurrentFrame() -- Get a frame object
+newFrame = frame:newChild{ -- Get one with args
+    title = 'Test34 page' ,
+ args = {
+    Label = 'test' ,
+ iri = 'http://serverdev-mediawiki1.localdomain/wiki/Test34_page'
+    }
+}
+
+mw.log(p.infobox(newFrame) )
+
+]]
+
+local p = {}
+
+function p.infobox(f)
+    local capiunto = require 'capiunto'
+    local linkedwiki = require 'linkedwiki'
+    linkedwiki.setCurrentFrame(mw.getCurrentFrame())
+
+   --prefix
+   local rdfs = 'http://www.w3.org/2000/01/rdf-schema#'
+
+   local subject = f.args.iri or linkedwiki.getCurrentIRI();
+   local object =  linkedwiki.new(subject)
+   --object:setDebug(true)
+   object:setConfig('http://database-test1.localdomain/data')
+
+    return capiunto.create( {
+        title =  object:checkLabelOfInternLink(subject, rdfs..'label',f.args.Label,"")  ,
+                top = 'Project',
+    } )
+    :addWikitext( object:getMaintenanceCategory())
+end
+return p

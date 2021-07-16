@@ -1,0 +1,5 @@
+{{#sparql:
+select * where { ?x ?y ?z . } LIMIT 5
+| headers = Name1
+| templates = Test14_page_template
+}}

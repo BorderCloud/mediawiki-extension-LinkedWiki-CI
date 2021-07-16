@@ -1,0 +1,7 @@
+page with all
+{{Test09 template1}}
+{{Test09 template2}}
+{{#invoke:Test09 module1|print}} 
+{{#invoke:Test09 module2|print}} 
+[[File:test09 image1.png]]
+[[File:test09 image2.png]]

@@ -1,0 +1,42 @@
+--[[
+-- Debug console
+
+frame = mw.getCurrentFrame() -- Get a frame object
+newFrame = frame:newChild{ -- Get one with args
+    title = 'test' ,
+ args = {
+    Label = 'test' ,
+ iri = 'http://serverdev-mediawiki1.localdomain/wiki/Test33_page'
+    }
+}
+
+mw.log(p.infobox(newFrame) )
+
+]]
+
+local p = {}
+
+function p.infobox(f)
+    local capiunto = require 'capiunto'
+    local linkedwiki = require 'linkedwiki'
+    linkedwiki.setCurrentFrame(mw.getCurrentFrame())
+
+   --prefix
+   local rdfs = 'http://www.w3.org/2000/01/rdf-schema#'
+
+   -- save data
+   local subject = f.args.iri or linkedwiki.getCurrentIRI();
+   local object =  linkedwiki.new(subject)
+   --object:setDebug(true)
+   object:setConfig('http://database-test1.localdomain/data')
+
+   object:removeSubject() -- delete all triples of this subject
+
+   mw.log(object:addPropertyString(rdfs..'label',f.args['Label'],''))
+
+    return capiunto.create( {
+        title =  f.args.Label  ,
+                top = 'Project',
+    } )
+end
+return p
