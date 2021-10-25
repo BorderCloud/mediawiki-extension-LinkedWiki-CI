@@ -18,7 +18,7 @@ while [ $# -gt 0 ]; do
   esac
     shift
 done
-
+echo "cp -p $input $output"
 cp -p $input $output
 
  while : ; do

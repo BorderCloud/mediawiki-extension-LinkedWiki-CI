@@ -9,6 +9,7 @@ pwd
 
 git clone --depth 1 --branch $1 https://gerrit.wikimedia.org/r/mediawiki/core.git w
 cd w
+composer config -g allow-plugins true
 composer update --no-dev
 yarn install --production=true --silent
 

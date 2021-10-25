@@ -1,7 +1,9 @@
-FROM rockylinux/rockylinux:8
+FROM rockylinux:8
 ENV container docker
 
-MAINTAINER "Karima Rafes" <karima.rafes@gmail.com>
+LABEL maintainer="Karima Rafes <karima.rafes@gmail.com>"
+
+LABEL description="Image docker for rockylinux with apache-php-mariadb-rdfunit"
 
 #update the server
 RUN yum -y update; yum clean all;
@@ -94,6 +96,8 @@ RUN source /etc/profile.d/maven.sh \
     && cd / \
     && git clone --depth 1 --branch v0.8.23 https://github.com/AKSW/RDFUnit.git \
     && cd /RDFUnit \
+	&& chown apache:apache /usr/share/httpd/.m2 -R \
+	&& chown apache:apache /RDFUnit -R  \
     && mvn -pl rdfunit-validate -am clean install -DskipTests=true \
 	&& chown apache:apache /usr/share/httpd/.m2 -R \
 	&& chown apache:apache /RDFUnit -R

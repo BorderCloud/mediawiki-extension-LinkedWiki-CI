@@ -711,7 +711,7 @@
       "id": "124a397e-2ba5-4fef-abab-0dc9733bf562",
       "comment": "",
       "command": "verifyElementPresent",
-      "target": "xpath=//pre[contains(.,'Job InvalidatePageWithQueryJob: nbJobRefreshlinksAdded 2 nbPageInvalidated 3')]",
+      "target": "xpath=//pre[contains(.,'InvalidatePageWithQuery ForAllQuery')]",
       "targets": [
         ["id=testJobs", "id"],
         ["css=#testJobs", "css:finder"],
@@ -948,7 +948,7 @@
       "id": "d8c4f1fd-be68-47d1-9e47-8e00b368f493",
       "comment": "",
       "command": "waitForElementPresent",
-      "target": "xpath=//pre[contains(.,'Job InvalidatePageWithQueryJob: nbJobRefreshlinksAdded 2 nbPageInvalidated 3')]",
+      "target": "xpath=//pre[contains(.,'InvalidatePageWithQuery ForAllQuery')]",
       "targets": [
         ["id=testJobs", "id"],
         ["css=#testJobs", "css:finder"],
@@ -1148,7 +1148,7 @@
       "id": "cf3b9fb9-6cbc-4f3b-a2aa-4bc68622853d",
       "comment": "",
       "command": "verifyElementPresent",
-      "target": "xpath=//pre[contains(.,'Job InvalidatePageWithQueryJob: nbJobRefreshlinksAdded 2 nbPageInvalidated 3')]",
+      "target": "xpath=//pre[contains(.,'InvalidatePageWithQuery ForAllQuery')]",
       "targets": [
         ["id=testJobs", "id"],
         ["css=#testJobs", "css:finder"],
@@ -1253,7 +1253,7 @@
       "id": "5a65fbc3-b6a5-4923-8d01-c40093bc6980",
       "comment": "",
       "command": "waitForElementPresent",
-      "target": "xpath=//pre[contains(.,'Job InvalidatePageWithQueryJob: nbJobRefreshlinksAdded 2 nbPageInvalidated 3')]",
+      "target": "xpath=//pre[contains(.,'InvalidatePageWithQuery ForAllQuery')]",
       "targets": [
         ["id=testJobs", "id"],
         ["css=#testJobs", "css:finder"],

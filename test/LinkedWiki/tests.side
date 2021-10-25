@@ -3597,16 +3597,16 @@
       "value": ""
     }, {
       "id": "d70df54a-a05e-4c6f-b419-9780f1878a89",
-      "comment": "Special:RDFSave click \"Clean graph http://database-test/data\"",
+      "comment": "",
       "command": "click",
-      "target": "linkText=Refresh the wiki and save the RDF data in the wiki",
+      "target": "linkText=Save the RDF data in the wiki and/or refresh the queries",
       "targets": [
-        ["linkText=Refresh the wiki and save the RDF data in the wiki", "linkText"],
-        ["css=#buttonRefreshAll > .oo-ui-buttonElement-button", "css:finder"],
-        ["xpath=//span[@id='buttonRefreshAll']/a", "xpath:idRelative"],
-        ["xpath=//a[contains(@href, '?refreshWikiPage=true')]", "xpath:href"],
-        ["xpath=//span/a", "xpath:position"],
-        ["xpath=//a[contains(.,'Refresh the wiki and save the RDF data in the wiki')]", "xpath:innerText"]
+        ["linkText=Save the RDF data in the wiki and/or refresh the queries", "linkText"],
+        ["css=#buttonRefreshData > .oo-ui-buttonElement-button", "css:finder"],
+        ["xpath=//span[@id='buttonRefreshData']/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '?refreshData=true')]", "xpath:href"],
+        ["xpath=//span[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Save the RDF data in the wiki and/or refresh the queries')]", "xpath:innerText"]
       ],
       "value": ""
     }, {
@@ -4533,16 +4533,16 @@
       "value": ""
     }, {
       "id": "1ab966bd-1e4a-448f-8508-349298f5aab2",
-      "comment": "Special:RDFSave click \"Import all RDF data pages\"",
+      "comment": "",
       "command": "click",
-      "target": "linkText=Refresh the wiki and save the RDF data in the wiki",
+      "target": "linkText=Save the RDF data in the wiki and/or refresh the queries",
       "targets": [
-        ["linkText=Refresh the wiki and save the RDF data in the wiki", "linkText"],
-        ["css=#buttonRefreshAll > .oo-ui-buttonElement-button", "css:finder"],
-        ["xpath=//span[@id='buttonRefreshAll']/a", "xpath:idRelative"],
-        ["xpath=//a[contains(@href, '?refreshWikiPage=true')]", "xpath:href"],
-        ["xpath=//span/a", "xpath:position"],
-        ["xpath=//a[contains(.,'Refresh the wiki and save the RDF data in the wiki')]", "xpath:innerText"]
+        ["linkText=Save the RDF data in the wiki and/or refresh the queries", "linkText"],
+        ["css=#buttonRefreshData > .oo-ui-buttonElement-button", "css:finder"],
+        ["xpath=//span[@id='buttonRefreshData']/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '?refreshData=true')]", "xpath:href"],
+        ["xpath=//span[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Save the RDF data in the wiki and/or refresh the queries')]", "xpath:innerText"]
       ],
       "value": ""
     }, {
@@ -5012,6 +5012,448 @@
       "targets": [],
       "value": ""
     }]
+  }, {
+    "id": "0d68bd75-a255-4910-8395-9807c6da4b0c",
+    "name": "test40",
+    "commands": [{
+      "id": "8da41dc8-32f3-49bf-afb3-26e2fd6df77a",
+      "comment": "",
+      "command": "executeScript",
+      "target": "return \"Test40\"",
+      "targets": [],
+      "value": "Title"
+    }, {
+      "id": "e5479409-c497-4aeb-8882-492725159131",
+      "comment": "",
+      "command": "echo",
+      "target": "${Title}",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "1467df4b-de19-412e-99c2-ac1ad45b1035",
+      "comment": "",
+      "command": "open",
+      "target": "http://serverdev-mediawiki1.localdomain/w/index.php/Test40?action=edit",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "16671c97-8190-489e-a9e0-b96557d1529e",
+      "comment": "",
+      "command": "type",
+      "target": "id=wpTextbox1",
+      "targets": [],
+      "value": "{{<test40.txt>}}"
+    }, {
+      "id": "bc8cbf43-a251-49cd-869d-8a265f38a995",
+      "comment": "",
+      "command": "click",
+      "target": "name=wpSave",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "db7f2e02-945c-4cba-81c3-fb679c3ed12c",
+      "comment": "",
+      "command": "waitForElementPresent",
+      "target": "id=firstHeading",
+      "targets": [
+        ["id=firstHeading", "id"],
+        ["css=#firstHeading", "css:finder"],
+        ["xpath=//h1[@id='firstHeading']", "xpath:attributes"],
+        ["xpath=//div[@id='content']/h1", "xpath:idRelative"],
+        ["xpath=//h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'Main Page')]", "xpath:innerText"]
+      ],
+      "value": "30000"
+    }, {
+      "id": "8f70e9cc-56d4-43be-8039-b9efab7e9502",
+      "comment": "",
+      "command": "open",
+      "target": "http://serverdev-mediawiki1.localdomain/w/index.php/Data:Test40?action=edit",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "8624993b-fc81-4065-9111-68aaec3bc3f0",
+      "comment": "",
+      "command": "type",
+      "target": "id=wpTextbox1",
+      "targets": [],
+      "value": "{{<test40_data.txt>}}"
+    }, {
+      "id": "9e577a1b-72be-43db-937c-99369cd515b7",
+      "comment": "",
+      "command": "click",
+      "target": "name=wpSave",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "cce53e34-7ca2-4772-85b4-08bdb6fbb11e",
+      "comment": "",
+      "command": "waitForElementPresent",
+      "target": "id=firstHeading",
+      "targets": [
+        ["id=firstHeading", "id"],
+        ["css=#firstHeading", "css:finder"],
+        ["xpath=//h1[@id='firstHeading']", "xpath:attributes"],
+        ["xpath=//div[@id='content']/h1", "xpath:idRelative"],
+        ["xpath=//h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'Main Page')]", "xpath:innerText"]
+      ],
+      "value": "30000"
+    }, {
+      "id": "517e31a2-3d6e-4536-9ebc-e5dca17fa8a7",
+      "comment": "",
+      "command": "open",
+      "target": "http://serverdev-mediawiki1.localdomain/w/index.php/Talk:Test40?action=edit",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "29680136-98ec-45da-9155-f96435aa16c6",
+      "comment": "",
+      "command": "type",
+      "target": "id=wpTextbox1",
+      "targets": [],
+      "value": "{{<test40_talk.txt>}}"
+    }, {
+      "id": "78ba978b-1d0f-41f2-982a-24b09a19a0c8",
+      "comment": "",
+      "command": "click",
+      "target": "name=wpSave",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "fa444802-d586-44f8-95f3-4b6f79410edd",
+      "comment": "",
+      "command": "waitForElementPresent",
+      "target": "id=firstHeading",
+      "targets": [
+        ["id=firstHeading", "id"],
+        ["css=#firstHeading", "css:finder"],
+        ["xpath=//h1[@id='firstHeading']", "xpath:attributes"],
+        ["xpath=//div[@id='content']/h1", "xpath:idRelative"],
+        ["xpath=//h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'Main Page')]", "xpath:innerText"]
+      ],
+      "value": "30000"
+    }, {
+      "id": "d0ea71f7-906b-4670-bced-9fd10afd2822",
+      "comment": "",
+      "command": "open",
+      "target": "http://serverdev-mediawiki1.localdomain/wiki/Special:RDFSave?debug=true&runJobs=true",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "94859da2-0631-4d13-9a27-0b4c1780e6ed",
+      "comment": "",
+      "command": "waitForElementPresent",
+      "target": "id=firstHeading",
+      "targets": [
+        ["id=firstHeading", "id"],
+        ["css=#firstHeading", "css:finder"],
+        ["xpath=//h1[@id='firstHeading']", "xpath:attributes"],
+        ["xpath=//div[@id='content']/h1", "xpath:idRelative"],
+        ["xpath=//h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'Main Page')]", "xpath:innerText"]
+      ],
+      "value": "30000"
+    }, {
+      "id": "6417e338-fe6e-47fe-938c-09208733036e",
+      "comment": "",
+      "command": "open",
+      "target": "http://serverdev-mediawiki1.localdomain/w/index.php/Talk:Test40",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "a89ea830-05d2-4653-9bbe-8a8cff70cd87",
+      "comment": "",
+      "command": "waitForElementPresent",
+      "target": "xpath=//table[1]//td[contains(.,'Duration of query')]",
+      "targets": [],
+      "value": "30000"
+    }, {
+      "id": "70f597e7-60da-4d43-b5b9-515a32f88544",
+      "comment": "",
+      "command": "waitForElementPresent",
+      "target": "xpath=//table[2]//td[contains(.,'Duration of query')]",
+      "targets": [],
+      "value": "30000"
+    }, {
+      "id": "3cecb4fa-65b6-499e-bd50-106de306dee6",
+      "comment": "",
+      "command": "verifyText",
+      "target": "xpath=//table[2]/tbody/tr/td[2]",
+      "targets": [
+        ["css=.wikitable:nth-child(3) td:nth-child(2)", "css:finder"],
+        ["xpath=//div[@id='mw-content-text']/div/table[2]/tbody/tr/td[2]", "xpath:idRelative"],
+        ["xpath=//table[2]/tbody/tr/td[2]", "xpath:position"],
+        ["xpath=//td[contains(.,'test40_main')]", "xpath:innerText"]
+      ],
+      "value": "test40_main"
+    }, {
+      "id": "6dc492f2-4bf6-481e-8b14-e06870984282",
+      "comment": "",
+      "command": "verifyText",
+      "target": "xpath=//table[1]//td[2]",
+      "targets": [
+        ["css=.wikitable:nth-child(1) td:nth-child(2)", "css:finder"],
+        ["xpath=//div[@id='mw-content-text']/div/table/tbody/tr/td[2]", "xpath:idRelative"],
+        ["xpath=//td[2]", "xpath:position"],
+        ["xpath=//td[contains(.,'test40_data')]", "xpath:innerText"]
+      ],
+      "value": "test40_data"
+    }]
+  }, {
+    "id": "84eb5ae1-f2a9-43f8-a85e-218d6e1e3d62",
+    "name": "test41",
+    "commands": [{
+      "id": "4f03d926-0365-4209-8e25-2c7bc1ee44f3",
+      "comment": "",
+      "command": "executeScript",
+      "target": "return \"Test41\"",
+      "targets": [],
+      "value": "Title"
+    }, {
+      "id": "d8ff7573-9475-475b-b62f-35ecc8f85359",
+      "comment": "",
+      "command": "echo",
+      "target": "${Title}",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "3b49cb60-524d-4853-9350-9b8bca42d385",
+      "comment": "",
+      "command": "open",
+      "target": "http://serverdev-mediawiki1.localdomain/w/index.php/User:Test41?action=edit",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "7a03a7ed-be9b-4c9b-a33a-59a072053cfa",
+      "comment": "",
+      "command": "type",
+      "target": "id=wpTextbox1",
+      "targets": [],
+      "value": "{{<test41_user.txt>}}"
+    }, {
+      "id": "a135986c-2662-495f-b5b7-299d80f857b7",
+      "comment": "",
+      "command": "click",
+      "target": "name=wpSave",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "88d53190-20c5-4720-9a5a-f8219ad2d7cc",
+      "comment": "",
+      "command": "waitForElementPresent",
+      "target": "id=firstHeading",
+      "targets": [
+        ["id=firstHeading", "id"],
+        ["css=#firstHeading", "css:finder"],
+        ["xpath=//h1[@id='firstHeading']", "xpath:attributes"],
+        ["xpath=//div[@id='content']/h1", "xpath:idRelative"],
+        ["xpath=//h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'Main Page')]", "xpath:innerText"]
+      ],
+      "value": "30000"
+    }, {
+      "id": "d0a2a3b9-d296-448f-a650-bc70bf82a87e",
+      "comment": "",
+      "command": "open",
+      "target": "http://serverdev-mediawiki1.localdomain/w/index.php/UserData:Test41?action=edit",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "d2b15aba-078d-4ad7-b199-348e7a1ce222",
+      "comment": "",
+      "command": "type",
+      "target": "id=wpTextbox1",
+      "targets": [],
+      "value": "{{<test41_userdata.txt>}}"
+    }, {
+      "id": "7d0e7972-350a-4882-97ba-b1603bb6b021",
+      "comment": "",
+      "command": "click",
+      "target": "name=wpSave",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "8d373599-db5e-4534-a63c-69884840a6f3",
+      "comment": "",
+      "command": "waitForElementPresent",
+      "target": "id=firstHeading",
+      "targets": [
+        ["id=firstHeading", "id"],
+        ["css=#firstHeading", "css:finder"],
+        ["xpath=//h1[@id='firstHeading']", "xpath:attributes"],
+        ["xpath=//div[@id='content']/h1", "xpath:idRelative"],
+        ["xpath=//h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'Main Page')]", "xpath:innerText"]
+      ],
+      "value": "30000"
+    }, {
+      "id": "61f4b7a3-0d2e-4d16-896b-6bc140a3aa4e",
+      "comment": "",
+      "command": "open",
+      "target": "http://serverdev-mediawiki1.localdomain/w/index.php/User talk:Test41?action=edit",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "98e9c6cf-3e3e-4a33-9b4c-de50016ab402",
+      "comment": "",
+      "command": "type",
+      "target": "id=wpTextbox1",
+      "targets": [],
+      "value": "{{<test41_usertalk.txt>}}"
+    }, {
+      "id": "b613e228-d4c6-4937-aa58-294710d45cdb",
+      "comment": "",
+      "command": "click",
+      "target": "name=wpSave",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e50d6fbd-a840-45c6-97d3-a00a1d45ab3f",
+      "comment": "",
+      "command": "waitForElementPresent",
+      "target": "id=firstHeading",
+      "targets": [
+        ["id=firstHeading", "id"],
+        ["css=#firstHeading", "css:finder"],
+        ["xpath=//h1[@id='firstHeading']", "xpath:attributes"],
+        ["xpath=//div[@id='content']/h1", "xpath:idRelative"],
+        ["xpath=//h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'Main Page')]", "xpath:innerText"]
+      ],
+      "value": "30000"
+    }, {
+      "id": "1536e4c7-b697-4717-8058-f18e062890fa",
+      "comment": "",
+      "command": "open",
+      "target": "http://serverdev-mediawiki1.localdomain/wiki/Special:RDFSave?debug=true&runJobs=true",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "d4d603d2-1c68-4d80-b4e7-dd75666ba87b",
+      "comment": "",
+      "command": "waitForElementPresent",
+      "target": "id=firstHeading",
+      "targets": [
+        ["id=firstHeading", "id"],
+        ["css=#firstHeading", "css:finder"],
+        ["xpath=//h1[@id='firstHeading']", "xpath:attributes"],
+        ["xpath=//div[@id='content']/h1", "xpath:idRelative"],
+        ["xpath=//h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'Main Page')]", "xpath:innerText"]
+      ],
+      "value": "30000"
+    }, {
+      "id": "379cfc35-a76c-4264-930d-9e51c2dd4b92",
+      "comment": "",
+      "command": "open",
+      "target": "http://serverdev-mediawiki1.localdomain/w/index.php/User talk:Test41",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "476ea0ce-8562-4c23-b45f-879a4f71fe5e",
+      "comment": "",
+      "command": "waitForElementPresent",
+      "target": "xpath=//table[1]//td[contains(.,'Duration of query')]",
+      "targets": [],
+      "value": "30000"
+    }, {
+      "id": "1be553f0-9fa4-4947-80a8-1ffdf29630c4",
+      "comment": "",
+      "command": "waitForElementPresent",
+      "target": "xpath=//table[2]//td[contains(.,'Duration of query')]",
+      "targets": [],
+      "value": "30000"
+    }, {
+      "id": "50f2cc86-965d-4a7e-bfee-da2e351d082c",
+      "comment": "",
+      "command": "verifyText",
+      "target": "xpath=//table[2]/tbody/tr/td[2]",
+      "targets": [
+        ["css=.wikitable:nth-child(3) td:nth-child(2)", "css:finder"],
+        ["xpath=//div[@id='mw-content-text']/div/table[2]/tbody/tr/td[2]", "xpath:idRelative"],
+        ["xpath=//table[2]/tbody/tr/td[2]", "xpath:position"],
+        ["xpath=//td[contains(.,'test40_main')]", "xpath:innerText"]
+      ],
+      "value": "test41_user"
+    }, {
+      "id": "03b9b5e6-0420-4560-9960-5251157dee73",
+      "comment": "",
+      "command": "verifyText",
+      "target": "xpath=//table[1]//td[2]",
+      "targets": [
+        ["css=.wikitable:nth-child(1) td:nth-child(2)", "css:finder"],
+        ["xpath=//div[@id='mw-content-text']/div/table/tbody/tr/td[2]", "xpath:idRelative"],
+        ["xpath=//td[2]", "xpath:position"],
+        ["xpath=//td[contains(.,'test40_data')]", "xpath:innerText"]
+      ],
+      "value": "test41_userdata"
+    }]
+  }, {
+    "id": "5524c7be-e3b5-458d-8fc2-c70a2e3ce1ac",
+    "name": "test42",
+    "commands": [{
+      "id": "59782e45-59f0-4422-9d5f-5a6d350320da",
+      "comment": "",
+      "command": "executeScript",
+      "target": "return \"Test42\"",
+      "targets": [],
+      "value": "Title"
+    }, {
+      "id": "6aada7dd-404e-4099-84c0-07d8ab21dd63",
+      "comment": "",
+      "command": "echo",
+      "target": "${Title}",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "fe0a1f18-e992-4602-9c1c-0c40635f55f9",
+      "comment": "",
+      "command": "open",
+      "target": "http://serverdev-mediawiki1.localdomain/w/index.php/Test42?action=edit",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c0300188-7d6c-44e9-adbe-a381a0664ff7",
+      "comment": "",
+      "command": "type",
+      "target": "id=wpTextbox1",
+      "targets": [],
+      "value": "{{<test42_page.txt>}}"
+    }, {
+      "id": "2072e4f6-0437-4064-aada-b322410469f6",
+      "comment": "",
+      "command": "click",
+      "target": "name=wpSave",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "d64a266f-5e09-4053-8b61-9c2ad6a56fa9",
+      "comment": "",
+      "command": "waitForElementPresent",
+      "target": "id=firstHeading",
+      "targets": [
+        ["id=firstHeading", "id"],
+        ["css=#firstHeading", "css:finder"],
+        ["xpath=//h1[@id='firstHeading']", "xpath:attributes"],
+        ["xpath=//div[@id='content']/h1", "xpath:idRelative"],
+        ["xpath=//h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'Main Page')]", "xpath:innerText"]
+      ],
+      "value": "30000"
+    }, {
+      "id": "582336f8-64f2-4319-876a-5778f422dac3",
+      "comment": "",
+      "command": "verifyElementNotPresent",
+      "target": "xpath=//p[contains(.,'error')]",
+      "targets": [
+        ["css=p:nth-child(1)", "css:finder"],
+        ["xpath=//div[@id='ID617b00b01b37c']/p", "xpath:idRelative"],
+        ["xpath=//p", "xpath:position"]
+      ],
+      "value": ""
+    }]
   }],
   "suites": [{
     "id": "0cb0ea53-ed47-4a63-814e-200221144015",
@@ -5019,7 +5461,7 @@
     "persistSession": true,
     "parallel": false,
     "timeout": 10000,
-    "tests": ["35c0b104-c047-4e40-92c7-802effeccb22", "97be365d-8697-4eb3-a1e7-b1ab5903db5e", "9e1856a6-6331-43d9-b633-7e6dd609edc3", "de81f059-86ac-4875-bc5e-ee97ca2e8861", "227782ed-5bc3-4174-a061-8c0768400233", "35c0b104-c047-4e40-92c7-802effeccb20", "c22b500b-afc1-4926-8908-37e0b829cd83", "3efb2562-a591-4852-ad40-9e822bcb1998", "2ea5af13-eb2f-49a8-b74c-4cb41527f2c7", "a07e9b58-6231-4b3c-9fac-277a6a5bc1c6", "ac2fd1df-a502-43c0-9ae2-d3c094c1f11b", "efd1dbbc-ca76-4016-b430-5f4d18f08b38", "415d9fc5-6c78-43cf-b3c1-dc830b52c228", "9b11f2ef-771a-47b9-9a5e-054c79c5b93a", "9ad99a48-ed57-4c89-8433-01bc0f17530d", "e782f760-0f82-43b0-a20c-99378bde263c", "8f40c18e-d70d-4ec8-b0ab-89e8f7856245", "fe4952c9-cfd5-40ce-9305-c58413ea5ff7", "30ea261f-34f8-4d90-98d5-b04592b6bc43", "65aa7df0-8378-444f-8277-4d8a9206e954", "aaf026c7-c56a-4626-8eb3-f7a3e6a1ef50", "85ceb53e-6c7e-46cb-acc9-6566f861e6f8", "52a73a44-6599-4b23-b3f0-8b4e82adea99", "3fd3c696-733a-4dc2-ab6b-b20eb42357c5", "bddac27b-0186-4050-9c96-21d8b2f1c58e", "a55933c3-9067-413f-9160-096af7d53583", "9de3c089-8498-44ea-9c4a-1fa39daf35d8", "808e69fe-7e9e-4faf-9827-5fcae148ee47", "4f6abbe8-5b84-4747-a968-a3ede5ac2309", "29b7ef4f-3995-4c0b-b492-4c6e48f8cb89", "8c7e6115-deb9-4a10-b2af-914cf6615639", "3da8d641-41db-4c43-bc39-79e4d9d5fc09", "33d391a9-b41b-4141-8998-e1960dad1c95", "13c5a4dd-816f-4963-b594-33950867ebb1", "0157313c-ba75-49b7-ab40-b7f0ea30d5c7", "3aefc0a2-ddb3-49af-9610-ae0bb2e1ac0c", "a4cea960-9408-454b-a1d9-09ccdf749a20", "e06326b2-61a3-418a-849f-0f34996366b4", "472c0563-910d-4342-9fa2-eb3de1c24300", "7e33d22c-cfa0-4d63-b4e5-028515001ba9", "43c607d3-80ca-408c-bc3f-2ea0eaced47a", "03ac0c2c-a439-4a9e-be5f-c5181ffae317", "75e908d0-c1db-473e-ba92-35ed2ca47c6d", "0a5d8a20-c7f8-49db-b72b-e92cb9632bdb", "70a0030c-9c4d-4f06-a27a-32ae0b0d4398", "7cb16f7e-93f8-4153-a522-5c978a69605b", "6d839cc4-612a-4f80-be0e-80940b5f1e45", "b892d0ad-a9d9-449e-8cec-fd8755a365ee", "be7154be-4ddd-4ffe-8c4d-29c94d7a9cfd", "35c0b104-c047-4e40-92c7-802effeccb21"]
+    "tests": ["35c0b104-c047-4e40-92c7-802effeccb22", "97be365d-8697-4eb3-a1e7-b1ab5903db5e", "9e1856a6-6331-43d9-b633-7e6dd609edc3", "de81f059-86ac-4875-bc5e-ee97ca2e8861", "227782ed-5bc3-4174-a061-8c0768400233", "35c0b104-c047-4e40-92c7-802effeccb20", "c22b500b-afc1-4926-8908-37e0b829cd83", "3efb2562-a591-4852-ad40-9e822bcb1998", "2ea5af13-eb2f-49a8-b74c-4cb41527f2c7", "a07e9b58-6231-4b3c-9fac-277a6a5bc1c6", "ac2fd1df-a502-43c0-9ae2-d3c094c1f11b", "efd1dbbc-ca76-4016-b430-5f4d18f08b38", "415d9fc5-6c78-43cf-b3c1-dc830b52c228", "9b11f2ef-771a-47b9-9a5e-054c79c5b93a", "9ad99a48-ed57-4c89-8433-01bc0f17530d", "e782f760-0f82-43b0-a20c-99378bde263c", "8f40c18e-d70d-4ec8-b0ab-89e8f7856245", "fe4952c9-cfd5-40ce-9305-c58413ea5ff7", "30ea261f-34f8-4d90-98d5-b04592b6bc43", "65aa7df0-8378-444f-8277-4d8a9206e954", "aaf026c7-c56a-4626-8eb3-f7a3e6a1ef50", "85ceb53e-6c7e-46cb-acc9-6566f861e6f8", "52a73a44-6599-4b23-b3f0-8b4e82adea99", "3fd3c696-733a-4dc2-ab6b-b20eb42357c5", "bddac27b-0186-4050-9c96-21d8b2f1c58e", "a55933c3-9067-413f-9160-096af7d53583", "9de3c089-8498-44ea-9c4a-1fa39daf35d8", "808e69fe-7e9e-4faf-9827-5fcae148ee47", "4f6abbe8-5b84-4747-a968-a3ede5ac2309", "29b7ef4f-3995-4c0b-b492-4c6e48f8cb89", "8c7e6115-deb9-4a10-b2af-914cf6615639", "3da8d641-41db-4c43-bc39-79e4d9d5fc09", "33d391a9-b41b-4141-8998-e1960dad1c95", "13c5a4dd-816f-4963-b594-33950867ebb1", "0157313c-ba75-49b7-ab40-b7f0ea30d5c7", "3aefc0a2-ddb3-49af-9610-ae0bb2e1ac0c", "a4cea960-9408-454b-a1d9-09ccdf749a20", "e06326b2-61a3-418a-849f-0f34996366b4", "472c0563-910d-4342-9fa2-eb3de1c24300", "7e33d22c-cfa0-4d63-b4e5-028515001ba9", "43c607d3-80ca-408c-bc3f-2ea0eaced47a", "03ac0c2c-a439-4a9e-be5f-c5181ffae317", "0d68bd75-a255-4910-8395-9807c6da4b0c", "84eb5ae1-f2a9-43f8-a85e-218d6e1e3d62", "5524c7be-e3b5-458d-8fc2-c70a2e3ce1ac", "75e908d0-c1db-473e-ba92-35ed2ca47c6d", "0a5d8a20-c7f8-49db-b72b-e92cb9632bdb", "70a0030c-9c4d-4f06-a27a-32ae0b0d4398", "7cb16f7e-93f8-4153-a522-5c978a69605b", "6d839cc4-612a-4f80-be0e-80940b5f1e45", "b892d0ad-a9d9-449e-8cec-fd8755a365ee", "be7154be-4ddd-4ffe-8c4d-29c94d7a9cfd", "35c0b104-c047-4e40-92c7-802effeccb21"]
   }],
   "urls": ["http://wiki.serverdev-mediawiki/", "http://serverdev-mediawiki1.localdomain/"],
   "plugins": []

@@ -1,3 +1,5 @@
+[![Tests with MediaWiki 1.35](https://github.com/BorderCloud/mediawiki-extension-LinkedWiki-CI/actions/workflows/Test-with-MediaWiki-1.35.yml/badge.svg)](https://github.com/BorderCloud/mediawiki-extension-LinkedWiki-CI/actions/workflows/Test-with-MediaWiki-1.35.yml) [![Tests with MediaWiki 1.36](https://github.com/BorderCloud/mediawiki-extension-LinkedWiki-CI/actions/workflows/Test-with-MediaWiki-1.36.yml/badge.svg)](https://github.com/BorderCloud/mediawiki-extension-LinkedWiki-CI/actions/workflows/Test-with-MediaWiki-1.36.yml) [![Tests with MediaWiki 1.37](https://github.com/BorderCloud/mediawiki-extension-LinkedWiki-CI/actions/workflows/Test-with-MediaWiki-1.37.yml/badge.svg)](https://github.com/BorderCloud/mediawiki-extension-LinkedWiki-CI/actions/workflows/Test-with-MediaWiki-1.37.yml) [![Tests with MediaWiki 1.38](https://github.com/BorderCloud/mediawiki-extension-LinkedWiki-CI/actions/workflows/Test-with-MediaWiki-1.38.yml/badge.svg)](https://github.com/BorderCloud/mediawiki-extension-LinkedWiki-CI/actions/workflows/Test-with-MediaWiki-1.38.yml) [![Tests with MediaWiki 1.39](https://github.com/BorderCloud/mediawiki-extension-LinkedWiki-CI/actions/workflows/Test-with-MediaWiki-1.39.yml/badge.svg)](https://github.com/BorderCloud/mediawiki-extension-LinkedWiki-CI/actions/workflows/Test-with-MediaWiki-1.39.yml)
+
 ## mediawiki-extensions-LinkedWiki-CI
 Github Actions for the [LinkedWiki extension](https://www.mediawiki.org/wiki/Extension:LinkedWiki) of MediaWiki qand its dependencies.
 
@@ -154,7 +156,7 @@ chmod +x *.sh
 ./test10_searchCategory.sh
 ```
 
-14 - Execute the test suite of PushAll extension
+15 - Execute the test suite of PushAll extension
 ```bash
 cd ./test/PushAll
 chmod +x clean_mediawiki1.sh
@@ -174,21 +176,21 @@ echo 'chmod -R o+r /coverage/log'  | docker exec -i instance2.rockylinux-apache-
 php coverage/tools/createGlobalReportForPushAll.php
 ``` 
 
-15 - Clean log before new tests
+16 - Clean log before new tests
 ```bash
 echo '/coverage/tools/cleanReport.sh'  | docker exec -i instance1.rockylinux-apache-php-mariadb-rdfunit bash
 echo '/coverage/tools/cleanReport.sh'  | docker exec -i instance2.rockylinux-apache-php-mariadb-rdfunit bash
 rm -rf ./coverage/log/*
 ``` 
 
-16 -  Check the code of LinkedWiki extension
+17 -  Check the code of LinkedWiki extension
 ```bash
 cd ./servers/mediawiki1/htdocs/w/extensions/LinkedWiki/
 composer test
 yarn test
 ```
 
-17 -  Execute the test suite of LinkedWiki extension
+18 -  Execute the test suite of LinkedWiki extension
 ```bash
 cd ./test/LinkedWiki
 chmod +x clean_mediawiki1.sh
@@ -260,6 +262,14 @@ docker-compose down
 cd ./test
 docker-compose down
 docker image prune -a
+
+rm -f servers/mediawiki1/htdocs/w/LocalSettings.php 
+rm -f servers/mediawiki2/htdocs/w/LocalSettings.php 
+docker stop instance1.rockylinux-apache-php-mariadb-rdfunit 
+docker stop instance2.rockylinux-apache-php-mariadb-rdfunit
+
+docker container rm instance1.rockylinux-apache-php-mariadb-rdfunit
+docker container rm instance2.rockylinux-apache-php-mariadb-rdfunit
 ```
 
 ### How to debug the tests
@@ -285,6 +295,16 @@ Enter password: dockerpass
 mysql>GRANT ALL ON *.* to root@'172.19.0.1' IDENTIFIED BY 'dockerpass';
 mysql>FLUSH PRIVILEGES;
 mysql>exit
+```
+
+### Node & NPM
+
+Install the same version of actions/setup-node@v3 (v16.18.1)
+```bash
+nvm ls-remote
+nvm
+nvm install 16.18.1
+npm i -g npm@latest
 ```
 
 

@@ -19,7 +19,12 @@ wfLoadExtension( 'LinkedWiki' );
 wfLoadExtension( 'LocalisationUpdate' );
 wfLoadExtension( 'Math' );
 wfLoadExtension( 'NamespaceData' );
-require_once "$IP/extensions/NetworkAuth/NetworkAuth.php";
+$oldVersion = version_compare( $wgVersion, '1.38', '<=' );
+if ( $oldVersion ) {
+    require_once "$IP/extensions/NetworkAuth/NetworkAuth.php";
+} else {
+    wfLoadExtension( 'NetworkAuth' );
+}
 wfLoadExtension( 'Nuke' );
 wfLoadExtension( 'ParserFunctions' );
 wfLoadExtension( 'PdfHandler' );

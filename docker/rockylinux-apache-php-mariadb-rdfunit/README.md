@@ -10,17 +10,17 @@ docker build  --rm --no-cache -f docker/rockylinux-apache-php-mariadb-rdfunit/Do
 
 ### Run
 ```
-docker run --privileged --name  instance.rockylinux-apache-php-mariadb-rdfunit \
+docker run --privileged --cgroupns=host -tid \
+        --name  instance.rockylinux-apache-php-mariadb-rdfunit \
         -h rockylinux-apache-php-mariadb-rdfunit \
-        -ti \
-        -v "/sys/fs/cgroup:/sys/fs/cgroup:ro" \
-        -v "$PWD/servers/mediawiki1:/var/www/mediawiki:ro" \
+        -v "/sys/fs/cgroup:/sys/fs/cgroup:rw" \
+        -v "$PWD/servers/mediawiki1:/var/www/mediawiki:rw" \
          -v "$PWD/servers/mediawiki1/vhost.conf:/etc/httpd/conf.d/vhost.conf:ro" \
          -v "$PWD/config:/config:ro" \
          -v "$PWD/coverage/tools:/coverage/tools:ro" \
          -v "$PWD/coverage/mediawiki1/log:/coverage/log" \
          -v "$PWD/coverage/mediawiki1/report:/coverage/report" \
-        -d rockylinux-apache-php-mariadb-rdfunit
+        rockylinux-apache-php-mariadb-rdfunit
 ```
 
 ### Stop the container

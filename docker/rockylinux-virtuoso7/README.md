@@ -1,8 +1,11 @@
 ### Build
 ```
-docker build -t rockylinux-virtuoso7 .
+docker build -f docker/rockylinux-virtuoso7/Dockerfile  -t rockylinux-virtuoso7 . 
+```
 
-docker build --rm --no-cache -t rockylinux-virtuoso7 .
+### Build without cache
+```
+docker build  --rm --no-cache -f docker/rockylinux-virtuoso7/Dockerfile  -t rockylinux-virtuoso7 . 
 ```
 
 ### Run

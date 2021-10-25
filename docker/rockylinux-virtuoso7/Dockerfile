@@ -1,7 +1,9 @@
-FROM rockylinux/rockylinux:8
+FROM rockylinux:8
 ENV container docker
 
-MAINTAINER "Karima Rafes" <karima.rafes@gmail.com>
+LABEL maintainer="Karima Rafes <karima.rafes@gmail.com>"
+
+LABEL description="Image docker for rockylinux with Virtuoso7"
 
 #update the server
 RUN yum -y update; yum clean all;
@@ -24,7 +26,7 @@ RUN  yum -y install epel-release \
 	&& yum clean all
 
 #build virtuoso
-RUN  git clone --depth 1 -b stable/7 git://github.com/openlink/virtuoso-opensource.git \
+RUN  git clone --depth 1 -b stable/7 https://github.com/openlink/virtuoso-opensource.git \
     && cd virtuoso-opensource \
     && export CFLAGS="-O2 -m64" \
     && ./autogen.sh \
@@ -89,7 +91,7 @@ RUN chmod +x /data/start.sh \
 	&& systemctl enable virtuoso
 	
 # Enable CORS
-COPY enable_CORS_all_domains.sql /tmp/enable_CORS_all_domains.sql
+COPY docker/rockylinux-virtuoso7/enable_CORS_all_domains.sql /tmp/enable_CORS_all_domains.sql
 RUN virtuoso-t -c /data/virtuoso.ini +wait \
  	&& isql 1111 dba dba /tmp/enable_CORS_all_domains.sql \
  	&& isql 1111 dba dba -K \
@@ -123,8 +125,8 @@ RUN yum install -y yum-utils automake autoconf libtool ncurses-devel libxslt gro
     && make \
     && make install 
     
-COPY varnish.service /etc/systemd/system
-COPY default.vcl /etc/varnish/default.vcl
+COPY docker/rockylinux-virtuoso7/varnish.service /etc/systemd/system
+COPY docker/rockylinux-virtuoso7/default.vcl /etc/varnish/default.vcl
 
 RUN systemctl enable varnish
 
