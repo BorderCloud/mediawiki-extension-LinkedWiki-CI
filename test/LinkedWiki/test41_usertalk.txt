@@ -1,0 +1,15 @@
+{{#sparql:
+    select * 
+    where {
+        <DATAIRI> ?y ?z .
+    }
+    LIMIT 15
+}} 
+
+{{#sparql:
+    select * 
+    where {
+        <PAGEIRI> ?y ?z .
+    }
+    LIMIT 15
+}}

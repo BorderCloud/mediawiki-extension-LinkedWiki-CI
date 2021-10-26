@@ -58,6 +58,13 @@ Test38 page‎
 Module:Test38‎ page
 Test39 page‎
 
+Test40
+Talk:Test40
+Data:Test40
+User:Test41
+User talk:Test41
+UserData:Test41
+
 Data:Test301
 Module:Test301
 Test301
