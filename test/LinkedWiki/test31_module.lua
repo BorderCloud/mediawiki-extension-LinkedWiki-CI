@@ -210,10 +210,10 @@ function p.tests(f)
     --    function objTest:checkImage(property, valueInWiki, width, height)
 
     pT = pr..'5'
-    valueInWiki = "http://commons.wikimedia.org/wiki/Special:FilePath/Pope_Hadrian_IV.jpg"
+    valueInWiki = "http://commons.wikimedia.org/wiki/Special:FilePath/Pope%20Hadrian%20IV.jpg"
     result = objTest:checkImage(pT,valueInWiki)
     html = html .."15 RESULT BEGIN : "..newline ..result ..newline.."END" ..newline
-    html = html .."RESULT : " .. p.checkString(result,'<div class="mw-ext-linkedwiki-new-value" ><span class="plainlinks">[http://commons.wikimedia.org/wiki/Special:FilePath/Pope_Hadrian_IV.jpg http://commons.wikimedia.org/wiki/Special:FilePath/Pope_Hadrian_IV.jpg]</span></div>') ..newline
+    html = html .."RESULT : " .. p.checkString(result,'<div class="mw-ext-linkedwiki-new-value" ><span class="plainlinks">[https://commons.wikimedia.org/wiki/File:Pope_Hadrian_IV.jpg#/media/File:Pope_Hadrian_IV.jpg http://commons.wikimedia.org/wiki/Special:FilePath/Pope%20Hadrian%20IV.jpg]</span></div>') ..newline
 
     mw.log(objTest:addPropertyWithIri(pT,"http://example.com/test.png"))
 
@@ -222,12 +222,13 @@ function p.tests(f)
     html = html .."16 RESULT BEGIN : "..newline ..result ..newline.."END" ..newline
     html = html .."RESULT : " .. p.checkString(result,'<div class="mw-ext-linkedwiki-value-equal" ><span class="plainlinks">[http://example.com/test.png http://example.com/test.png]</span></div>') ..newline
 
-
-
     valueInWiki = "http://example.com/test2.png"
     result = objTest:checkImage(pT,valueInWiki)
     html = html .."17 RESULT BEGIN : "..newline ..result ..newline.."END" ..newline
     html = html .."RESULT : " .. p.checkString(result,'<div class="mw-ext-linkedwiki-new-value mw-ext-linkedwiki-tooltip" title="Currently in DB: http://example.com/test.png" data-toggle="tooltip" data-placement="bottom"><span class="plainlinks">[http://example.com/test2.png http://example.com/test2.png]</span></div>') ..newline
+    
+    
+
 
     html = html .."----------------------------------------------------------------------------" ..newline
     html = html .."TEST : checkTitle" ..newline
