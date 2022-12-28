@@ -5411,7 +5411,7 @@
       "id": "fe0a1f18-e992-4602-9c1c-0c40635f55f9",
       "comment": "",
       "command": "open",
-      "target": "http://serverdev-mediawiki1.localdomain/w/index.php/Test42?action=edit",
+      "target": "http://serverdev-mediawiki1.localdomain/w/index.php/Test42_page?action=edit",
       "targets": [],
       "value": ""
     }, {
