@@ -5514,13 +5514,6 @@
       "targets": [],
       "value": "30000"
     }, {
-      "id": "e8ddfba5-90ec-4437-a1b5-935c50078e3e",
-      "comment": "",
-      "command": "verifyText",
-      "target": "css=th",
-      "targets": [],
-      "value": "test"
-    }, {
       "id": "857d1620-6cb2-49ce-9c57-a597c5329153",
       "comment": "",
       "command": "verifyElementNotPresent",
