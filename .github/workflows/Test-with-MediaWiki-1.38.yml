@@ -45,14 +45,8 @@ jobs:
             #composer test
             #yarn test
             
-      - name: Check the code of NamespaceData
-        working-directory: ./servers/mediawiki1/htdocs/w/extensions/NamespaceData
-        run: |
-            composer test
-            yarn test
-            
-      #- name: Check the code of LinkedWiki
-        #working-directory: ./servers/mediawiki1/htdocs/w/extensions/LinkedWiki
+      #- name: Check the code of NamespaceData
+        #working-directory: ./servers/mediawiki1/htdocs/w/extensions/NamespaceData
         #run: |
             #composer test
             #yarn test

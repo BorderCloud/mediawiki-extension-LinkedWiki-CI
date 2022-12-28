@@ -54,16 +54,26 @@ Module:Test34 page save
 Data:Test35 page
 Data:Test36 page
 Data:Test37 page
-Test38 page‎
-Module:Test38‎ page
-Test39 page‎
+Test38 page
+Module:Test38 page
+Test39 page
 Test40
 Talk:Test40
 Data:Test40
 User:Test41
 User talk:Test41
 UserData:Test41
-Test42
+Test42 page
+Test43 page
+Template:Test43 page template1
+Test44 page
+Template:Test44 page template1
+Test45 page
+Template:Test45 page template1
+Template:Test45 page template2
+Template:Test45 page template3
+Test46 page
+Template:Test46 page template1
 
 Data:Test301
 Module:Test301
@@ -73,6 +83,3 @@ Test301 pagewrite
 Test301 pagereadmodule
 Test301 pagereadquery
 Test301 pagereadquerynocache
-
-Module:Pape‎‎
-
