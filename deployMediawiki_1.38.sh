@@ -63,7 +63,7 @@ cd LinkedWiki
 git review -d 872947 # todo remove after the review
 cd ..
 git clone --depth 1 https://github.com/BorderCloud/NamespaceData.git # last version always compatible >= 1.35
-# git clone --depth 1 -b 2.0.1 https://github.com/BorderCloud/PushAll.git
+git clone --depth 1 -b 2.0.1 https://github.com/BorderCloud/PushAll.git
 
 for D in `find . -maxdepth 1 -type d `
 do
