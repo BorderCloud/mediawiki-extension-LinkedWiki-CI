@@ -34,10 +34,10 @@ jobs:
             sudo apt-get install -y git-review
             chmod +x deployMediawiki_1.35_1.36_1.37.sh
             chmod +x deploy2Mediawiki.sh
-            ./deployMediawiki_1.35_1.36_1.37.sh REL1_35 servers/mediawiki1/htdocs 
+            ./deployMediawiki_1.35_1.36_1.37.sh REL1_36 servers/mediawiki1/htdocs 
             cp -R  servers/mediawiki1/htdocs servers/mediawiki2/htdocs
-            ./deploy2Mediawiki.sh REL1_35 servers/mediawiki1/htdocs 
-            ./deploy2Mediawiki.sh REL1_35 servers/mediawiki2/htdocs 
+            ./deploy2Mediawiki.sh REL1_36 servers/mediawiki1/htdocs 
+            ./deploy2Mediawiki.sh REL1_36 servers/mediawiki2/htdocs 
             
             
       #- name: Check the code of PushAll
