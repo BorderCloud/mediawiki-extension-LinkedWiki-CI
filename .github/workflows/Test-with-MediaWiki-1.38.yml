@@ -31,6 +31,7 @@ jobs:
             
       - name: Copy two instances of Mediawiki
         run: |
+            sudo apt-get install -y git-review
             chmod +x deployMediawiki_1.38.sh
             chmod +x deploy2Mediawiki.sh
             ./deployMediawiki_1.38.sh REL1_38 servers/mediawiki1/htdocs 
