@@ -191,50 +191,50 @@ jobs:
             echo 'chmod -R o+r /coverage/log'  | docker exec -i instance2.rockylinux-apache-php-mariadb-rdfunit bash
             php coverage/tools/createGlobalReportForNamespaceData.php
             
-      # - name: Clean log before new tests
-      #   run: |
-      #       echo '/coverage/tools/cleanReport.sh'  | docker exec -i instance1.rockylinux-apache-php-mariadb-rdfunit bash
-      #       echo '/coverage/tools/cleanReport.sh'  | docker exec -i instance2.rockylinux-apache-php-mariadb-rdfunit bash
-      #       rm -rf ./coverage/log/*
+      - name: Clean log before new tests
+        run: |
+            echo '/coverage/tools/cleanReport.sh'  | docker exec -i instance1.rockylinux-apache-php-mariadb-rdfunit bash
+            echo '/coverage/tools/cleanReport.sh'  | docker exec -i instance2.rockylinux-apache-php-mariadb-rdfunit bash
+            rm -rf ./coverage/log/*
           
-      # - name: Check Mediawiki API for the PushAll extension
-      #   working-directory: ./test/api
-      #   run: |
-      #       chmod +x *.sh
-      #       sudo printf "\n172.19.0.4      database-test1.localdomain\n172.19.0.5      database-test2.localdomain\n172.19.0.2      serverdev-mediawiki1.localdomain\n172.19.0.3      serverdev-mediawiki2.localdomain\n" | sudo tee -a /etc/hosts
-      #       ./test01_login.sh 
-      #       ./test02_edit.sh 
-      #       ./test03_upload.sh 
-      #       ./test04_revisions.sh 
-      #       ./test05_filesInPage.sh 
-      #       ./test06_modulesAndTemplatesInPage.sh 
-      #       ./test07_allpages.sh 
-      #       ./test08_categorymembers.sh 
-      #       ./test09_searchPage.sh 
-      #       ./test10_searchCategory.sh
+      - name: Check Mediawiki API for the PushAll extension
+        working-directory: ./test/api
+        run: |
+            chmod +x *.sh
+            sudo printf "\n172.19.0.4      database-test1.localdomain\n172.19.0.5      database-test2.localdomain\n172.19.0.2      serverdev-mediawiki1.localdomain\n172.19.0.3      serverdev-mediawiki2.localdomain\n" | sudo tee -a /etc/hosts
+            ./test01_login.sh 
+            ./test02_edit.sh 
+            ./test03_upload.sh 
+            ./test04_revisions.sh 
+            ./test05_filesInPage.sh 
+            ./test06_modulesAndTemplatesInPage.sh 
+            ./test07_allpages.sh 
+            ./test08_categorymembers.sh 
+            ./test09_searchPage.sh 
+            ./test10_searchCategory.sh
 
-      # - name: Execute the test suite of PushAll extension
-      #   working-directory: ./test/PushAll
-      #   run: |
-      #       chmod +x clean_mediawiki1.sh
-      #       chmod +x clean_mediawiki2.sh
-      #       chmod +x make_tests.sh
-      #       ./clean_mediawiki1.sh
-      #       ./clean_mediawiki2.sh
-      #       ./make_tests.sh /tmp/test/PushAll
-      #       selenium-side-runner  --server http://localhost:4444/wd/hub -c "browserName=chrome"  ./import_final.side
-      #       selenium-side-runner  --server http://localhost:4444/wd/hub -c "browserName=chrome"  ./userDataAddRemoteWikis.side
-      #       selenium-side-runner  --server http://localhost:4444/wd/hub -c "browserName=chrome"  ./tests_final.side
-      #       #./clean_mediawiki2.sh
-      #       #selenium-side-runner  --server http://localhost:4444/wd/hub -c "browserName=firefox" ./tests_final.side
-      #       ./clean_mediawiki1.sh
-      #       ./clean_mediawiki2.sh
+      - name: Execute the test suite of PushAll extension
+        working-directory: ./test/PushAll
+        run: |
+            chmod +x clean_mediawiki1.sh
+            chmod +x clean_mediawiki2.sh
+            chmod +x make_tests.sh
+            ./clean_mediawiki1.sh
+            ./clean_mediawiki2.sh
+            ./make_tests.sh /tmp/test/PushAll
+            selenium-side-runner  --server http://localhost:4444/wd/hub -c "browserName=chrome"  ./import_final.side
+            selenium-side-runner  --server http://localhost:4444/wd/hub -c "browserName=chrome"  ./userDataAddRemoteWikis.side
+            selenium-side-runner  --server http://localhost:4444/wd/hub -c "browserName=chrome"  ./tests_final.side
+            #./clean_mediawiki2.sh
+            #selenium-side-runner  --server http://localhost:4444/wd/hub -c "browserName=firefox" ./tests_final.side
+            ./clean_mediawiki1.sh
+            ./clean_mediawiki2.sh
             
-      # - name: Check the coverage of tests for PushAll extension
-      #   run: |
-      #       echo 'chmod -R o+r /coverage/log'  | docker exec -i instance1.rockylinux-apache-php-mariadb-rdfunit bash
-      #       echo 'chmod -R o+r /coverage/log'  | docker exec -i instance2.rockylinux-apache-php-mariadb-rdfunit bash
-      #       php coverage/tools/createGlobalReportForPushAll.php
+      - name: Check the coverage of tests for PushAll extension
+        run: |
+            echo 'chmod -R o+r /coverage/log'  | docker exec -i instance1.rockylinux-apache-php-mariadb-rdfunit bash
+            echo 'chmod -R o+r /coverage/log'  | docker exec -i instance2.rockylinux-apache-php-mariadb-rdfunit bash
+            php coverage/tools/createGlobalReportForPushAll.php
             
       - name: Clean log before new tests
         run: |
