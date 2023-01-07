@@ -56,7 +56,7 @@ git clone --depth 1 -b $1  https://gerrit.wikimedia.org/r/mediawiki/extensions/M
 git clone --depth 1 https://gerrit.wikimedia.org/r/mediawiki/extensions/ApiSandbox.git
 git clone --depth 1 https://gerrit.wikimedia.org/r/mediawiki/extensions/NetworkAuth.git # for private Wiki
 cd NetworkAuth
-git review -d 872945-2 # todo remove after the review
+git review -d 872945 # todo remove after the review
 cd ..
 git clone --depth 1 https://gerrit.wikimedia.org/r/mediawiki/extensions/LinkedWiki.git
 git clone --depth 1 https://github.com/BorderCloud/NamespaceData.git # last version always compatible >= 1.35
