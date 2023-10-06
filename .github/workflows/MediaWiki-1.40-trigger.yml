@@ -1,4 +1,4 @@
-name: MediaWiki 1.41 trigger
+name: MediaWiki 1.40 trigger
 
 on:
   workflow_run:
@@ -15,5 +15,5 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - run: ./checkUpdatesForAllDependencies.sh REL1_41
+      - run: ./checkUpdatesForAllDependencies.sh REL1_40
       
