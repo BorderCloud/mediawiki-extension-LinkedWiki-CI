@@ -3610,6 +3610,18 @@
       ],
       "value": ""
     }, {
+      "id": "416b15b5-39f0-4963-a499-4de30c04427c",
+      "comment": "",
+      "command": "waitForElementVisible",
+      "target": "xpath=//pre[4]",
+      "targets": [
+        ["css=pre:nth-child(16)", "css:finder"],
+        ["xpath=//div[@id='mw-content-text']/pre[4]", "xpath:idRelative"],
+        ["xpath=//pre[4]", "xpath:position"],
+        ["xpath=//pre[contains(.,'Load <http://serverdev-mediawiki1.localdomain/w/index.php?title=Data:Test32_page&action=raw&export=rdf> into graph <http://database-test1.localdomain/data> -- done\nLoad <http://serverdev-mediawiki1.localdomain/w/index.php?title=Data:Test35_page&action=raw&export=rdf> into graph <http://database-test1.localdomain/data> -- done\nLoad <http://serverdev-mediawiki1.localdomain/w/index.php?title=Data:Test36_page&action=raw&export=rdf> into graph <http://database-test1.localdomain/data> -- done\nLoad <http://serverdev-mediawiki1.localdomain/w/index.php?title=Data:Test37_page&action=raw&export=rdf> into graph <http://database-test1.localdomain/data> -- done\nLoad <http://serverdev-mediawiki1.localdomain/w/index.php?title=Test40&action=raw&export=rdf> into graph <http://database-test1.localdomain/data> -- done\nLoad <http://serverdev-mediawiki1.localdomain/w/index.php?title=Data:Test40&action=raw&export=rdf> into graph <http://database-test1.localdomain/data> -- done\nLoad <http://serverdev-mediawiki1.localdomain/w/index.php?title=User:Test41&action=raw&export=rdf> into graph <http://database-test1.localdomain/data> -- done\nLoad <http://serverdev-mediawiki1.localdomain/w/index.php?title=UserData:Test41&action=raw&export=rdf> into graph <http://database-test1.localdomain/data> -- done\nCommit -- done')]", "xpath:innerText"]
+      ],
+      "value": "60000"
+    }, {
       "id": "e685db47-c59d-4ac3-8b13-7ef93fa7fa99",
       "comment": "check in page load done",
       "command": "assertElementPresent",
@@ -4546,6 +4558,18 @@
       ],
       "value": ""
     }, {
+      "id": "b7513e47-582c-4e3d-8a60-c3aecde7008d",
+      "comment": "",
+      "command": "waitForElementVisible",
+      "target": "xpath=//pre[4]",
+      "targets": [
+        ["css=pre:nth-child(16)", "css:finder"],
+        ["xpath=//div[@id='mw-content-text']/pre[4]", "xpath:idRelative"],
+        ["xpath=//pre[4]", "xpath:position"],
+        ["xpath=//pre[contains(.,'Load <http://serverdev-mediawiki1.localdomain/w/index.php?title=Data:Test32_page&action=raw&export=rdf> into graph <http://database-test1.localdomain/data> -- done\nLoad <http://serverdev-mediawiki1.localdomain/w/index.php?title=Data:Test35_page&action=raw&export=rdf> into graph <http://database-test1.localdomain/data> -- done\nLoad <http://serverdev-mediawiki1.localdomain/w/index.php?title=Data:Test36_page&action=raw&export=rdf> into graph <http://database-test1.localdomain/data> -- done\nLoad <http://serverdev-mediawiki1.localdomain/w/index.php?title=Data:Test37_page&action=raw&export=rdf> into graph <http://database-test1.localdomain/data> -- done\nLoad <http://serverdev-mediawiki1.localdomain/w/index.php?title=Test40&action=raw&export=rdf> into graph <http://database-test1.localdomain/data> -- done\nLoad <http://serverdev-mediawiki1.localdomain/w/index.php?title=Data:Test40&action=raw&export=rdf> into graph <http://database-test1.localdomain/data> -- done\nLoad <http://serverdev-mediawiki1.localdomain/w/index.php?title=User:Test41&action=raw&export=rdf> into graph <http://database-test1.localdomain/data> -- done\nLoad <http://serverdev-mediawiki1.localdomain/w/index.php?title=UserData:Test41&action=raw&export=rdf> into graph <http://database-test1.localdomain/data> -- done\nCommit -- done')]", "xpath:innerText"]
+      ],
+      "value": "60000"
+    }, {
       "id": "564264e5-459f-471d-b230-236bb68b03b3",
       "comment": "",
       "command": "waitForElementPresent",
@@ -5145,16 +5169,9 @@
       "id": "94859da2-0631-4d13-9a27-0b4c1780e6ed",
       "comment": "",
       "command": "waitForElementPresent",
-      "target": "id=firstHeading",
-      "targets": [
-        ["id=firstHeading", "id"],
-        ["css=#firstHeading", "css:finder"],
-        ["xpath=//h1[@id='firstHeading']", "xpath:attributes"],
-        ["xpath=//div[@id='content']/h1", "xpath:idRelative"],
-        ["xpath=//h1", "xpath:position"],
-        ["xpath=//h1[contains(.,'Main Page')]", "xpath:innerText"]
-      ],
-      "value": "30000"
+      "target": "id=testJobs",
+      "targets": [],
+      "value": "60000"
     }, {
       "id": "6417e338-fe6e-47fe-938c-09208733036e",
       "comment": "",
@@ -5334,16 +5351,9 @@
       "id": "d4d603d2-1c68-4d80-b4e7-dd75666ba87b",
       "comment": "",
       "command": "waitForElementPresent",
-      "target": "id=firstHeading",
-      "targets": [
-        ["id=firstHeading", "id"],
-        ["css=#firstHeading", "css:finder"],
-        ["xpath=//h1[@id='firstHeading']", "xpath:attributes"],
-        ["xpath=//div[@id='content']/h1", "xpath:idRelative"],
-        ["xpath=//h1", "xpath:position"],
-        ["xpath=//h1[contains(.,'Main Page')]", "xpath:innerText"]
-      ],
-      "value": "30000"
+      "target": "id=testJobs",
+      "targets": [],
+      "value": "60000"
     }, {
       "id": "379cfc35-a76c-4264-930d-9e51c2dd4b92",
       "comment": "",
