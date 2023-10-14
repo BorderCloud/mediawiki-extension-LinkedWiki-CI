@@ -63,7 +63,7 @@ git clone --depth 1 https://gerrit.wikimedia.org/r/mediawiki/extensions/LinkedWi
 # git review -d XXXXXX
 # cd ..
 git clone --depth 1 https://github.com/BorderCloud/NamespaceData.git
-git clone --depth 1 https://github.com/BorderCloud/PushAll.git
+git clone --depth 1 https://gerrit.wikimedia.org/r/mediawiki/extensions/PushAll.git
 
 for D in `find . -maxdepth 1 -type d `
 do
