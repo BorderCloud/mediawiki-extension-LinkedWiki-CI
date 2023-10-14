@@ -420,30 +420,30 @@ function p.tests(f)
     -- mw.log("TEST 33")
     -- mw.log(result)
 
-    html = html .."RESULT : " .. p.checkString(result,'<div class="mw-ext-linkedwiki-new-value mw-ext-linkedwiki-tooltip" data-toggle="tooltip" data-placement="bottom" title="Currently in DB: "><span class="plainlinks">[https://www.wikidata.org/wiki/Special:GoToLinkedPage/enwiki/Q1 universe]</span><span class="plainlinks"><small>([http://www.wikidata.org/entity/Q1 Q1])</small></span>, <span class="plainlinks">[https://www.wikidata.org/wiki/Special:GoToLinkedPage/enwiki/Q2 Earth]</span><span class="plainlinks"><small>([http://www.wikidata.org/entity/Q2 Q2])</small></span></div>') ..newline
+    html = html .."RESULT : " .. p.checkString(result,'<div class="mw-ext-linkedwiki-new-value mw-ext-linkedwiki-tooltip" data-toggle="tooltip" data-placement="bottom" title="Currently in DB: "><span class="plainlinks">[https://www.wikidata.org/wiki/Special:GoToLinkedPage/enwiki/Q1 Universe]</span><span class="plainlinks"><small>([http://www.wikidata.org/entity/Q1 Q1])</small></span>, <span class="plainlinks">[https://www.wikidata.org/wiki/Special:GoToLinkedPage/enwiki/Q2 Earth]</span><span class="plainlinks"><small>([http://www.wikidata.org/entity/Q2 Q2])</small></span></div>') ..newline
     -- TEST 34
     valueInWiki =  ""
-    --"universe" in DB
+    --"Universe" in DB
     -- current - pT -> pTObj
-    -- pTObj - rdfs:label -> "universe"
+    -- pTObj - rdfs:label -> "Universe"
     mw.log(objTest:addPropertyWithIri(pT, pTObjTemp1))
-    mw.log(ObjTemp1:addPropertyWithLiteral(rdfs.."label","universe"))
+    mw.log(ObjTemp1:addPropertyWithLiteral(rdfs.."label","Universe"))
     result = objTest:checkItem(pT,valueInWiki)
     html = html .."34 RESULT BEGIN : "..newline ..result ..newline.."END" ..newline
 
     --mw.log("TEST 34")
     --mw.log(result)
 
-    html = html .."RESULT : " .. p.checkString(result,'<div class="mw-ext-linkedwiki-value-equal"><span class="plainlinks">[https://www.wikidata.org/wiki/Special:GoToLinkedPage/enwiki/Q1 universe]</span><span class="plainlinks"><small>([http://www.wikidata.org/entity/Q1 Q1])</small></span></div>') ..newline
+    html = html .."RESULT : " .. p.checkString(result,'<div class="mw-ext-linkedwiki-value-equal"><span class="plainlinks">[https://www.wikidata.org/wiki/Special:GoToLinkedPage/enwiki/Q1 Universe]</span><span class="plainlinks"><small>([http://www.wikidata.org/entity/Q1 Q1])</small></span></div>') ..newline
 
     -- TEST 35
     valueInWiki =  "Q1;Q2"
-    --"universe" in DB
+    --"Universe" in DB
     result = objTest:checkItem(pT,valueInWiki)
     html = html .."35 RESULT BEGIN : "..newline ..result ..newline.."END" ..newline
     --mw.log(objTest:addPropertyWithIri(pT,pTObjTemp2))
 
-    html = html .."RESULT : " .. p.checkString(result,'<div class="mw-ext-linkedwiki-new-value mw-ext-linkedwiki-tooltip" data-toggle="tooltip" data-placement="bottom" title="Currently in DB: universe"><span class="plainlinks">[https://www.wikidata.org/wiki/Special:GoToLinkedPage/enwiki/Q1 universe]</span><span class="plainlinks"><small>([http://www.wikidata.org/entity/Q1 Q1])</small></span>, <span class="plainlinks">[https://www.wikidata.org/wiki/Special:GoToLinkedPage/enwiki/Q2 Earth]</span><span class="plainlinks"><small>([http://www.wikidata.org/entity/Q2 Q2])</small></span></div>') ..newline
+    html = html .."RESULT : " .. p.checkString(result,'<div class="mw-ext-linkedwiki-new-value mw-ext-linkedwiki-tooltip" data-toggle="tooltip" data-placement="bottom" title="Currently in DB: Universe"><span class="plainlinks">[https://www.wikidata.org/wiki/Special:GoToLinkedPage/enwiki/Q1 Universe]</span><span class="plainlinks"><small>([http://www.wikidata.org/entity/Q1 Q1])</small></span>, <span class="plainlinks">[https://www.wikidata.org/wiki/Special:GoToLinkedPage/enwiki/Q2 Earth]</span><span class="plainlinks"><small>([http://www.wikidata.org/entity/Q2 Q2])</small></span></div>') ..newline
 
     -- TEST 36
     valueInWiki = " Q1 ; Q2 "
@@ -456,14 +456,14 @@ function p.tests(f)
     result = objTest:checkItem(pT,valueInWiki)
 
 html = html .."36 RESULT BEGIN : "..newline ..result ..newline.."END" ..newline
-    html = html .."RESULT : " .. p.checkString(result,'<div class="mw-ext-linkedwiki-value-equal"><span class="plainlinks">[https://www.wikidata.org/wiki/Special:GoToLinkedPage/enwiki/Q1 universe]</span><span class="plainlinks"><small>([http://www.wikidata.org/entity/Q1 Q1])</small></span>, <span class="plainlinks">[https://www.wikidata.org/wiki/Special:GoToLinkedPage/enwiki/Q2 Earth]</span><span class="plainlinks"><small>([http://www.wikidata.org/entity/Q2 Q2])</small></span></div>') ..newline
+    html = html .."RESULT : " .. p.checkString(result,'<div class="mw-ext-linkedwiki-value-equal"><span class="plainlinks">[https://www.wikidata.org/wiki/Special:GoToLinkedPage/enwiki/Q1 Universe]</span><span class="plainlinks"><small>([http://www.wikidata.org/entity/Q1 Q1])</small></span>, <span class="plainlinks">[https://www.wikidata.org/wiki/Special:GoToLinkedPage/enwiki/Q2 Earth]</span><span class="plainlinks"><small>([http://www.wikidata.org/entity/Q2 Q2])</small></span></div>') ..newline
 
     -- TEST 37
     valueInWiki = ""
     --"Title1;Title2" in DB
     result = objTest:checkItem(pT,valueInWiki)
     html = html .."37 RESULT BEGIN : "..newline ..result ..newline.."END" ..newline
-    html = html .."RESULT : " .. p.checkString(result,'<div class="mw-ext-linkedwiki-value-equal"><span class="plainlinks">[https://www.wikidata.org/wiki/Special:GoToLinkedPage/enwiki/Q1 universe]</span><span class="plainlinks"><small>([http://www.wikidata.org/entity/Q1 Q1])</small></span>, <span class="plainlinks">[https://www.wikidata.org/wiki/Special:GoToLinkedPage/enwiki/Q2 Earth]</span><span class="plainlinks"><small>([http://www.wikidata.org/entity/Q2 Q2])</small></span></div>') ..newline
+    html = html .."RESULT : " .. p.checkString(result,'<div class="mw-ext-linkedwiki-value-equal"><span class="plainlinks">[https://www.wikidata.org/wiki/Special:GoToLinkedPage/enwiki/Q1 Universe]</span><span class="plainlinks"><small>([http://www.wikidata.org/entity/Q1 Q1])</small></span>, <span class="plainlinks">[https://www.wikidata.org/wiki/Special:GoToLinkedPage/enwiki/Q2 Earth]</span><span class="plainlinks"><small>([http://www.wikidata.org/entity/Q2 Q2])</small></span></div>') ..newline
 
     --mw.log("TEST 37")
     --mw.log(result)
@@ -473,7 +473,7 @@ html = html .."36 RESULT BEGIN : "..newline ..result ..newline.."END" ..newline
     --"Title1;Title2" in DB
     result = objTest:checkItem(pT,valueInWiki)
     html = html .."38 RESULT BEGIN : "..newline ..result ..newline.."END" ..newline
-    html = html .."RESULT : " .. p.checkString(result,'<div class="mw-ext-linkedwiki-new-value mw-ext-linkedwiki-tooltip" data-toggle="tooltip" data-placement="bottom" title="Currently in DB: universe, Earth"><span class="plainlinks">[https://www.wikidata.org/wiki/Special:GoToLinkedPage/enwiki/Q1 universe]</span><span class="plainlinks"><small>([http://www.wikidata.org/entity/Q1 Q1])</small></span>, <span class="plainlinks">[https://www.wikidata.org/wiki/Special:GoToLinkedPage/enwiki/Q2 Earth]</span><span class="plainlinks"><small>([http://www.wikidata.org/entity/Q2 Q2])</small></span>, Title3</div>') ..newline
+    html = html .."RESULT : " .. p.checkString(result,'<div class="mw-ext-linkedwiki-new-value mw-ext-linkedwiki-tooltip" data-toggle="tooltip" data-placement="bottom" title="Currently in DB: Universe, Earth"><span class="plainlinks">[https://www.wikidata.org/wiki/Special:GoToLinkedPage/enwiki/Q1 Universe]</span><span class="plainlinks"><small>([http://www.wikidata.org/entity/Q1 Q1])</small></span>, <span class="plainlinks">[https://www.wikidata.org/wiki/Special:GoToLinkedPage/enwiki/Q2 Earth]</span><span class="plainlinks"><small>([http://www.wikidata.org/entity/Q2 Q2])</small></span>, Title3</div>') ..newline
 
     --mw.log("TEST 38")
     --mw.log(result)
@@ -483,7 +483,7 @@ html = html .."36 RESULT BEGIN : "..newline ..result ..newline.."END" ..newline
     --"Title1;Title2" in DB
     result = objTest:checkItem(pT,valueInWiki)
     html = html .."39 RESULT BEGIN : "..newline ..result ..newline.."END" ..newline
-    html = html .."RESULT : " .. p.checkString(result,'<div class="mw-ext-linkedwiki-new-value mw-ext-linkedwiki-tooltip" data-toggle="tooltip" data-placement="bottom" title="Currently in DB: universe, Earth"><span class="plainlinks">[https://www.wikidata.org/wiki/Special:GoToLinkedPage/enwiki/Q1 universe]</span><span class="plainlinks"><small>([http://www.wikidata.org/entity/Q1 Q1])</small></span>, <span class="plainlinks">[https://www.wikidata.org/wiki/Special:GoToLinkedPage/enwiki/Q2 Earth]</span><span class="plainlinks"><small>([http://www.wikidata.org/entity/Q2 Q2])</small></span>, Title3, Title4</div>') ..newline
+    html = html .."RESULT : " .. p.checkString(result,'<div class="mw-ext-linkedwiki-new-value mw-ext-linkedwiki-tooltip" data-toggle="tooltip" data-placement="bottom" title="Currently in DB: Universe, Earth"><span class="plainlinks">[https://www.wikidata.org/wiki/Special:GoToLinkedPage/enwiki/Q1 Universe]</span><span class="plainlinks"><small>([http://www.wikidata.org/entity/Q1 Q1])</small></span>, <span class="plainlinks">[https://www.wikidata.org/wiki/Special:GoToLinkedPage/enwiki/Q2 Earth]</span><span class="plainlinks"><small>([http://www.wikidata.org/entity/Q2 Q2])</small></span>, Title3, Title4</div>') ..newline
 
         --mw.log("TEST 39")
         --mw.log(result)
