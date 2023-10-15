@@ -12,21 +12,57 @@ Github Actions for the [LinkedWiki extension](https://www.mediawiki.org/wiki/Ext
 ```bash
 chmod +x deployMediawiki.sh
 chmod +x deploy2Mediawiki.sh
-./deployMediawiki.sh REL1_35 servers/mediawiki1/htdocs 
-#./deployMediawiki.sh REL1_36 servers/mediawiki1/htdocs 
-#./deployMediawiki.sh REL1_37 servers/mediawiki1/htdocs 
+#./deployMediawiki.sh REL1_39 servers/mediawiki1/htdocs 
+./deployMediawiki.sh REL1_41 servers/mediawiki1/htdocs 
+#./deployMediawiki.sh REL1_41 servers/mediawiki1/htdocs 
 cp -R  servers/mediawiki1/htdocs/w servers/mediawiki2/htdocs/.
-./deploy2Mediawiki.sh REL1_35 servers/mediawiki1/htdocs 
-./deploy2Mediawiki.sh REL1_35 servers/mediawiki2/htdocs
-#./deploy2Mediawiki.sh REL1_36 servers/mediawiki1/htdocs 
-#./deploy2Mediawiki.sh REL1_36 servers/mediawiki2/htdocs
-#./deploy2Mediawiki.sh REL1_37 servers/mediawiki1/htdocs 
-#./deploy2Mediawiki.sh REL1_37 servers/mediawiki2/htdocs
+./deploy2Mediawiki.sh REL1_41 servers/mediawiki1/htdocs 
+./deploy2Mediawiki.sh REL1_41 servers/mediawiki2/htdocs
 ```
 
 3 - Start two instances of Mediawiki (one private and one public) and two RDF databases with SPARQL services
 ```bash
 docker-compose up -d 
+
+# docker-compose doesn't support the option --cgroupns=host for the moment
+docker run --privileged --cgroupns=host -tid \
+--name  instance1.rockylinux-apache-php-mariadb-rdfunit \
+-h serverdev-mediawiki1.localdomain \
+--network=mediawiki-extension-linkedwiki-ci_mediawiki-ci --ip=172.19.0.2 \
+--add-host serverdev-mediawiki2.localdomain:172.19.0.3 \
+--add-host database-test1.localdomain:172.19.0.4 \
+--add-host database-test2.localdomain:172.19.0.5 \
+-v "/sys/fs/cgroup:/sys/fs/cgroup:rw" \
+-v "${PWD}/servers/mediawiki1:/var/www/mediawiki:ro" \
+-v "${PWD}/servers/mediawiki1/vhost.conf:/etc/httpd/conf.d/vhost.conf:ro" \
+-v "$PWD/config:/config:ro" \
+-v "${PWD}/coverage/tools:/coverage/tools:ro" \
+-v "${PWD}/coverage/mediawiki1/log:/coverage/log" \
+-v "${PWD}/coverage/mediawiki1/report:/coverage/report" \
+--env-file '.env' \
+--env XDEBUG_CONFIG='${XDEBUG_CONFIG}' \
+--env TERM='xterm' \
+bordercloud/rockylinux-apache-php-mariadb-rdfunit
+docker run --privileged --cgroupns=host -tid \
+--name  instance2.rockylinux-apache-php-mariadb-rdfunit \
+-h serverdev-mediawiki2.localdomain \
+--network=mediawiki-extension-linkedwiki-ci_mediawiki-ci --ip=172.19.0.3 \
+--add-host serverdev-mediawiki1.localdomain:172.19.0.2 \
+--add-host database-test1.localdomain:172.19.0.4 \
+--add-host database-test2.localdomain:172.19.0.5 \
+-v "/sys/fs/cgroup:/sys/fs/cgroup:rw" \
+-v "${PWD}/servers/mediawiki2:/var/www/mediawiki:ro" \
+-v "${PWD}/servers/mediawiki2/vhost.conf:/etc/httpd/conf.d/vhost.conf:ro" \
+-v "$PWD/config:/config:ro" \
+-v "${PWD}/coverage/tools:/coverage/tools:ro" \
+-v "${PWD}/coverage/mediawiki2/log:/coverage/log" \
+-v "${PWD}/coverage/mediawiki2/report:/coverage/report" \
+--env-file '.env' \
+--env XDEBUG_CONFIG='${XDEBUG_CONFIG}' \
+--env TERM='xterm' \
+bordercloud/rockylinux-apache-php-mariadb-rdfunit
+
+
 sleep 30
 ```
 
@@ -39,10 +75,11 @@ cat ./mariadb_secure.sh | docker exec -i instance2.rockylinux-apache-php-mariadb
 mv ./servers/mediawiki1/htdocs/w/LocalSettings.php ./servers/mediawiki1/htdocs/w/LocalSettings_old.php
 mv ./servers/mediawiki2/htdocs/w/LocalSettings.php ./servers/mediawiki2/htdocs/w/LocalSettings_old.php
 
-echo 'php /var/www/mediawiki/htdocs/w/maintenance/install.php --dbname=wikidb --dbserver="localhost" --installdbuser=root --installdbpass=dockerpass --dbuser=root --dbpass=dockerpass --server="http://serverdev-mediawiki1.localdomain" --scriptpath=/w --lang=en --pass=dockerpass --confpath="/tmp" "Wiki" "Admin"' | docker exec -i instance1.rockylinux-apache-php-mariadb-rdfunit bash
-echo 'php /var/www/mediawiki/htdocs/w/maintenance/install.php --dbname=wikidb --dbserver="localhost" --installdbuser=root --installdbpass=dockerpass --dbuser=root --dbpass=dockerpass --server="http://serverdev-mediawiki2.localdomain" --scriptpath=/w --lang=en --pass=dockerpass --confpath="/tmp" "Wiki" "Admin"' | docker exec -i instance2.rockylinux-apache-php-mariadb-rdfunit bash
+echo 'php /var/www/mediawiki/htdocs/w/maintenance/install.php --dbname=wikidb --dbserver="localhost" --installdbuser=root --installdbpass=dockerpass --dbuser=root --dbpass=dockerpass --server="http://serverdev-mediawiki1.localdomain" --scriptpath=/w --lang=en --pass=dockerpass --skins=Vector --confpath="/tmp" "Wiki" "Admin"' | docker exec -i instance1.rockylinux-apache-php-mariadb-rdfunit bash
+echo 'php /var/www/mediawiki/htdocs/w/maintenance/install.php --dbname=wikidb --dbserver="localhost" --installdbuser=root --installdbpass=dockerpass --dbuser=root --dbpass=dockerpass --server="http://serverdev-mediawiki2.localdomain" --scriptpath=/w --lang=en --pass=dockerpass --skins=Vector --confpath="/tmp" "Wiki" "Admin"' | docker exec -i instance2.rockylinux-apache-php-mariadb-rdfunit bash
 
 echo 'cat /tmp/LocalSettings.php'  | docker exec -i instance1.rockylinux-apache-php-mariadb-rdfunit bash > ./servers/mediawiki1/htdocs/w/LocalSettings_generate.php 
+sed -i 's/wgDefaultSkin = "vector-2022"/wgDefaultSkin = "vector"/g' ./servers/mediawiki1/htdocs/w/LocalSettings_generate.php
 cat ./servers/mediawiki1/htdocs/w/LocalSettings_generate.php >> ./servers/mediawiki1/htdocs/w/LocalSettings.php
 cat ./config/wiki.php >> ./servers/mediawiki1/htdocs/w/LocalSettings.php
 cat ./config/wiki_private.php >> ./servers/mediawiki1/htdocs/w/LocalSettings.php
@@ -50,6 +87,7 @@ cat ./config/extensions.php >> ./servers/mediawiki1/htdocs/w/LocalSettings.php
 cat ./config/linkedwiki_mediawiki1.php >> ./servers/mediawiki1/htdocs/w/LocalSettings.php
 
 echo 'cat /tmp/LocalSettings.php'  | docker exec -i instance2.rockylinux-apache-php-mariadb-rdfunit bash > ./servers/mediawiki2/htdocs/w/LocalSettings_generate.php
+sed -i 's/wgDefaultSkin = "vector-2022"/wgDefaultSkin = "vector"/g' ./servers/mediawiki2/htdocs/w/LocalSettings_generate.php
 cat ./servers/mediawiki2/htdocs/w/LocalSettings_generate.php >> ./servers/mediawiki2/htdocs/w/LocalSettings.php
 cat ./config/wiki.php >> ./servers/mediawiki2/htdocs/w/LocalSettings.php
 cat ./config/wiki_public.php >> ./servers/mediawiki2/htdocs/w/LocalSettings.php
@@ -108,7 +146,7 @@ selenium-side-runner  --server http://localhost:4444/wd/hub -c "browserName=fire
 10 - Init wiki users and a bot
 ```bash
 cd ./test
-selenium-side-runner  --server http://localhost:4444/wd/hub -c "browserName=firefox" ./create_users.side
+selenium-side-runner  --server http://localhost:4444/wd/hub -c "browserName=chrome" ./create_users.side
 echo 'php /var/www/mediawiki/htdocs/w/maintenance/createBotPassword.php --grants basic,createeditmovepage,editdata,delete,editpage,uploadeditmovefile,uploadfile,highvolume --appid mediawiki1 UserData ff38s9u4feh07vjs2s6t88dh2pv5cfgv' | docker exec -i instance2.rockylinux-apache-php-mariadb-rdfunit bash
 ```
 
@@ -229,14 +267,14 @@ docker-compose start
 
 ### How to open the Linux shell for the containers
 
-For http://serverdev-mediawiki1.localdomain/ :
+For http://serverdev-mediawiki1.localdomain/ (admin / dockerpass) :
 ```bash
 docker exec -it instance1.rockylinux-apache-php-mariadb-rdfunit bash
 tail /var/log/php-fpm/www-error.log 
 tail  /var/log/httpd/error_log -f
 ```
 
-For http://serverdev-mediawiki2.localdomain/ :
+For http://serverdev-mediawiki2.localdomain/ (admin / dockerpass) :
 ```bash
 docker exec -it instance2.rockylinux-apache-php-mariadb-rdfunit bash
 tail /var/log/php-fpm/www-error.log 
@@ -307,4 +345,11 @@ nvm install 16.18.1
 npm i -g npm@latest
 ```
 
+### Start the containers of Mediawiki manually
+```bash
+docker start instance1.rockylinux-apache-php-mariadb-rdfunit 
+docker start instance2.rockylinux-apache-php-mariadb-rdfunit
+echo 'php /var/www/mediawiki/htdocs/w/maintenance/update.php --quick' | docker exec -i instance1.rockylinux-apache-php-mariadb-rdfunit bash
+echo 'php /var/www/mediawiki/htdocs/w/maintenance/update.php --quick' | docker exec -i instance2.rockylinux-apache-php-mariadb-rdfunit bash
+```
 
