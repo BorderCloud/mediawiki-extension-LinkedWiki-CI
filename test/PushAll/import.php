@@ -38,7 +38,7 @@ function importPage($title,$filename){
       "id": "$guid3",
       "comment": "",
       "command": "click",
-      "target": "link=$title",
+      "target": "linkText=$title",
       "targets": [],
       "value": ""
     }, {
@@ -90,7 +90,7 @@ function importModule($title,$filename){
       "id": "$guid3",
       "comment": "",
       "command": "click",
-      "target": "link=$title",
+      "target": "linkText=$title",
       "targets": [],
       "value": ""
     }, 

@@ -179,7 +179,7 @@ rm -rf ./coverage/log/*
 ```bash
 cd test/api/
 
-sudo printf "\n172.19.0.4      database-test1.localdomain\n172.19.0.5      database-test2.localdomain\n172.19.0.2      serverdev-mediawiki1.localdomain\n172.19.0.3      serverdev-mediawiki2.localdomain\n" >> /etc/hosts
+sudo printf "\n172.19.0.4      database-test1.localdomain\n172.19.0.5      database-test2.localdomain\n172.19.0.2      serverdev-mediawiki1.localdomain\n172.19.0.3      serverdev-mediawiki2.localdomain\n" | sudo tee -a /etc/hosts
 
 chmod +x *.sh
 ./test01_login.sh 
@@ -200,6 +200,8 @@ cd ./test/PushAll
 chmod +x clean_mediawiki1.sh
 chmod +x clean_mediawiki2.sh
 chmod +x make_tests.sh
+./clean_mediawiki1.sh
+./clean_mediawiki2.sh
 ./make_tests.sh /tmp/test/PushAll
 selenium-side-runner  --server http://localhost:4444/wd/hub -c "browserName=chrome"  ./import_final.side
 selenium-side-runner  --server http://localhost:4444/wd/hub -c "browserName=chrome"  ./userDataAddRemoteWikis.side
