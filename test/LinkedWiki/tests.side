@@ -3936,15 +3936,46 @@
       ],
       "value": ""
     }, {
+      "id": "87b5570d-1451-4022-917a-1e1dac12d3a5",
+      "comment": "",
+      "command": "storeXpathCount",
+      "target": "xpath=//button[@name='wpConfirmB']",
+      "targets": [],
+      "value": "buttonName"
+    }, {
+      "id": "329f8090-cb6c-4444-a227-a860c3cb9d1f",
+      "comment": "",
+      "command": "if",
+      "target": "${buttonName} == 1",
+      "targets": [],
+      "value": ""
+    }, {
       "id": "fb9b3e9b-9dc6-4bdc-af1a-9e55d2c7413f",
       "comment": "",
       "command": "click",
+      "target": "name=wpConfirmB",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "26efed50-004a-49a1-9f3e-4816b5a4541a",
+      "comment": "",
+      "command": "else",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "16672da3-a18f-488c-ac14-59dfa2c2a7d1",
+      "comment": "",
+      "command": "click",
       "target": "css=#wpConfirmB > .oo-ui-labelElement-label",
-      "targets": [
-        ["css=#wpConfirmB > .oo-ui-labelElement-label", "css:finder"],
-        ["xpath=//button[@id='wpConfirmB']/span[2]", "xpath:idRelative"],
-        ["xpath=//button/span[2]", "xpath:position"]
-      ],
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "a203ac93-eaa0-4bac-96f6-782c8b1c5ac7",
+      "comment": "",
+      "command": "end",
+      "target": "",
+      "targets": [],
       "value": ""
     }, {
       "id": "e9dd79a0-4084-4fed-b7a6-e10c7ab6e13f",
