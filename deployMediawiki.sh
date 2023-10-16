@@ -54,7 +54,7 @@ git clone --depth 1 -b $1  https://gerrit.wikimedia.org/r/mediawiki/extensions/U
 git clone --depth 1 -b $1  https://gerrit.wikimedia.org/r/mediawiki/extensions/cldr.git
 git clone --depth 1 -b $1  https://gerrit.wikimedia.org/r/mediawiki/extensions/Math.git
 git clone --depth 1 https://gerrit.wikimedia.org/r/mediawiki/extensions/ApiSandbox.git
-git clone --depth 1 -b $1 https://gerrit.wikimedia.org/r/mediawiki/extensions/NetworkAuth.git # for private Wiki
+git clone --depth 1 https://gerrit.wikimedia.org/r/mediawiki/extensions/NetworkAuth.git # for private Wiki
 
 git clone --depth 1 https://gerrit.wikimedia.org/r/mediawiki/extensions/LinkedWiki.git
 # cd LinkedWiki

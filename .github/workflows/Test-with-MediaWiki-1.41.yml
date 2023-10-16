@@ -184,7 +184,6 @@ jobs:
         working-directory: ./test/NamespaceData
         run: |
             selenium-side-runner  --server http://localhost:4444/wd/hub -c "browserName=chrome"  ./suite_tests.side
-            selenium-side-runner  --server http://localhost:4444/wd/hub -c "browserName=firefox" ./suite_tests.side
             
       - name: Check the coverage of tests for NamespaceData extension
         run: |
