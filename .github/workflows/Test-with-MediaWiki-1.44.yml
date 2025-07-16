@@ -1,7 +1,7 @@
-name: Test with MediaWiki 1.39
+name: Test with MediaWiki 1.44
 on:
   workflow_run:
-    workflows: ["MediaWiki 1.39 trigger"]
+    workflows: ["MediaWiki 1.44 trigger"]
     types: [completed]
 
   workflow_dispatch:
@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-            node-version: '16'
+            node-version: '22'
       - name: Install last npm
         run: |
             sudo node -v
@@ -25,7 +25,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-            php-version: '7.4'
+            php-version: '8.4'
             tools: composer
             
       - name: Copy two instances of Mediawiki
@@ -33,10 +33,10 @@ jobs:
             sudo apt-get install -y git-review
             chmod +x deployMediawiki.sh
             chmod +x deploy2Mediawiki.sh
-            ./deployMediawiki.sh REL1_39 servers/mediawiki1/htdocs 
+            ./deployMediawiki.sh REL1_44 servers/mediawiki1/htdocs 
             cp -R  servers/mediawiki1/htdocs servers/mediawiki2/htdocs
-            ./deploy2Mediawiki.sh REL1_39 servers/mediawiki1/htdocs 
-            ./deploy2Mediawiki.sh REL1_39 servers/mediawiki2/htdocs 
+            ./deploy2Mediawiki.sh REL1_44 servers/mediawiki1/htdocs 
+            ./deploy2Mediawiki.sh REL1_44 servers/mediawiki2/htdocs 
             
       #- name: Check the code of PushAll
         #working-directory: ./servers/mediawiki1/htdocs/w/extensions/PushAll
@@ -95,10 +95,11 @@ jobs:
             cat ./mariadb_secure.sh | docker exec -i instance1.rockylinux-apache-php-mariadb-rdfunit bash
             cat ./mariadb_secure.sh | docker exec -i instance2.rockylinux-apache-php-mariadb-rdfunit bash
 
-            echo 'php /var/www/mediawiki/htdocs/w/maintenance/install.php --dbname=wikidb --dbserver="localhost" --installdbuser=root --installdbpass=dockerpass --dbuser=root --dbpass=dockerpass --server="http://serverdev-mediawiki1.localdomain" --scriptpath=/w --lang=en --pass=dockerpass --confpath="/tmp" "Wiki" "Admin"' | docker exec -i instance1.rockylinux-apache-php-mariadb-rdfunit bash
-            echo 'php /var/www/mediawiki/htdocs/w/maintenance/install.php --dbname=wikidb --dbserver="localhost" --installdbuser=root --installdbpass=dockerpass --dbuser=root --dbpass=dockerpass --server="http://serverdev-mediawiki2.localdomain" --scriptpath=/w --lang=en --pass=dockerpass --confpath="/tmp" "Wiki" "Admin"' | docker exec -i instance2.rockylinux-apache-php-mariadb-rdfunit bash
+            echo 'php /var/www/mediawiki/htdocs/w/maintenance/install.php --dbname=wikidb --dbserver="localhost" --installdbuser=root --installdbpass=dockerpass --dbuser=root --dbpass=dockerpass --skins=Vector --server="http://serverdev-mediawiki1.localdomain" --scriptpath=/w --lang=en --pass=dockerpass --confpath="/tmp" "Wiki" "Admin"' | docker exec -i instance1.rockylinux-apache-php-mariadb-rdfunit bash
+            echo 'php /var/www/mediawiki/htdocs/w/maintenance/install.php --dbname=wikidb --dbserver="localhost" --installdbuser=root --installdbpass=dockerpass --dbuser=root --dbpass=dockerpass --skins=Vector --server="http://serverdev-mediawiki2.localdomain" --scriptpath=/w --lang=en --pass=dockerpass --confpath="/tmp" "Wiki" "Admin"' | docker exec -i instance2.rockylinux-apache-php-mariadb-rdfunit bash
 
             echo 'cat /tmp/LocalSettings.php'  | docker exec -i instance1.rockylinux-apache-php-mariadb-rdfunit bash > ./servers/mediawiki1/htdocs/w/LocalSettings_generate.php 
+            sed -i 's/wgDefaultSkin = "vector-2022"/wgDefaultSkin = "vector"/g' ./servers/mediawiki1/htdocs/w/LocalSettings_generate.php
             cat ./servers/mediawiki1/htdocs/w/LocalSettings_generate.php >> ./servers/mediawiki1/htdocs/w/LocalSettings.php
             cat ./config/wiki.php >> ./servers/mediawiki1/htdocs/w/LocalSettings.php
             cat ./config/wiki_private.php >> ./servers/mediawiki1/htdocs/w/LocalSettings.php
@@ -106,6 +107,7 @@ jobs:
             cat ./config/linkedwiki_mediawiki1.php >> ./servers/mediawiki1/htdocs/w/LocalSettings.php
 
             echo 'cat /tmp/LocalSettings.php'  | docker exec -i instance2.rockylinux-apache-php-mariadb-rdfunit bash > ./servers/mediawiki2/htdocs/w/LocalSettings_generate.php
+            sed -i 's/wgDefaultSkin = "vector-2022"/wgDefaultSkin = "vector"/g' ./servers/mediawiki2/htdocs/w/LocalSettings_generate.php
             cat ./servers/mediawiki2/htdocs/w/LocalSettings_generate.php >> ./servers/mediawiki2/htdocs/w/LocalSettings.php
             cat ./config/wiki.php >> ./servers/mediawiki2/htdocs/w/LocalSettings.php
             cat ./config/wiki_public.php >> ./servers/mediawiki2/htdocs/w/LocalSettings.php
@@ -183,7 +185,7 @@ jobs:
         run: |
             selenium-side-runner  --server http://localhost:4444/wd/hub -c "browserName=chrome"  ./suite_tests.side
             selenium-side-runner  --server http://localhost:4444/wd/hub -c "browserName=firefox" ./suite_tests.side
-            
+             
       - name: Check the coverage of tests for NamespaceData extension
         run: |
             echo 'chmod -R o+r /coverage/log'  | docker exec -i instance1.rockylinux-apache-php-mariadb-rdfunit bash
