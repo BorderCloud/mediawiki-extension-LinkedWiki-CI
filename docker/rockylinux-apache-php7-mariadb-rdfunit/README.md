@@ -1,11 +1,11 @@
 ### Build
 ```
-docker build -f docker/rockylinux-apache-php-mariadb-rdfunit/Dockerfile  -t rockylinux-apache-php-mariadb-rdfunit . 
+docker build -f docker/rockylinux-apache-php7-mariadb-rdfunit/Dockerfile  -t rockylinux-apache-php7-mariadb-rdfunit . 
 ```
 
 ### Build without cache
 ```
-docker build  --rm --no-cache -f docker/rockylinux-apache-php-mariadb-rdfunit/Dockerfile  -t rockylinux-apache-php-mariadb-rdfunit . 
+docker build  --rm --no-cache -f docker/rockylinux-apache-php7-mariadb-rdfunit/Dockerfile  -t rockylinux-apache-php7-mariadb-rdfunit . 
 ```
 
 ### Run
@@ -20,7 +20,7 @@ docker run --privileged --cgroupns=host -tid \
          -v "$PWD/coverage/tools:/coverage/tools:ro" \
          -v "$PWD/coverage/mediawiki1/log:/coverage/log" \
          -v "$PWD/coverage/mediawiki1/report:/coverage/report" \
-        rockylinux-apache-php-mariadb-rdfunit
+        rockylinux-apache-php7-mariadb-rdfunit
 ```
 
 ### Stop the container

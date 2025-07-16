@@ -1,5 +1,5 @@
 FROM rockylinux:9
-ENV container docker
+ENV container=docker
 
 LABEL maintainer="Karima Rafes <karima.rafes@gmail.com>"
 
@@ -13,16 +13,15 @@ RUN yum -y install httpd; yum clean all; systemctl enable httpd.service
 EXPOSE 80
 
 #TOOLS
-RUN yum install --setopt=tsflags=nodocs -y wget git vim yum-utils  --nogpgcheck
+RUN yum install --setopt=tsflags=nodocs -y wget git vim yum-utils curl --nogpgcheck --allowerasing 
 
 #Add Remi YUM repository
-RUN  yum -y install epel-release \
-    && yum -y install yum-utils \
-    && yum-config-manager --enable powertools \
-    && yum -y install https://rpms.remirepo.net/enterprise/remi-release-8.rpm
+RUN  dnf config-manager --set-enabled crb -y \
+    && dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm  -y \
+    && dnf install https://rpms.remirepo.net/enterprise/remi-release-9.rpm  -y
 
-#PHP7.4
-RUN  dnf module enable php:remi-8.4 -y \
+#PHP8.4
+RUN  dnf module install php:remi-8.4 -y \
     && dnf update php\* \
     && yum install php php-opcache php-pecl-xdebug3 php-pdo php-pecl-imagick php-devel php-mbstring  php-mysql php-xml php-gd php-intl -y \
     && rm -rf /var/cache/yum/* \
@@ -58,9 +57,7 @@ RUN  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | 
     && yum clean all
     
 #Pygments for SyntaxHighlight_GeSHi in Mediawiki
-RUN  yum -y install python38 python38-pip \
-    && alternatives --set python /usr/bin/python3.8 \
-    && update-alternatives --install /usr/bin/pip pip /usr/bin/pip3.8 1 \
+RUN  yum -y install python3 python3-pip \
     && pip install Pygments \
     && rm -rf /var/cache/yum/* \
     && yum clean all
