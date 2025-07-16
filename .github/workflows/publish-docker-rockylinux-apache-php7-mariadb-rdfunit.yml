@@ -1,4 +1,4 @@
-name: Publish lamp
+name: Publish lamp php7
       
 on: workflow_dispatch
 
@@ -16,7 +16,7 @@ jobs:
         
       - name: Build image docker
         run: |
-            docker build -f docker/rockylinux-apache-php-mariadb-rdfunit/Dockerfile  -t rockylinux-apache-php-mariadb-rdfunit . 
+            docker build -f docker/rockylinux-apache-php7-mariadb-rdfunit/Dockerfile  -t rockylinux-apache-php7-mariadb-rdfunit . 
 
       - name: Run image
         run: |
@@ -30,7 +30,7 @@ jobs:
             -v "${PWD}/coverage/tools:/coverage/tools:ro" \
             -v "${PWD}/coverage/mediawiki1/log:/coverage/log" \
             -v "${PWD}/coverage/mediawiki1/report:/coverage/report" \
-            rockylinux-apache-php-mariadb-rdfunit
+            rockylinux-apache-php7-mariadb-rdfunit
       
       - name: Enable the coverage
         run: |
@@ -63,7 +63,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: bordercloud/rockylinux-apache-php-mariadb-rdfunit
+          images: bordercloud/rockylinux-apache-php7-mariadb-rdfunit
       - 
         name: Build and push Docker image
         uses: docker/build-push-action@v3
