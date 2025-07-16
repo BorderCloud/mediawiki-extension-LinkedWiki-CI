@@ -1,0 +1,86 @@
+name: Publish lamp
+      
+on: workflow_dispatch
+
+env:
+    VERSION: "" 
+      
+jobs:
+  push_to_registry:
+    name: Push Docker image to Docker Hub
+    runs-on: ubuntu-latest
+    steps:
+      - 
+        name: Check out the repo
+        uses: actions/checkout@v4
+        
+      - name: Build image docker
+        run: |
+            docker build -f docker/rockylinux-apache-php-mariadb-rdfunit/Dockerfile  -t rockylinux-apache-php-mariadb-rdfunit . 
+
+      - name: Run image
+        run: |
+            docker run --privileged --cgroupns=host -tid \
+            --name  instance.rockylinux-apache-php-mariadb-rdfunit \
+            -h rockylinux-apache-php-mariadb-rdfunit \
+            -v "/sys/fs/cgroup:/sys/fs/cgroup:rw" \
+            -v "${PWD}/servers/mediawiki1:/var/www/mediawiki:ro" \
+            -v "${PWD}/servers/mediawiki1/vhost.conf:/etc/httpd/conf.d/vhost.conf:ro" \
+            -v "${PWD}/config:/config:ro" \
+            -v "${PWD}/coverage/tools:/coverage/tools:ro" \
+            -v "${PWD}/coverage/mediawiki1/log:/coverage/log" \
+            -v "${PWD}/coverage/mediawiki1/report:/coverage/report" \
+            rockylinux-apache-php-mariadb-rdfunit
+      
+      - name: Enable the coverage
+        run: |
+          echo 'sed -i "s/;auto_prepend_file =/auto_prepend_file =/" /etc/php.ini && sed -i "s/;auto_append_file =/auto_append_file =/" /etc/php.ini && sed -i "s/xdebug.mode = off/xdebug.mode = coverage/" /etc/php.d/xdebug.ini && systemctl restart php-fpm && chown apache:apache /coverage/log -R && chmod -R o+r /coverage/log'  | docker exec -i instance.rockylinux-apache-php-mariadb-rdfunit /bin/bash
+        
+      - name: Create and execute a Web page
+        run: |
+            mkdir -p ./servers/mediawiki1/htdocs
+            echo "<?php phpinfo();" > ./servers/mediawiki1/htdocs/index.php
+            wget http://172.17.0.2/index.php
+            
+      - name: Check the coverage
+        run: |
+            mkdir -p ./coverage/mediawiki2/log
+            mkdir -p ./coverage/log
+            mkdir -p ./coverage/report
+            ls -al ./coverage/mediawiki1/log
+            echo 'chmod -R o+r /coverage/log'  | docker exec -i instance.rockylinux-apache-php-mariadb-rdfunit bash
+            ls -al ./coverage/mediawiki1/log
+            php coverage/tools/createReportInContainer.php
+            
+      - 
+        name: Log in to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_TOKEN }}
+      -
+        name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: bordercloud/rockylinux-apache-php-mariadb-rdfunit
+      - 
+        name: Build and push Docker image
+        uses: docker/build-push-action@v3
+        with:
+          file: ./docker/rockylinux-apache-php8-mariadb-rdfunit/Dockerfile
+          context: .
+          push: true
+          tags: |
+            bordercloud/rockylinux-apache-php8-mariadb-rdfunit:latest
+      #-
+        #name: Push README to Dockerhub
+        #uses: christian-korneck/update-container-description-action@v1
+        #env:
+          #DOCKER_USER: ${{ secrets.DOCKER_USERNAME }}
+          #DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
+        #with:
+          #destination_container_repo: bordercloud/rockylinux-apache-php-mariadb-rdfunit
+          #provider: dockerhub
+          #short_description: 'bordercloud/rockylinux-apache-php-mariadb-rdfunit'
+          #readme_file: 'README.md'

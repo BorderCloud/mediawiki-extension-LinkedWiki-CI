@@ -70,7 +70,7 @@ jobs:
             --env-file '.env' \
             --env XDEBUG_CONFIG='${XDEBUG_CONFIG}' \
             --env TERM='xterm' \
-            bordercloud/rockylinux-apache-php-mariadb-rdfunit
+            bordercloud/rockylinux-apache-php8-mariadb-rdfunit
             docker run --privileged --cgroupns=host -tid \
             --name  instance2.rockylinux-apache-php-mariadb-rdfunit \
             -h serverdev-mediawiki2.localdomain \
@@ -88,7 +88,7 @@ jobs:
             --env-file '.env' \
             --env XDEBUG_CONFIG='${XDEBUG_CONFIG}' \
             --env TERM='xterm' \
-            bordercloud/rockylinux-apache-php-mariadb-rdfunit
+            bordercloud/rockylinux-apache-php8-mariadb-rdfunit
             sleep 30
       - name: Install instances of Mediawiki
         run: |
