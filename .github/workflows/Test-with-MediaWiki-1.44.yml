@@ -142,7 +142,7 @@ jobs:
 
       - name: Start Selenium Hub
         working-directory: ./test
-        run: docker compose -f docker-compose.yaml up -d
+        run: docker compose -f docker-compose.yml up -d
 
       - name: Install selenium-side-runner & drivers
         run: |

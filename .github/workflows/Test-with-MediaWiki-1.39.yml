@@ -52,7 +52,7 @@ jobs:
                   
       - name: Start instances of Mediawiki
         run: |
-            docker compose -f docker-compose_php7.yaml  up -d 
+            docker compose -f docker-compose_php7.yml  up -d 
             sleep 30
           # docker run --privileged --cgroupns=host -tid \
           # --name  instance1.rockylinux-apache-php-mariadb-rdfunit \
