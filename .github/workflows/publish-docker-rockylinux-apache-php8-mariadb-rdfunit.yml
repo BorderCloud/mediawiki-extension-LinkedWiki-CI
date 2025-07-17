@@ -38,7 +38,7 @@ jobs:
         with:
           timeout_minutes: 5 
           max_attempts: 10   
-          delay_seconds: 30  
+          retry_wait_seconds: 30  
           command: |
             echo "Checking if instance is up..."
             curl -s -o /dev/null http://172.17.0.2/ || (echo "Service not ready, retrying..." && exit 1)

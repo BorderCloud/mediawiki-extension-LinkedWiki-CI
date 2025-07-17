@@ -13,7 +13,7 @@ RUN yum -y install httpd; yum clean all; systemctl enable httpd.service
 EXPOSE 80
 
 #TOOLS
-RUN yum install --setopt=tsflags=nodocs -y wget git vim yum-utils  --nogpgcheck
+RUN yum install --setopt=tsflags=nodocs -y wget git vim yum-utils expect  --nogpgcheck
 
 #Add Remi YUM repository
 RUN  yum -y install epel-release \

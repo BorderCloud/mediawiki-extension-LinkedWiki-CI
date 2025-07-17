@@ -13,7 +13,7 @@ RUN yum -y install httpd; yum clean all; systemctl enable httpd.service
 EXPOSE 80
 
 #TOOLS
-RUN yum install --setopt=tsflags=nodocs -y wget git vim yum-utils curl --nogpgcheck --allowerasing 
+RUN yum install --setopt=tsflags=nodocs -y wget git vim yum-utils curl expect --nogpgcheck --allowerasing 
 
 #Add Remi YUM repository
 RUN  dnf config-manager --set-enabled crb -y \

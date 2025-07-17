@@ -1,66 +1,66 @@
-[![Tests with MediaWiki 1.35](https://github.com/BorderCloud/mediawiki-extension-LinkedWiki-CI/actions/workflows/Test-with-MediaWiki-1.35.yml/badge.svg)](https://github.com/BorderCloud/mediawiki-extension-LinkedWiki-CI/actions/workflows/Test-with-MediaWiki-1.35.yml) [![Tests with MediaWiki 1.36](https://github.com/BorderCloud/mediawiki-extension-LinkedWiki-CI/actions/workflows/Test-with-MediaWiki-1.36.yml/badge.svg)](https://github.com/BorderCloud/mediawiki-extension-LinkedWiki-CI/actions/workflows/Test-with-MediaWiki-1.36.yml) [![Tests with MediaWiki 1.37](https://github.com/BorderCloud/mediawiki-extension-LinkedWiki-CI/actions/workflows/Test-with-MediaWiki-1.37.yml/badge.svg)](https://github.com/BorderCloud/mediawiki-extension-LinkedWiki-CI/actions/workflows/Test-with-MediaWiki-1.37.yml) [![Tests with MediaWiki 1.38](https://github.com/BorderCloud/mediawiki-extension-LinkedWiki-CI/actions/workflows/Test-with-MediaWiki-1.38.yml/badge.svg)](https://github.com/BorderCloud/mediawiki-extension-LinkedWiki-CI/actions/workflows/Test-with-MediaWiki-1.38.yml) [![Tests with MediaWiki 1.39](https://github.com/BorderCloud/mediawiki-extension-LinkedWiki-CI/actions/workflows/Test-with-MediaWiki-1.39.yml/badge.svg)](https://github.com/BorderCloud/mediawiki-extension-LinkedWiki-CI/actions/workflows/Test-with-MediaWiki-1.39.yml) [![Tests with MediaWiki 1.40](https://github.com/BorderCloud/mediawiki-extension-LinkedWiki-CI/actions/workflows/Test-with-MediaWiki-1.40.yml/badge.svg)](https://github.com/BorderCloud/mediawiki-extension-LinkedWiki-CI/actions/workflows/Test-with-MediaWiki-1.40.yml) [![Tests with MediaWiki 1.41](https://github.com/BorderCloud/mediawiki-extension-LinkedWiki-CI/actions/workflows/Test-with-MediaWiki-1.41.yml/badge.svg)](https://github.com/BorderCloud/mediawiki-extension-LinkedWiki-CI/actions/workflows/Test-with-MediaWiki-1.41.yml)
+[![Tests with MediaWiki 1.39](https://github.com/BorderCloud/mediawiki-extension-LinkedWiki-CI/actions/workflows/Test-with-MediaWiki-1.39.yml/badge.svg)](https://github.com/BorderCloud/mediawiki-extension-LinkedWiki-CI/actions/workflows/Test-with-MediaWiki-1.39.yml) [![Tests with MediaWiki 1.43](https://github.com/BorderCloud/mediawiki-extension-LinkedWiki-CI/actions/workflows/Test-with-MediaWiki-1.43.yml/badge.svg)](https://github.com/BorderCloud/mediawiki-extension-LinkedWiki-CI/actions/workflows/Test-with-MediaWiki-1.44.yml)
+[![Tests with MediaWiki 1.44](https://github.com/BorderCloud/mediawiki-extension-LinkedWiki-CI/actions/workflows/Test-with-MediaWiki-1.44.yml/badge.svg)](https://github.com/BorderCloud/mediawiki-extension-LinkedWiki-CI/actions/workflows/Test-with-MediaWiki-1.44.yml)
 
 ## mediawiki-extensions-LinkedWiki-CI
-Github Actions for the [LinkedWiki extension](https://www.mediawiki.org/wiki/Extension:LinkedWiki) of MediaWiki qand its dependencies.
-
+Github actions for MediaWiki's [LinkedWiki extension](https://www.mediawiki.org/wiki/Extension:LinkedWiki) and its dependencies.
 
 ### How to test the LinkedWiki extension
 
 1 - Clone this project
 
-2 - Prepare two folders with Mediawiki (for example with the version REL1_35)
+2 - Prepare two folders with Mediawiki (for example with the version REL1_39)
 ```bash
 chmod +x deployMediawiki.sh
 chmod +x deploy2Mediawiki.sh
-#./deployMediawiki.sh REL1_39 servers/mediawiki1/htdocs 
-./deployMediawiki.sh REL1_41 servers/mediawiki1/htdocs 
-#./deployMediawiki.sh REL1_41 servers/mediawiki1/htdocs 
-cp -R  servers/mediawiki1/htdocs/w servers/mediawiki2/htdocs/.
-./deploy2Mediawiki.sh REL1_41 servers/mediawiki1/htdocs 
-./deploy2Mediawiki.sh REL1_41 servers/mediawiki2/htdocs
+./deployMediawiki_1.39.sh REL1_39 servers/mediawiki1/htdocs 
+#./deployMediawiki.sh REL1_43 servers/mediawiki1/htdocs 
+#./deployMediawiki.sh REL1_44 servers/mediawiki1/htdocs 
+cp -R  servers/mediawiki1/htdocs servers/mediawiki2/htdocs
+./deploy2Mediawiki.sh REL1_39 servers/mediawiki1/htdocs 
+./deploy2Mediawiki.sh REL1_39 servers/mediawiki2/htdocs 
 ```
 
 3 - Start two instances of Mediawiki (one private and one public) and two RDF databases with SPARQL services
 ```bash
-docker-compose up -d 
+docker compose up -d 
 
 # docker-compose doesn't support the option --cgroupns=host for the moment
-docker run --privileged --cgroupns=host -tid \
---name  instance1.rockylinux-apache-php-mariadb-rdfunit \
--h serverdev-mediawiki1.localdomain \
---network=mediawiki-extension-linkedwiki-ci_mediawiki-ci --ip=172.19.0.2 \
---add-host serverdev-mediawiki2.localdomain:172.19.0.3 \
---add-host database-test1.localdomain:172.19.0.4 \
---add-host database-test2.localdomain:172.19.0.5 \
--v "/sys/fs/cgroup:/sys/fs/cgroup:rw" \
--v "${PWD}/servers/mediawiki1:/var/www/mediawiki:ro" \
--v "${PWD}/servers/mediawiki1/vhost.conf:/etc/httpd/conf.d/vhost.conf:ro" \
--v "$PWD/config:/config:ro" \
--v "${PWD}/coverage/tools:/coverage/tools:ro" \
--v "${PWD}/coverage/mediawiki1/log:/coverage/log" \
--v "${PWD}/coverage/mediawiki1/report:/coverage/report" \
---env-file '.env' \
---env XDEBUG_CONFIG='${XDEBUG_CONFIG}' \
---env TERM='xterm' \
-bordercloud/rockylinux-apache-php-mariadb-rdfunit
-docker run --privileged --cgroupns=host -tid \
---name  instance2.rockylinux-apache-php-mariadb-rdfunit \
--h serverdev-mediawiki2.localdomain \
---network=mediawiki-extension-linkedwiki-ci_mediawiki-ci --ip=172.19.0.3 \
---add-host serverdev-mediawiki1.localdomain:172.19.0.2 \
---add-host database-test1.localdomain:172.19.0.4 \
---add-host database-test2.localdomain:172.19.0.5 \
--v "/sys/fs/cgroup:/sys/fs/cgroup:rw" \
--v "${PWD}/servers/mediawiki2:/var/www/mediawiki:ro" \
--v "${PWD}/servers/mediawiki2/vhost.conf:/etc/httpd/conf.d/vhost.conf:ro" \
--v "$PWD/config:/config:ro" \
--v "${PWD}/coverage/tools:/coverage/tools:ro" \
--v "${PWD}/coverage/mediawiki2/log:/coverage/log" \
--v "${PWD}/coverage/mediawiki2/report:/coverage/report" \
---env-file '.env' \
---env XDEBUG_CONFIG='${XDEBUG_CONFIG}' \
---env TERM='xterm' \
-bordercloud/rockylinux-apache-php-mariadb-rdfunit
+# docker run --privileged --cgroupns=host -tid \
+# --name  instance1.rockylinux-apache-php-mariadb-rdfunit \
+# -h serverdev-mediawiki1.localdomain \
+# --network=mediawiki-extension-linkedwiki-ci_mediawiki-ci --ip=172.19.0.2 \
+# --add-host serverdev-mediawiki2.localdomain:172.19.0.3 \
+# --add-host database-test1.localdomain:172.19.0.4 \
+# --add-host database-test2.localdomain:172.19.0.5 \
+# -v "/sys/fs/cgroup:/sys/fs/cgroup:rw" \
+# -v "${PWD}/servers/mediawiki1:/var/www/mediawiki:ro" \
+# -v "${PWD}/servers/mediawiki1/vhost.conf:/etc/httpd/conf.d/vhost.conf:ro" \
+# -v "$PWD/config:/config:ro" \
+# -v "${PWD}/coverage/tools:/coverage/tools:ro" \
+# -v "${PWD}/coverage/mediawiki1/log:/coverage/log" \
+# -v "${PWD}/coverage/mediawiki1/report:/coverage/report" \
+# --env-file '.env' \
+# --env XDEBUG_CONFIG='${XDEBUG_CONFIG}' \
+# --env TERM='xterm' \
+# bordercloud/rockylinux-apache-php-mariadb-rdfunit
+# docker run --privileged --cgroupns=host -tid \
+# --name  instance2.rockylinux-apache-php-mariadb-rdfunit \
+# -h serverdev-mediawiki2.localdomain \
+# --network=mediawiki-extension-linkedwiki-ci_mediawiki-ci --ip=172.19.0.3 \
+# --add-host serverdev-mediawiki1.localdomain:172.19.0.2 \
+# --add-host database-test1.localdomain:172.19.0.4 \
+# --add-host database-test2.localdomain:172.19.0.5 \
+# -v "/sys/fs/cgroup:/sys/fs/cgroup:rw" \
+# -v "${PWD}/servers/mediawiki2:/var/www/mediawiki:ro" \
+# -v "${PWD}/servers/mediawiki2/vhost.conf:/etc/httpd/conf.d/vhost.conf:ro" \
+# -v "$PWD/config:/config:ro" \
+# -v "${PWD}/coverage/tools:/coverage/tools:ro" \
+# -v "${PWD}/coverage/mediawiki2/log:/coverage/log" \
+# -v "${PWD}/coverage/mediawiki2/report:/coverage/report" \
+# --env-file '.env' \
+# --env XDEBUG_CONFIG='${XDEBUG_CONFIG}' \
+# --env TERM='xterm' \
+# bordercloud/rockylinux-apache-php-mariadb-rdfunit
 
 
 sleep 30

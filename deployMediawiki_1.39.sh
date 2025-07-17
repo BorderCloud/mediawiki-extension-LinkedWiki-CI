@@ -11,7 +11,7 @@ git clone --depth 1 --branch $1 https://gerrit.wikimedia.org/r/mediawiki/core.gi
 cd w
 composer config -g allow-plugins true
 composer update --no-dev
-yarn install --production=true --silent
+yarn install --production=true --silent --ignore-engines
 
 
 cd skins/
@@ -19,7 +19,7 @@ echo "Deploy Mediawiki skin in the path:"
 pwd
 
 git clone --depth 1 -b $1  https://phabricator.wikimedia.org/diffusion/SVEC/Vector 
-yarn install --production=true --silent
+yarn install --production=true --silent --ignore-engines
 
 
 cd ../extensions/
@@ -79,9 +79,9 @@ do
 
                 if [ -f "package.json" ]; then
                     if [ "./LinkedWiki" = "${D}" ] || [ "./PushAll" = "${D}" ] || [ "./NamespaceData" = "${D}" ]; then
-                         yarn install  --silent
+                         yarn install  --silent --ignore-engines
                     else
-                        yarn install  --production=true --silent
+                        yarn install  --production=true --silent --ignore-engines
                     fi
                 fi
 
