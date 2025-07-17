@@ -52,7 +52,7 @@ jobs:
                   
       - name: Start instances of Mediawiki
         run: |
-            docker compose -f docker-compose_php8.yaml  up -d 
+            docker compose -f docker-compose_php8.yml  up -d 
             sleep 30
           # docker run --privileged --cgroupns=host -tid \
           # --name  instance1.rockylinux-apache-php-mariadb-rdfunit \
@@ -142,7 +142,7 @@ jobs:
 
       - name: Start Selenium Hub
         working-directory: ./test
-        run: docker compose -f docker-compose.yml up -d
+        run: docker compose -f docker-compose.yaml up -d
 
       - name: Install selenium-side-runner & drivers
         run: |
