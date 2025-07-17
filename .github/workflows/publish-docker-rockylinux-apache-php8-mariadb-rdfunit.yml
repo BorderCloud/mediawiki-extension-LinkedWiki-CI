@@ -31,7 +31,19 @@ jobs:
             -v "${PWD}/coverage/mediawiki1/log:/coverage/log" \
             -v "${PWD}/coverage/mediawiki1/report:/coverage/report" \
             rockylinux-apache-php8-mariadb-rdfunit
-      
+            
+      - name: Wait for instance to be ready
+        id: health_check
+        uses: nick-invision/retry@v3
+        with:
+          timeout_minutes: 5 
+          max_attempts: 10   
+          delay_seconds: 30  
+          command: |
+            echo "Checking if instance is up..."
+            curl -s -o /dev/null http://172.17.0.2/ || (echo "Service not ready, retrying..." && exit 1)
+            echo "Instance is healthy!"
+
       - name: Enable the coverage
         run: |
           echo 'sed -i "s/;auto_prepend_file =/auto_prepend_file =/" /etc/php.ini && sed -i "s/;auto_append_file =/auto_append_file =/" /etc/php.ini && sed -i "s/xdebug.mode = off/xdebug.mode = coverage/" /etc/php.d/xdebug.ini && systemctl restart php-fpm && chown apache:apache /coverage/log -R && chmod -R o+r /coverage/log'  | docker exec -i instance.rockylinux-apache-php-mariadb-rdfunit /bin/bash
