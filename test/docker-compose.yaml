@@ -18,6 +18,7 @@ services:
     shm_size: 2gb
     volumes:
       - /dev/shm:/dev/shm
+      - "${PWD}:/tmp/test"
     depends_on:
       - selenium-hub
     environment:
@@ -29,14 +30,13 @@ services:
         - "serverdev-mediawiki2.localdomain:172.19.0.3"
         - "database-test1.localdomain:172.19.0.4"
         - "database-test2.localdomain:172.19.0.5"
-    volumes:
-      - "${PWD}:/tmp/test"
       
   firefox:
     image: selenium/node-firefox:3
     shm_size: 2gb
     volumes:
       - /dev/shm:/dev/shm
+      - "${PWD}:/tmp/test"
     depends_on:
       - selenium-hub
     environment:
@@ -48,8 +48,6 @@ services:
         - "serverdev-mediawiki2.localdomain:172.19.0.3"
         - "database-test1.localdomain:172.19.0.4"
         - "database-test2.localdomain:172.19.0.5"
-    volumes:
-      - "${PWD}:/tmp/test"
         
 networks:
   default:
