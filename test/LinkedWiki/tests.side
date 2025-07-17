@@ -2710,7 +2710,7 @@
     }, {
       "id": "acaa2b46-fe66-4c70-a33f-0680d1800f06",
       "comment": "",
-      "command": "storeXpathCount",
+      "command": "storeElementCount",
       "target": "xpath=//textarea[@id='wpTextbox1'][contains(@style,'display: none')]",
       "targets": [],
       "value": "textbox1"
@@ -2843,7 +2843,7 @@
     }, {
       "id": "acaa2b46-fe66-4c70-a33f-0680d1800f06",
       "comment": "",
-      "command": "storeXpathCount",
+      "command": "storeElementCount",
       "target": "xpath=//textarea[@id='wpTextbox1'][contains(@style,'display: none')]",
       "targets": [],
       "value": "textbox1"
@@ -2976,7 +2976,7 @@
     }, {
       "id": "acaa2b46-fe66-4c70-a33f-0680d1800f06",
       "comment": "",
-      "command": "storeXpathCount",
+      "command": "storeElementCount",
       "target": "xpath=//textarea[@id='wpTextbox1'][contains(@style,'display: none')]",
       "targets": [],
       "value": "textbox1"
@@ -3695,7 +3695,7 @@
     }, {
       "id": "ebe56205-a577-401b-9e1e-e7923528f814",
       "comment": "",
-      "command": "storeXpathCount",
+      "command": "storeElementCount",
       "target": "xpath=//textarea[@id='wpTextbox1'][contains(@style,'display: none')]",
       "targets": [],
       "value": "textbox1"
@@ -3938,7 +3938,7 @@
     }, {
       "id": "87b5570d-1451-4022-917a-1e1dac12d3a5",
       "comment": "",
-      "command": "storeXpathCount",
+      "command": "storeElementCount",
       "target": "xpath=//button[@name='wpConfirmB']",
       "targets": [],
       "value": "buttonName"
@@ -4065,7 +4065,7 @@
     }, {
       "id": "d3ad1173-7689-4b0a-ab7a-d1b60cb9d0c2",
       "comment": "",
-      "command": "storeXpathCount",
+      "command": "storeElementCount",
       "target": "xpath=//textarea[@id='wpTextbox1'][contains(@style,'display: none')]",
       "targets": [],
       "value": "textbox1"
@@ -4121,7 +4121,7 @@
     }, {
       "id": "17f06306-5759-461e-b416-e17a60487490",
       "comment": "",
-      "command": "storeXpathCount",
+      "command": "storeElementCount",
       "target": "xpath=//textarea[@id='wpTextbox1'][contains(@style,'display: none')]",
       "targets": [],
       "value": "textbox1"
@@ -4880,7 +4880,7 @@
     }, {
       "id": "f32dffeb-4f95-49ec-a17b-31b8a7dc733b",
       "comment": "",
-      "command": "storeXpathCount",
+      "command": "storeElementCount",
       "target": "xpath=//textarea[@id='wpTextbox1'][contains(@style,'display: none')]",
       "targets": [],
       "value": "textbox1"

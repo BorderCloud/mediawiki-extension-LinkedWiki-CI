@@ -123,7 +123,7 @@ EOD;
       "id": "$guid5",
       "comment": "",
       "command": "click",
-      "target": "css=#ca-viewsource > a",
+      "target": "css=#ca-viewsource",
       "targets": [],
       "value": ""
     },         {
@@ -159,7 +159,7 @@ EOD;
       "id": "$guid5",
       "comment": "",
       "command": "click",
-      "target": "css=#ca-viewsource > a",
+      "target": "css=#ca-viewsource",
       "targets": [],
       "value": ""
     }, {
@@ -213,7 +213,7 @@ function testPage($title,$array,$first = false){
       "id": "$guid3",
       "comment": "",
       "command": "click",
-      "target": "css=#p-cactions > .vector-menu-checkbox",
+      "target": "css=#p-cactions",
       "targets": [],
       "value": ""
     }, {
@@ -374,7 +374,7 @@ EOD;
       "id": "25162a6b-17b4-46a9-9a25-0b29c7f412f3",
       "comment": "",
       "command": "click",
-      "target": "css=#p-cactions > .vector-menu-checkbox",
+      "target": "css=#p-cactions",
       "targets": [],
       "value": ""
     }, {
@@ -414,7 +414,7 @@ EOD;
         "id": "c4048c4c-afa1-4061-8416-f09a98488160",
         "comment": "",
         "command": "click",
-        "target": "css=#pt-logout > a",
+        "target": "css=#pt-logout",
         "targets": [],
         "value": ""
       }

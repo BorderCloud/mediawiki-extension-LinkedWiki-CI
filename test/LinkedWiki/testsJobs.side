@@ -198,7 +198,7 @@
     }, {
       "id": "44a9356a-520b-4ed8-8ae0-6e1c4b4d795e",
       "comment": "",
-      "command": "storeXpathCount",
+      "command": "storeElementCount",
       "target": "xpath=//textarea[@id='wpTextbox1'][contains(@style,'display: none')]",
       "targets": [],
       "value": "textbox1"

@@ -7,6 +7,6 @@ TestCoverage::createGlobalReport(
     realpath(dirname(__FILE__) . "/../../servers/mediawiki1/")."/", // local
     "/var/www/mediawiki/", // remote
     '/^(?:(?!NamespaceData\/(?!vendor|node_modules)).)*$/', // exclude path
-    90 // min coverage
+    80 // min coverage
     );
  

@@ -1,0 +1,120 @@
+services:
+
+#todo insert option --cgroupns=host
+
+# docker run --privileged --cgroupns=host -tid \
+# --name  instance1.rockylinux-apache-php-mariadb-rdfunit \
+# -h serverdev-mediawiki1.localdomain \
+# --network mediawiki-ci --ip 172.19.0.2 \
+# --add-host serverdev-mediawiki2.localdomain:172.19.0.3 \
+# --add-host database-test1.localdomain:172.19.0.4 \
+# --add-host database-test2.localdomain:172.19.0.5 \
+# -v "/sys/fs/cgroup:/sys/fs/cgroup:rw" \
+# -v "${MW1_PATH:-./}:/var/www/mediawiki:ro" \
+# -v "${MW1_PATH:-./}/vhost.conf:/etc/httpd/conf.d/vhost.conf:ro" \
+# -v "$PWD/config:/config:ro" \
+# -v "${PWD}/coverage/tools:/coverage/tools:ro" \
+# -v "${PWD}/coverage/mediawiki1/log:/coverage/log" \
+# -v "${PWD}/coverage/mediawiki1/report:/coverage/report" \
+# --env-file '.env' \
+# --env XDEBUG_CONFIG='${XDEBUG_CONFIG}' \
+# --env TERM='xterm' \
+# bordercloud/rockylinux-apache-php-mariadb-rdfunit
+        
+  mediawiki-private:
+    image: bordercloud/rockylinux-apache-php8-mariadb-rdfunit
+    hostname: serverdev-mediawiki1.localdomain
+    container_name: instance1.rockylinux-apache-php-mariadb-rdfunit
+    privileged: true
+    cgroup: host
+    networks:
+      mediawiki-ci:
+        ipv4_address: 172.19.0.2
+    extra_hosts:
+        - "serverdev-mediawiki2.localdomain:172.19.0.3"
+        - "database-test1.localdomain:172.19.0.4"
+        - "database-test2.localdomain:172.19.0.5"
+    volumes:
+      - "/sys/fs/cgroup:/sys/fs/cgroup:rw"
+      - "${MW1_PATH:-./}:/var/www/mediawiki:ro"
+      - "${MW1_PATH:-./}/vhost.conf:/etc/httpd/conf.d/vhost.conf:ro"
+      - "$PWD/config:/config:ro"
+      - "${PWD}/coverage/tools:/coverage/tools:ro"
+      - "${PWD}/coverage/mediawiki1/log:/coverage/log"
+      - "${PWD}/coverage/mediawiki1/report:/coverage/report"
+    env_file:
+      - '.env'
+    environment:
+      XDEBUG_CONFIG: '${XDEBUG_CONFIG}'
+      TERM: 'xterm'
+
+# docker run --privileged --cgroupns=host -tid \
+# --name  instance1.rockylinux-apache-php-mariadb-rdfunit \
+# -h serverdev-mediawiki2.localdomain \
+# --network mediawiki-ci --ip 172.19.0.3 \
+# --add-host serverdev-mediawiki1.localdomain:172.19.0.2 \
+# --add-host database-test1.localdomain:172.19.0.4 \
+# --add-host database-test2.localdomain:172.19.0.5 \
+# -v "/sys/fs/cgroup:/sys/fs/cgroup:rw" \
+# -v "${MW2_PATH:-./}:/var/www/mediawiki:ro" \
+# -v "${MW2_PATH:-./}/vhost.conf:/etc/httpd/conf.d/vhost.conf:ro" \
+# -v "$PWD/config:/config:ro" \
+# -v "${PWD}/coverage/tools:/coverage/tools:ro" \
+# -v "${PWD}/coverage/mediawiki2/log:/coverage/log" \
+# -v "${PWD}/coverage/mediawiki2/report:/coverage/report" \
+# --env-file '.env' \
+# --env XDEBUG_CONFIG='${XDEBUG_CONFIG}' \
+# --env TERM='xterm' \
+# bordercloud/rockylinux-apache-php-mariadb-rdfunit
+
+  mediawiki-public:
+    image: bordercloud/rockylinux-apache-php8-mariadb-rdfunit
+    hostname: serverdev-mediawiki2.localdomain
+    container_name: instance2.rockylinux-apache-php-mariadb-rdfunit
+    privileged: true
+    cgroup: host
+    networks:
+      mediawiki-ci:
+        ipv4_address: 172.19.0.3
+    extra_hosts:
+        - "serverdev-mediawiki1.localdomain:172.19.0.2"
+        - "database-test1.localdomain:172.19.0.4"
+        - "database-test2.localdomain:172.19.0.5"
+    volumes:
+      - "/sys/fs/cgroup:/sys/fs/cgroup:rw"
+      - "${MW2_PATH:-./}:/var/www/mediawiki:ro"
+      - "${MW2_PATH:-./}/vhost.conf:/etc/httpd/conf.d/vhost.conf:ro"
+      - "$PWD/config:/config:ro"
+      - "${PWD}/coverage/tools:/coverage/tools:ro"
+      - "${PWD}/coverage/mediawiki2/log:/coverage/log"
+      - "${PWD}/coverage/mediawiki2/report:/coverage/report"
+    env_file:
+      - '.env'
+    environment:
+      XDEBUG_CONFIG: '${XDEBUG_CONFIG}'
+      TERM: 'xterm'
+
+  database-mediawiki-private:
+    image: bordercloud/rockylinux-virtuoso7
+    hostname: database-test1.localdomain
+    container_name: instance1.rockylinux-virtuoso7
+    privileged: true
+    networks:
+      mediawiki-ci:
+        ipv4_address: 172.19.0.4
+        
+  database-mediawiki-public:
+    image: bordercloud/rockylinux-virtuoso7
+    hostname: database-test2.localdomain
+    container_name: instance2.rockylinux-virtuoso7
+    privileged: true
+    networks:
+      mediawiki-ci:
+        ipv4_address: 172.19.0.5
+      
+networks:
+  mediawiki-ci:
+    ipam:
+      config:
+        - subnet: 172.19.0.0/16
+

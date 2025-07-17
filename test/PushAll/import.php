@@ -105,7 +105,7 @@ function importModule($title,$filename){
     {
       "id": "$guid5",
       "comment": "",
-      "command": "storeXpathCount",
+      "command": "storeElementCount",
       "target": "xpath=//textarea[@id='wpTextbox1'][contains(@style,'display: none')]",
       "targets": [],
       "value": "textbox1"
@@ -193,7 +193,7 @@ function importFile($filename){
     {
       "id": "$guid5",
       "comment": "",
-      "command": "storeXpathCount",
+      "command": "storeElementCount",
       "target": "//button[@name='wpUploadIgnoreWarning']",
       "targets": [],
       "value": "forceuploadButton"
