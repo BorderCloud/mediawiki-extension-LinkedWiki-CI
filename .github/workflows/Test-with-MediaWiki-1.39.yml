@@ -136,11 +136,17 @@ jobs:
           echo '172.19.0.5 database-test2.localdomain' | sudo tee -a /etc/hosts
           wget http://serverdev-mediawiki1.localdomain/
           wget http://serverdev-mediawiki2.localdomain/
+          
+
 
       - name: Start Selenium Hub
         working-directory: ./test
         run: docker compose -f docker-compose.yaml up -d
 
+      - name: Use Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
       - name: Install selenium-side-runner & drivers
         run: |
             npm install --silent -g selenium-side-runner
