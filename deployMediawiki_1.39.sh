@@ -18,7 +18,7 @@ cd skins/
 echo "Deploy Mediawiki skin in the path:"
 pwd
 
-git clone --depth 1 -b $1  https://phabricator.wikimedia.org/diffusion/SVEC/Vector 
+git clone --depth 1 -b $1  https://gerrit.wikimedia.org/r/mediawiki/skins/Vector
 cd Vector
 yarn install --production=true  --ignore-engines
 
