@@ -19,7 +19,7 @@ echo "Deploy Mediawiki skin in the path:"
 pwd
 
 git clone --depth 1 -b $1  https://phabricator.wikimedia.org/diffusion/SVEC/Vector 
-yarn install --production=true --silent --ignore-engines
+yarn install --production=true  --ignore-engines
 
 
 cd ../extensions/
