@@ -370,7 +370,7 @@
   "suites": [{
     "id": "0cb0ea53-ed47-4a63-814e-200221144015",
     "name": "Default Suite",
-    "persistSession": true,
+    "persistSession": false,
     "parallel": false,
     "timeout": 10000,
     "tests": ["35c0b104-c047-4e40-92c7-802effeccb20"]

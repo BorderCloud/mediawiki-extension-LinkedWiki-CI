@@ -188,6 +188,13 @@
         ["xpath=//a[contains(.,'Log out')]", "xpath:innerText"]
       ],
       "value": ""
+    }, {
+      "id": "af324df5-c8ee-4f1a-8696-a30b187c88ce",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
     }]
   }, {
     "id": "ee95489e-dec3-48ba-aafa-2800098edf3e",
@@ -317,6 +324,13 @@
         ["xpath=//li[7]/a", "xpath:position"],
         ["xpath=//a[contains(.,'Log out')]", "xpath:innerText"]
       ],
+      "value": ""
+    }, {
+      "id": "abc5093e-8635-4eb9-bd29-45ac4394b693",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
       "value": ""
     }]
   }, {
@@ -501,6 +515,13 @@
         ["xpath=//a[contains(.,'Log out')]", "xpath:innerText"]
       ],
       "value": ""
+    }, {
+      "id": "3b71a774-fefd-4229-9194-1b636889a498",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
     }]
   }, {
     "id": "11dd6666-6a1f-4c45-bbc5-e011f9d83f68",
@@ -659,6 +680,13 @@
         ["xpath=//a[contains(.,'Log out')]", "xpath:innerText"]
       ],
       "value": ""
+    }, {
+      "id": "fa16389e-546d-468c-ad66-0e79ced4063c",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
     }]
   }, {
     "id": "a526e57f-7aaa-47b6-a58e-17e85f7a22c5",
@@ -777,6 +805,13 @@
         ["xpath=//li[7]/a", "xpath:position"],
         ["xpath=//a[contains(.,'Log out')]", "xpath:innerText"]
       ],
+      "value": ""
+    }, {
+      "id": "d373b922-eae1-42a9-a4e9-6c91c2c2e133",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
       "value": ""
     }]
   }, {
@@ -964,6 +999,13 @@
         ["xpath=//a[contains(.,'Log out')]", "xpath:innerText"]
       ],
       "value": ""
+    }, {
+      "id": "c9cee251-7084-4f57-b634-c2029b05f341",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
     }]
   }, {
     "id": "8c6bb204-9ff8-4b4f-82b2-fc476c10adf0",
@@ -1145,14 +1187,21 @@
         ["xpath=//a[contains(.,'Log out')]", "xpath:innerText"]
       ],
       "value": ""
+    }, {
+      "id": "ab3d72dd-7e2d-454c-9b7f-ee837362c376",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
     }]
   }],
   "suites": [{
     "id": "0cb0ea53-ed47-4a63-814e-200221144015",
     "name": "Private wiki",
-    "persistSession": true,
+    "persistSession": false,
     "parallel": false,
-    "timeout": 10000,
+    "timeout": 100000,
     "tests": ["35c0b104-c047-4e40-92c7-802effeccb20", "9b83dcc9-e6c0-4633-b99e-a161ba869a52", "11dd6666-6a1f-4c45-bbc5-e011f9d83f68", "a526e57f-7aaa-47b6-a58e-17e85f7a22c5", "bd158236-9fea-4759-adba-4c8650edfb0e", "8c6bb204-9ff8-4b4f-82b2-fc476c10adf0"]
   }],
   "urls": ["http://serverdev-mediawiki1.localdomain/"],

@@ -417,6 +417,13 @@ EOD;
         "target": "css=#pt-logout",
         "targets": [],
         "value": ""
+    }, {
+      "id": "ab3d72dd-7e2d-454c-9b7f-ee837362c376",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
       }
     ]
   }],

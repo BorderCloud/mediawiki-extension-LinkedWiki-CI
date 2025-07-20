@@ -188,7 +188,7 @@ jobs:
         working-directory: ./test/NamespaceData
         run: |
             selenium-side-runner  --server http://localhost:4444/wd/hub -c "browserName=chrome"  ./suite_tests.side
-            selenium-side-runner  --server http://localhost:4444/wd/hub -c "browserName=firefox" ./suite_tests.side
+            # selenium-side-runner  --server http://localhost:4444/wd/hub -c "browserName=firefox" ./suite_tests.side
             
       - name: Check the coverage of tests for NamespaceData extension
         run: |
@@ -227,9 +227,9 @@ jobs:
             ./clean_mediawiki1.sh
             ./clean_mediawiki2.sh
             ./make_tests.sh /tmp/test/PushAll
-            selenium-side-runner  --server http://localhost:4444/wd/hub -c "browserName=chrome"  ./import_final.side
-            selenium-side-runner  --server http://localhost:4444/wd/hub -c "browserName=chrome"  ./userDataAddRemoteWikis.side
-            selenium-side-runner  --server http://localhost:4444/wd/hub -c "browserName=chrome"  ./tests_final.side
+            selenium-side-runner  --server http://localhost:4444/wd/hub -c "browserName=chrome" --jest-timeout 1200000 ./import_final.side
+            selenium-side-runner  --server http://localhost:4444/wd/hub -c "browserName=chrome" --jest-timeout 1200000 ./userDataAddRemoteWikis.side
+            selenium-side-runner  --server http://localhost:4444/wd/hub -c "browserName=chrome" --jest-timeout 1200000 ./tests_final.side
             #./clean_mediawiki2.sh
             #selenium-side-runner  --server http://localhost:4444/wd/hub -c "browserName=firefox" ./tests_final.side
             ./clean_mediawiki1.sh

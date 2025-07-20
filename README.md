@@ -22,8 +22,8 @@ cp -R  servers/mediawiki1/htdocs servers/mediawiki2/htdocs
 
 3 - Start two instances of Mediawiki (one private and one public) and two RDF databases with SPARQL services
 ```bash
-docker compose -f docker-compose_php7.yaml up -d 
-# docker compose -f docker-compose_php8.yaml up -d 
+docker compose -f docker-compose_php7.yml up -d 
+# docker compose -f docker-compose_php8.yml up -d 
 
 # docker-compose doesn't support the option --cgroupns=host for the moment
 # docker run --privileged --cgroupns=host -tid \
@@ -116,7 +116,7 @@ echo 'sed -i "s/;auto_prepend_file =/auto_prepend_file =/" /etc/php.ini && sed -
 6 - Start Selenium Hub
 ```bash
 cd ./test
-docker-compose -f docker-compose.yaml up -d
+docker compose -f docker-compose.yaml up -d
 ```
 
 7 - Install selenium-side-runner & drivers
@@ -142,6 +142,7 @@ chmod +x importFile.sh
 ./importFile.sh check_mediawiki_1_2.side -o check_mediawiki_1_2_final.side
 selenium-side-runner  --server http://localhost:4444/wd/hub -c "browserName=chrome"  ./check_mediawiki_1_2_final.side
 # selenium-side-runner  --server http://localhost:4444/wd/hub -c "browserName=firefox" ./check_mediawiki_1_2_final.side
+
 ```
 
 10 - Init wiki users and a bot
@@ -162,7 +163,7 @@ rm -rf ./coverage/log/*
 ```bash
 cd ./test/NamespaceData
 selenium-side-runner  --server http://localhost:4444/wd/hub -c "browserName=chrome"  ./suite_tests.side
-selenium-side-runner  --server http://localhost:4444/wd/hub -c "browserName=firefox" ./suite_tests.side
+#selenium-side-runner  --server http://localhost:4444/wd/hub -c "browserName=firefox" ./suite_tests.side
 cd ../..
 echo 'chmod -R o+r /coverage/log'  | docker exec -i instance1.rockylinux-apache-php-mariadb-rdfunit bash
 echo 'chmod -R o+r /coverage/log'  | docker exec -i instance2.rockylinux-apache-php-mariadb-rdfunit bash
@@ -204,9 +205,9 @@ chmod +x make_tests.sh
 ./clean_mediawiki1.sh
 ./clean_mediawiki2.sh
 ./make_tests.sh /tmp/test/PushAll
-selenium-side-runner  --server http://localhost:4444/wd/hub -c "browserName=chrome"  ./import_final.side
-selenium-side-runner  --server http://localhost:4444/wd/hub -c "browserName=chrome"  ./userDataAddRemoteWikis.side
-selenium-side-runner  --server http://localhost:4444/wd/hub -c "browserName=chrome"  ./tests_final.side
+selenium-side-runner  --server http://localhost:4444/wd/hub -c "browserName=chrome" --jest-timeout 1200000 ./import_final.side
+selenium-side-runner  --server http://localhost:4444/wd/hub -c "browserName=chrome" --jest-timeout 1200000 ./userDataAddRemoteWikis.side
+selenium-side-runner  --server http://localhost:4444/wd/hub -c "browserName=chrome" --jest-timeout 1200000 ./tests_final.side
 # ./clean_mediawiki2.sh
 # selenium-side-runner  --server http://localhost:4444/wd/hub -c "browserName=firefox" ./tests_final.side
 ./clean_mediawiki1.sh
