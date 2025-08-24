@@ -1,0 +1,84 @@
+TODO
+
+== sgvizler2 ==
+{{#sparql:
+select  *
+where {
+    ?subject ?property ?valueOrObject .
+} 
+LIMIT 2
+| endpoint = https://query.wikidata.org/sparql
+| chart=bordercloud.visualization.DataTable
+| options=
+| log=2
+}}
+
+== tablecell ==
+
+{{#sparql:
+select  *
+where {
+    ?subject ?property ?valueOrObject .
+} 
+LIMIT 2
+| endpoint = https://query.wikidata.org/sparql
+|templateBare=tableCell
+| log=2
+}}
+
+
+== simplehtml ==
+
+{{#sparql:
+select  *
+where {
+    ?subject ?property ?valueOrObject .
+} 
+LIMIT 2
+| endpoint = https://query.wikidata.org/sparql
+| log=2
+| table=html
+}}
+
+== simplewiki ==
+
+{{#sparql:
+select  *
+where {
+    ?subject ?property ?valueOrObject .
+} 
+LIMIT 2
+| endpoint = https://query.wikidata.org/sparql
+| log=2
+| table=wiki
+}}
+
+== templates with wiki ==
+
+{{#sparql:
+select  *
+where {
+    ?subject ?property ?valueOrObject .
+} 
+LIMIT 2
+| endpoint = https://query.wikidata.org/sparql
+|headers=Name1
+ |templates= Test1
+| log=2
+| table=wiki
+}}
+
+== templates with html==
+
+{{#sparql:
+select  *
+where {
+    ?subject ?property ?valueOrObject .
+} 
+LIMIT 2
+| endpoint = https://query.wikidata.org/sparql
+|headers=Name1
+ |templates= Test1
+| log=2
+| table=html
+}}

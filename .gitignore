@@ -1,6 +1,7 @@
 /servers/mediawiki1/htdocs
 /servers/mediawiki2/htdocs
-old
+**/old
+**/node_modules
 *_final.side
 coverage/log
 coverage/report

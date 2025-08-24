@@ -113,15 +113,11 @@ echo 'sed -i "s/;auto_prepend_file =/auto_prepend_file =/" /etc/php.ini && sed -
 echo 'sed -i "s/;auto_prepend_file =/auto_prepend_file =/" /etc/php.ini && sed -i "s/;auto_append_file =/auto_append_file =/" /etc/php.ini && sed -i "s/xdebug.mode = off/xdebug.mode = coverage/" /etc/php.d/xdebug.ini && systemctl restart php-fpm && chown apache:apache /coverage/log -R && chmod -R o+r /coverage/log'  | docker exec -i instance2.rockylinux-apache-php-mariadb-rdfunit bash
 ```
 
-6 - Start Selenium Hub
-```bash
-cd ./test
-docker compose -f docker-compose.yaml up -d
-```
 
-7 - Install selenium-side-runner & drivers
+7 - Install WDIO
 ```bash
-sudo npm install -g selenium-side-runner
+cd ./test/wdio
+yarn install
 ```
 
 8 - Clean log and report
@@ -137,18 +133,16 @@ rm -rf ./coverage/report/*
 
 9 - Check Selenium and Mediawiki
 ```bash
-cd ./test
-chmod +x importFile.sh
-./importFile.sh check_mediawiki_1_2.side -o check_mediawiki_1_2_final.side
-selenium-side-runner  --server http://localhost:4444/wd/hub -c "browserName=chrome"  ./check_mediawiki_1_2_final.side
-# selenium-side-runner  --server http://localhost:4444/wd/hub -c "browserName=firefox" ./check_mediawiki_1_2_final.side
+cd ./test/wdio
+# DEBUG=true npx wdio wdio.check_selenium.js
+_BROWSER=chrome npx wdio wdio.check_selenium.js
 
 ```
 
 10 - Init wiki users and a bot
 ```bash
-cd ./test
-selenium-side-runner  --server http://localhost:4444/wd/hub -c "browserName=chrome" ./create_users.side
+# DEBUG=true npx wdio wdio.create_users.js
+_BROWSER=chrome npx wdio run wdio.create_users.js
 echo 'php /var/www/mediawiki/htdocs/w/maintenance/createBotPassword.php --grants basic,createeditmovepage,editdata,delete,editpage,uploadeditmovefile,uploadfile,highvolume --appid mediawiki1 UserData ff38s9u4feh07vjs2s6t88dh2pv5cfgv' | docker exec -i instance2.rockylinux-apache-php-mariadb-rdfunit bash
 ```
 
@@ -161,9 +155,10 @@ rm -rf ./coverage/log/*
 
 12 - Execute the test suite of NamespaceData extension
 ```bash
-cd ./test/NamespaceData
-selenium-side-runner  --server http://localhost:4444/wd/hub -c "browserName=chrome"  ./suite_tests.side
-#selenium-side-runner  --server http://localhost:4444/wd/hub -c "browserName=firefox" ./suite_tests.side
+cd ./test/wdio
+# DEBUG=true npx wdio wdio.namespacedata.js
+_BROWSER=firefox npx wdio wdio.namespacedata.js
+_BROWSER=chrome npx wdio wdio.namespacedata.js
 cd ../..
 echo 'chmod -R o+r /coverage/log'  | docker exec -i instance1.rockylinux-apache-php-mariadb-rdfunit bash
 echo 'chmod -R o+r /coverage/log'  | docker exec -i instance2.rockylinux-apache-php-mariadb-rdfunit bash
@@ -198,20 +193,15 @@ chmod +x *.sh
 
 15 - Execute the test suite of PushAll extension
 ```bash
-cd ./test/PushAll
+cd ./test/wdio/specs/PushAll
 chmod +x clean_mediawiki1.sh
 chmod +x clean_mediawiki2.sh
-chmod +x make_tests.sh
 ./clean_mediawiki1.sh
 ./clean_mediawiki2.sh
-./make_tests.sh /tmp/test/PushAll
-selenium-side-runner  --server http://localhost:4444/wd/hub -c "browserName=chrome" --jest-timeout 1200000 ./import_final.side
-selenium-side-runner  --server http://localhost:4444/wd/hub -c "browserName=chrome" --jest-timeout 1200000 ./userDataAddRemoteWikis.side
-selenium-side-runner  --server http://localhost:4444/wd/hub -c "browserName=chrome" --jest-timeout 1200000 ./tests_final.side
-# ./clean_mediawiki2.sh
-# selenium-side-runner  --server http://localhost:4444/wd/hub -c "browserName=firefox" ./tests_final.side
-./clean_mediawiki1.sh
-./clean_mediawiki2.sh
+cd ../..
+# DEBUG=true npx wdio wdio.pushall.js
+# _BROWSER=firefox npx wdio wdio.pushall.js
+_BROWSER=chrome npx wdio wdio.pushall.js
 cd ../..
 echo 'chmod -R o+r /coverage/log'  | docker exec -i instance1.rockylinux-apache-php-mariadb-rdfunit bash
 echo 'chmod -R o+r /coverage/log'  | docker exec -i instance2.rockylinux-apache-php-mariadb-rdfunit bash
@@ -234,18 +224,16 @@ yarn test
 
 18 -  Execute the test suite of LinkedWiki extension
 ```bash
-cd ./test/LinkedWiki
+cd ./test/wdio/specs/LinkedWiki
 chmod +x clean_mediawiki1.sh
-chmod +x make_tests.sh
 ./clean_mediawiki1.sh
-./make_tests.sh 
-selenium-side-runner  --server http://localhost:4444/wd/hub -c "browserName=chrome"  ./tests_final.side
-# error with firefox test 32 and 36
-#./clean_mediawiki1.sh
-#selenium-side-runner  --server http://localhost:4444/wd/hub -c "browserName=firefox" ./tests_final.side
+cd ../..
+_BROWSER=chrome npx wdio wdio.linkedwiki.js  --spec suite_tests_page.js
+cd ./specs/LinkedWiki
 ./clean_mediawiki1.sh
-selenium-side-runner  --server http://localhost:4444/wd/hub -c "browserName=chrome"  ./testsJobs_final.side
+_BROWSER=chrome npx wdio wdio.linkedwiki.js  --spec suite_tests_job.js
 echo 'curl -iL -H "Accept: text/turtle" http://serverdev-mediawiki1.localdomain/wiki/Data:Test301'  | docker exec -i instance1.rockylinux-apache-php-mariadb-rdfunit bash
+cd ./specs/LinkedWiki
 ./clean_mediawiki1.sh
 cd ../..
 echo 'chmod -R o+r /coverage/log'  | docker exec -i instance1.rockylinux-apache-php-mariadb-rdfunit bash
@@ -314,14 +302,6 @@ docker container rm instance1.rockylinux-apache-php-mariadb-rdfunit
 docker container rm instance2.rockylinux-apache-php-mariadb-rdfunit
 ```
 
-### How to debug the tests
-
-Replace the step 5 by these commands and open the VNC clients with the password "secret"
-```bash
-cd ./test
-docker-compose -f docker-compose-debug.yaml up -d
-./start-VNC-Viewer.sh
-```
 
 ### Rebuild container with new image
 ```bash

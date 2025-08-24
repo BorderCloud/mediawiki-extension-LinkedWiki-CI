@@ -6,7 +6,8 @@
   "tests": [{
     "id": "35c0b104-c047-4e40-92c7-802effeccb22",
     "name": "login",
-    "commands": [{
+    "commands": [
+      {
       "id": "e3359dfd-2d37-4ff7-9903-74c0bc448ad7",
       "comment": "",
       "command": "open",
@@ -97,7 +98,8 @@
   }, {
     "id": "35c0b104-c047-4e40-92c7-802effeccb21",
     "name": "logout",
-    "commands": [{
+    "commands": [
+      {
       "id": "e3359dfd-2d37-4ff7-9903-74c0bc448ad7",
       "comment": "",
       "command": "open",
@@ -123,7 +125,8 @@
   }, {
     "id": "68fada72-63c4-49ad-8c88-e3b869b21355",
     "name": "test301_checkAllEmpty",
-    "commands": [{
+    "commands": [
+      {
       "id": "1ca69b37-847a-41a4-95ba-9f74044890f4",
       "comment": "",
       "command": "open",
@@ -174,7 +177,8 @@
   }, {
     "id": "94bc8919-61d6-48fc-bc1c-69e8ea28759b",
     "name": "test301_create_module",
-    "commands": [{
+    "commands": [
+      {
       "id": "93b1d69b-0639-4e93-9195-c23cf4caf07d",
       "comment": "",
       "command": "executeScript",
@@ -290,7 +294,8 @@
   }, {
     "id": "b15485f1-029b-421e-9769-d117b8f5e356",
     "name": "test301_create_page_read_query",
-    "commands": [{
+    "commands": [
+      {
       "id": "66a79041-d57c-4d27-b18e-4a3b65e5130e",
       "comment": "",
       "command": "executeScript",
@@ -375,7 +380,8 @@
   }, {
     "id": "238f6332-91fe-4f16-8d15-35c78382514e",
     "name": "test301_create_page_read_querynocache",
-    "commands": [{
+    "commands": [
+      {
       "id": "c5c16e8c-38ee-4b5d-a862-a15deadf4cff",
       "comment": "",
       "command": "executeScript",
@@ -467,7 +473,8 @@
   }, {
     "id": "629babe0-74f0-493a-a40c-7ebbfdccd605",
     "name": "test301_create_page_read_module",
-    "commands": [{
+    "commands": [
+      {
       "id": "33f9efde-926e-4949-b5f9-6badac31a410",
       "comment": "",
       "command": "executeScript",
@@ -567,7 +574,8 @@
   }, {
     "id": "97be365d-8697-4eb3-a1e7-b1ab5903db5e",
     "name": "test301_ClearTheGraph",
-    "commands": [{
+    "commands": [
+      {
       "id": "b30d2f63-27f0-446a-b630-e7d7e9976ddc",
       "comment": "",
       "command": "open",
@@ -604,7 +612,8 @@
   }, {
     "id": "0f3c1e50-8690-4df4-b883-3e4d452520ad",
     "name": "test301_create_page_data",
-    "commands": [{
+    "commands": [
+      {
       "id": "3c43a4fb-7ead-4d4d-9400-275d31029058",
       "comment": "",
       "command": "executeScript",
@@ -803,7 +812,8 @@
   }, {
     "id": "d3b6d420-8ed4-4b82-b121-51f648f56b7d",
     "name": "test301_page_module_write1",
-    "commands": [{
+    "commands": [
+      {
       "id": "63fb9304-3559-407c-8bda-6d69b851b727",
       "comment": "",
       "command": "executeScript",
@@ -902,7 +912,8 @@
   }, {
     "id": "7a38132c-8c2e-475b-bdf2-8ab5d84173b9",
     "name": "test301_page_module_write2",
-    "commands": [{
+    "commands": [
+      {
       "id": "6e0fe26b-a9c7-4b0b-8362-7f0e0bf85482",
       "comment": "",
       "command": "executeScript",
@@ -1000,7 +1011,8 @@
   }, {
     "id": "0416446f-3515-4eb6-bf86-4b203778ac13",
     "name": "test301_create_page_read_query2",
-    "commands": [{
+    "commands": [
+      {
       "id": "e86af440-497c-4a8b-bcfa-9c79890b3b18",
       "comment": "",
       "command": "executeScript",
@@ -1069,7 +1081,8 @@
   }, {
     "id": "2cce925e-8777-4972-9294-71bb0419fb4f",
     "name": "test301_create_page_data2",
-    "commands": [{
+    "commands": [
+      {
       "id": "912a9a1f-0295-4f95-b37b-a3a3948af63b",
       "comment": "",
       "command": "executeScript",
@@ -1221,7 +1234,8 @@
   }, {
     "id": "00440c46-78a6-435e-b059-761253a80770",
     "name": "test301_refreshall",
-    "commands": [{
+    "commands": [
+      {
       "id": "4e3b0753-027c-4f91-9b23-ed9601508b64",
       "comment": "",
       "command": "open",
@@ -1375,7 +1389,8 @@
   }, {
     "id": "7e7c4056-b375-498b-b350-1efdcc0a3ba9",
     "name": "test301_errors",
-    "commands": [{
+    "commands": [
+      {
       "id": "aa6fccd2-4ee2-44d5-bec2-0883c7fd3511",
       "comment": "",
       "command": "executeScript",
@@ -1528,7 +1543,34 @@
     "persistSession": true,
     "parallel": false,
     "timeout": 10000,
-    "tests": ["35c0b104-c047-4e40-92c7-802effeccb22", "97be365d-8697-4eb3-a1e7-b1ab5903db5e", "68fada72-63c4-49ad-8c88-e3b869b21355", "94bc8919-61d6-48fc-bc1c-69e8ea28759b", "629babe0-74f0-493a-a40c-7ebbfdccd605", "b15485f1-029b-421e-9769-d117b8f5e356", "238f6332-91fe-4f16-8d15-35c78382514e", "d3b6d420-8ed4-4b82-b121-51f648f56b7d", "0f3c1e50-8690-4df4-b883-3e4d452520ad", "2cce925e-8777-4972-9294-71bb0419fb4f", "0416446f-3515-4eb6-bf86-4b203778ac13", "7a38132c-8c2e-475b-bdf2-8ab5d84173b9", "00440c46-78a6-435e-b059-761253a80770", "7e7c4056-b375-498b-b350-1efdcc0a3ba9", "35c0b104-c047-4e40-92c7-802effeccb21"]
+    "tests": ["35c0b104-c047-4e40-92c7-802effeccb22",
+     "97be365d-8697-4eb3-a1e7-b1ab5903db5e",
+
+      "68fada72-63c4-49ad-8c88-e3b869b21355",
+
+       "94bc8919-61d6-48fc-bc1c-69e8ea28759b",
+
+        "629babe0-74f0-493a-a40c-7ebbfdccd605",
+
+
+         "b15485f1-029b-421e-9769-d117b8f5e356",
+
+          "238f6332-91fe-4f16-8d15-35c78382514e",
+
+           "d3b6d420-8ed4-4b82-b121-51f648f56b7d",
+
+            "0f3c1e50-8690-4df4-b883-3e4d452520ad",
+
+             "2cce925e-8777-4972-9294-71bb0419fb4f",
+
+              "0416446f-3515-4eb6-bf86-4b203778ac13",
+
+               "7a38132c-8c2e-475b-bdf2-8ab5d84173b9",
+
+                "00440c46-78a6-435e-b059-761253a80770",
+                
+                 "7e7c4056-b375-498b-b350-1efdcc0a3ba9",
+                  "35c0b104-c047-4e40-92c7-802effeccb21"]
   }],
   "urls": ["http://wiki.serverdev-mediawiki/", "http://serverdev-mediawiki1.localdomain/"],
   "plugins": []

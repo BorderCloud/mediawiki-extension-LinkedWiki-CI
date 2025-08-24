@@ -54,42 +54,6 @@ jobs:
         run: |
             docker compose -f docker-compose_php7.yml  up -d 
             sleep 30
-          # docker run --privileged --cgroupns=host -tid \
-          # --name  instance1.rockylinux-apache-php-mariadb-rdfunit \
-          # -h serverdev-mediawiki1.localdomain \
-          # --network=mediawiki-extension-linkedwiki-ci_mediawiki-ci --ip=172.19.0.2 \
-          # --add-host serverdev-mediawiki2.localdomain:172.19.0.3 \
-          # --add-host database-test1.localdomain:172.19.0.4 \
-          # --add-host database-test2.localdomain:172.19.0.5 \
-          # -v "/sys/fs/cgroup:/sys/fs/cgroup:rw" \
-          # -v "${PWD}/servers/mediawiki1:/var/www/mediawiki:ro" \
-          # -v "${PWD}/servers/mediawiki1/vhost.conf:/etc/httpd/conf.d/vhost.conf:ro" \
-          # -v "$PWD/config:/config:ro" \
-          # -v "${PWD}/coverage/tools:/coverage/tools:ro" \
-          # -v "${PWD}/coverage/mediawiki1/log:/coverage/log" \
-          # -v "${PWD}/coverage/mediawiki1/report:/coverage/report" \
-          # --env-file '.env' \
-          # --env XDEBUG_CONFIG='${XDEBUG_CONFIG}' \
-          # --env TERM='xterm' \
-          # bordercloud/rockylinux-apache-php7-mariadb-rdfunit
-          # docker run --privileged --cgroupns=host -tid \
-          # --name  instance2.rockylinux-apache-php-mariadb-rdfunit \
-          # -h serverdev-mediawiki2.localdomain \
-          # --network=mediawiki-extension-linkedwiki-ci_mediawiki-ci --ip=172.19.0.3 \
-          # --add-host serverdev-mediawiki1.localdomain:172.19.0.2 \
-          # --add-host database-test1.localdomain:172.19.0.4 \
-          # --add-host database-test2.localdomain:172.19.0.5 \
-          # -v "/sys/fs/cgroup:/sys/fs/cgroup:rw" \
-          # -v "${PWD}/servers/mediawiki2:/var/www/mediawiki:ro" \
-          # -v "${PWD}/servers/mediawiki2/vhost.conf:/etc/httpd/conf.d/vhost.conf:ro" \
-          # -v "$PWD/config:/config:ro" \
-          # -v "${PWD}/coverage/tools:/coverage/tools:ro" \
-          # -v "${PWD}/coverage/mediawiki2/log:/coverage/log" \
-          # -v "${PWD}/coverage/mediawiki2/report:/coverage/report" \
-          # --env-file '.env' \
-          # --env XDEBUG_CONFIG='${XDEBUG_CONFIG}' \
-          # --env TERM='xterm' \
-          # bordercloud/rockylinux-apache-php7-mariadb-rdfunit
       - name: Install instances of Mediawiki
         run: |
             cat ./mariadb_secure.sh | docker exec -i instance1.rockylinux-apache-php-mariadb-rdfunit bash
@@ -137,19 +101,14 @@ jobs:
           wget http://serverdev-mediawiki1.localdomain/
           wget http://serverdev-mediawiki2.localdomain/
           
-
-
-      - name: Start Selenium Hub
-        working-directory: ./test
-        run: docker compose -f docker-compose.yaml up -d
-
       - name: Use Node.js 22
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Install selenium-side-runner & drivers
+      - name: Install WDIO
         run: |
-            npm install -g selenium-side-runner
+            cd ./test/wdio
+            npm install
         
       - name: Clean log and report
         run: |
@@ -164,18 +123,16 @@ jobs:
             rm -rf ./coverage/report/*
         
       - name: Check Selenium
-        working-directory: ./test
+        working-directory: ./test/wdio
         run: |
-            chmod +x importFile.sh
-            ./importFile.sh check_mediawiki_1_2.side -o check_mediawiki_1_2_final.side
             wget http://serverdev-mediawiki1.localdomain/
             wget http://serverdev-mediawiki2.localdomain/
-            selenium-side-runner --server http://localhost:4444/wd/hub -c "browserName=chrome"  ./check_mediawiki_1_2_final.side
+            _BROWSER=chrome npx wdio wdio.check_selenium.js
             
       - name: Init wiki users
-        working-directory: ./test
+        working-directory: ./test/wdio
         run: |
-            selenium-side-runner --server http://localhost:4444/wd/hub -c "browserName=firefox" ./create_users.side
+            _BROWSER=chrome npx wdio run wdio.create_users.js
             echo 'php /var/www/mediawiki/htdocs/w/maintenance/createBotPassword.php --grants basic,createeditmovepage,editdata,delete,editpage,uploadeditmovefile,uploadfile,highvolume --appid mediawiki1 UserData ff38s9u4feh07vjs2s6t88dh2pv5cfgv' | docker exec -i instance2.rockylinux-apache-php-mariadb-rdfunit bash
 
       - name: Clean log before new tests
@@ -185,10 +142,9 @@ jobs:
             rm -rf ./coverage/log/*
             
       - name: Execute the test suite of NamespaceData extension
-        working-directory: ./test/NamespaceData
+        working-directory: ./test/wdio
         run: |
-            selenium-side-runner  --server http://localhost:4444/wd/hub -c "browserName=chrome"  ./suite_tests.side
-            # selenium-side-runner  --server http://localhost:4444/wd/hub -c "browserName=firefox" ./suite_tests.side
+            _BROWSER=chrome npx wdio wdio.namespacedata.js
             
       - name: Check the coverage of tests for NamespaceData extension
         run: |
@@ -219,21 +175,18 @@ jobs:
             ./test10_searchCategory.sh
 
       - name: Execute the test suite of PushAll extension
-        working-directory: ./test/PushAll
+        working-directory: ../test/wdio
         run: |
-            chmod +x clean_mediawiki1.sh
-            chmod +x clean_mediawiki2.sh
-            chmod +x make_tests.sh
-            ./clean_mediawiki1.sh
-            ./clean_mediawiki2.sh
-            ./make_tests.sh /tmp/test/PushAll
-            selenium-side-runner  --server http://localhost:4444/wd/hub -c "browserName=chrome" --jest-timeout 1200000 ./import_final.side
-            selenium-side-runner  --server http://localhost:4444/wd/hub -c "browserName=chrome" --jest-timeout 1200000 ./userDataAddRemoteWikis.side
-            selenium-side-runner  --server http://localhost:4444/wd/hub -c "browserName=chrome" --jest-timeout 1200000 ./tests_final.side
-            #./clean_mediawiki2.sh
-            #selenium-side-runner  --server http://localhost:4444/wd/hub -c "browserName=firefox" ./tests_final.side
-            ./clean_mediawiki1.sh
-            ./clean_mediawiki2.sh
+          cd ./specs/PushAll
+          chmod +x clean_mediawiki1.sh
+          chmod +x clean_mediawiki2.sh
+          ./clean_mediawiki1.sh
+          ./clean_mediawiki2.sh
+          cd ../..
+          _BROWSER=chrome npx wdio wdio.pushall.js
+          cd ./specs/PushAll
+          ./clean_mediawiki1.sh
+          ./clean_mediawiki2.sh
             
       - name: Check the coverage of tests for PushAll extension
         run: |
@@ -254,15 +207,19 @@ jobs:
             yarn test
             
       - name: Execute the test suite of LinkedWiki extension
-        working-directory: ./test/LinkedWiki
+        working-directory: ./test/wdio
         run: |
-            chmod +x make_tests.sh
+            cd ./specs/LinkedWiki
+            chmod +x clean_mediawiki1.sh
             ./clean_mediawiki1.sh
-            ./make_tests.sh 
-            selenium-side-runner  --server http://localhost:4444/wd/hub -c "browserName=chrome"  ./tests_final.side
+            cd ../..
+            _BROWSER=chrome npx wdio wdio.linkedwiki.js  --spec suite_tests_page.js
+            cd ./specs/LinkedWiki
             ./clean_mediawiki1.sh
-            selenium-side-runner  --server http://localhost:4444/wd/hub -c "browserName=chrome"  ./testsJobs_final.side
+            cd ../..
+            _BROWSER=chrome npx wdio wdio.linkedwiki.js  --spec suite_tests_job.js
             echo 'curl -iL -H "Accept: text/turtle" http://serverdev-mediawiki1.localdomain/wiki/Data:Test301'  | docker exec -i instance1.rockylinux-apache-php-mariadb-rdfunit bash
+            cd ./specs/LinkedWiki
             ./clean_mediawiki1.sh
           
       - name: Check the coverage of tests for LinkedWiki extension
