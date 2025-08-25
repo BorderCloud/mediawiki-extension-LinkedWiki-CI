@@ -16,7 +16,6 @@ wfLoadExtension( 'ImageMap' );
 wfLoadExtension( 'InputBox' );
 wfLoadExtension( 'Interwiki' );
 wfLoadExtension( 'LinkedWiki' );
-wfLoadExtension( 'LocalisationUpdate' );
 wfLoadExtension( 'Math' );
 wfLoadExtension( 'NamespaceData' );
 $oldVersion = version_compare( $wgVersion, '1.38', '<=' );

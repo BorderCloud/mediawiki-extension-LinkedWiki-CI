@@ -23,7 +23,7 @@ cd Vector
 yarn install --production=true --silent
 
 
-cd ../extensions/
+cd ../../extensions/
 echo "Deploy Mediawiki extensions in the path:"
 pwd
 
@@ -42,7 +42,6 @@ git clone --depth 1 -b $1  https://gerrit.wikimedia.org/r/mediawiki/extensions/S
 git clone --depth 1 -b $1  https://gerrit.wikimedia.org/r/mediawiki/extensions/TitleBlacklist.git
 git clone --depth 1 -b $1  https://gerrit.wikimedia.org/r/mediawiki/extensions/CodeEditor.git
 git clone --depth 1 -b $1  https://gerrit.wikimedia.org/r/mediawiki/extensions/Gadgets.git
-git clone --depth 1 -b $1  https://gerrit.wikimedia.org/r/mediawiki/extensions/LocalisationUpdate.git
 git clone --depth 1 -b $1  https://gerrit.wikimedia.org/r/mediawiki/extensions/WikiEditor.git
 git clone --depth 1 -b $1  https://gerrit.wikimedia.org/r/mediawiki/extensions/Cite.git
 git clone --depth 1 -b $1  https://gerrit.wikimedia.org/r/mediawiki/extensions/CategoryTree.git

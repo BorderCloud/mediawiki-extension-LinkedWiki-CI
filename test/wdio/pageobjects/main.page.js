@@ -19,6 +19,7 @@ class MainPage {
     async open(title) {
         await this.searchInput.setValue(title);
         await this.searchButton.click();
+        await $(`a=${title}`).waitForExist({ timeout: 30000 });
         await $(`a=${title}`).click();
     }
 
