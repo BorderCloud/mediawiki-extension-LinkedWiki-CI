@@ -44,6 +44,7 @@ describe('Check mediawiki 1 2', function () {
 
     it('mediawiki1', async () => {
         await LoginPageMediawiki1.open();
+        await browser.pause(3000);
         await LoginPageMediawiki1.login(
             browser.options.params.usernameAdmin,
             browser.options.params.password
@@ -61,7 +62,9 @@ describe('Check mediawiki 1 2', function () {
 
     it('mediawiki2', async () => {
         await browser.reloadSession();
+        await browser.pause(1000);
         await LoginPageMediawiki2.open();
+        await browser.pause(3000);
         await LoginPageMediawiki2.login(
             browser.options.params.usernameAdmin,
             browser.options.params.password
