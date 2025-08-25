@@ -78,7 +78,10 @@ class TestCoverage {
             $str=file_get_contents('./coverage/report/'.$prefix.'_clover.xml');
             
             if ($merger->getCoveragePercent() < $minCoverage) {
-                echo "The coverage is insufficient. The minimum is ".$minCoverage."%."; 
+                echo "The coverage is insufficient. The minimum is ".$minCoverage."%.";
+                flush();
+                ob_flush();
+                sleep(1); 
                 exit(1);
             }
         }
