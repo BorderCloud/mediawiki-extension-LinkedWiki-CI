@@ -19,6 +19,8 @@ describe('Mediawiki Test Suite', function () {
             browser.options.params.password
         );
 
+        await browser.pause(10000);
+
         // Test 01
         await imp.importPage("Test01 page","test01_page.txt");
         await imp.importPage("Test01 page/subpage","test01_subpage.txt");
