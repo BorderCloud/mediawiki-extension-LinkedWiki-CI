@@ -16,7 +16,7 @@ class ImportWikiConfig {
         await browser.pause(200);
         await $("#ooui-11").setValue(keyuser);
         await browser.pause(200);
-        await $("/html/body/div[6]/div[1]/div[1]/div[2]/div[1]/div/div[1]/span/a/span[2]").click();
+        await $("div.oo-ui-processDialog-actions-primary a").click()
 
         await $("//*[@id=\"prefcontrol\"]/button/span[2]").click()
         await browser.pause(5000);

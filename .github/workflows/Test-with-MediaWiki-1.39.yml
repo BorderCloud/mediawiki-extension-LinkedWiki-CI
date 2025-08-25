@@ -108,7 +108,7 @@ jobs:
       - name: Install WDIO
         run: |
             cd ./test/wdio
-            npm install
+            yarn install
         
       - name: Clean log and report
         run: |

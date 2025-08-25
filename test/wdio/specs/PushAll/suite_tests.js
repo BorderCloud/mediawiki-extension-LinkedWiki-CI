@@ -105,6 +105,8 @@ describe('Mediawiki Test Suite', function () {
             browser.options.params.usernameData,
             browser.options.params.password
         );
+
+        await browser.pause(2000);
     });
 
     after(async () => {
@@ -136,6 +138,7 @@ describe('Mediawiki Test Suite', function () {
             // http://serverdev-mediawiki2.localdomain/wiki/Test09_page
             await browser.newWindow(urlpageWiki2);
 
+            await browser.pause(2000);
             // await browser.switchWindow(urlpageWiki2);
 
             if (isFile) {

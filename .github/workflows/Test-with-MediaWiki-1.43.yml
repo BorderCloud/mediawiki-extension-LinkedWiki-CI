@@ -16,12 +16,12 @@ jobs:
       - uses: actions/setup-node@v4
         with:
             node-version: '22'
-      - name: Install last npm
-        run: |
-            sudo node -v
-            sudo npm -v
-            sudo npm i -g npm
-            sudo npm i -g yarn
+      # - name: Install last npm
+      #   run: |
+      #       sudo node -v
+      #       sudo npm -v
+      #       sudo npm i -g npm
+      #       sudo npm i -g yarn
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
@@ -107,7 +107,7 @@ jobs:
       - name: Install WDIO
         run: |
             cd ./test/wdio
-            npm install
+            yarn install
         
       - name: Clean log and report
         run: |

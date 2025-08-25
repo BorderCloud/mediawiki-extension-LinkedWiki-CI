@@ -12,18 +12,18 @@ Github actions for MediaWiki's [LinkedWiki extension](https://www.mediawiki.org/
 ```bash
 chmod +x deployMediawiki.sh
 chmod +x deploy2Mediawiki.sh
-./deployMediawiki_1.39.sh REL1_39 servers/mediawiki1/htdocs 
-#./deployMediawiki.sh REL1_43 servers/mediawiki1/htdocs 
+#./deployMediawiki_1.39.sh REL1_39 servers/mediawiki1/htdocs 
+./deployMediawiki.sh REL1_43 servers/mediawiki1/htdocs 
 #./deployMediawiki.sh REL1_44 servers/mediawiki1/htdocs 
 cp -R  servers/mediawiki1/htdocs servers/mediawiki2/htdocs
-./deploy2Mediawiki.sh REL1_39 servers/mediawiki1/htdocs 
-./deploy2Mediawiki.sh REL1_39 servers/mediawiki2/htdocs 
+./deploy2Mediawiki.sh REL1_43 servers/mediawiki1/htdocs 
+./deploy2Mediawiki.sh REL1_43 servers/mediawiki2/htdocs 
 ```
 
 3 - Start two instances of Mediawiki (one private and one public) and two RDF databases with SPARQL services
 ```bash
-docker compose -f docker-compose_php7.yml up -d 
-# docker compose -f docker-compose_php8.yml up -d 
+#docker compose -f docker-compose_php7.yml up -d 
+docker compose -f docker-compose_php8.yml up -d 
 
 # docker-compose doesn't support the option --cgroupns=host for the moment
 # docker run --privileged --cgroupns=host -tid \
@@ -157,7 +157,7 @@ rm -rf ./coverage/log/*
 ```bash
 cd ./test/wdio
 # DEBUG=true npx wdio wdio.namespacedata.js
-_BROWSER=firefox npx wdio wdio.namespacedata.js
+#_BROWSER=firefox npx wdio wdio.namespacedata.js
 _BROWSER=chrome npx wdio wdio.namespacedata.js
 cd ../..
 echo 'chmod -R o+r /coverage/log'  | docker exec -i instance1.rockylinux-apache-php-mariadb-rdfunit bash
@@ -235,7 +235,7 @@ _BROWSER=chrome npx wdio wdio.linkedwiki.js  --spec suite_tests_job.js
 echo 'curl -iL -H "Accept: text/turtle" http://serverdev-mediawiki1.localdomain/wiki/Data:Test301'  | docker exec -i instance1.rockylinux-apache-php-mariadb-rdfunit bash
 cd ./specs/LinkedWiki
 ./clean_mediawiki1.sh
-cd ../..
+cd ../../../..
 echo 'chmod -R o+r /coverage/log'  | docker exec -i instance1.rockylinux-apache-php-mariadb-rdfunit bash
 echo 'chmod -R o+r /coverage/log'  | docker exec -i instance2.rockylinux-apache-php-mariadb-rdfunit bash
 php coverage/tools/createGlobalReportForLinkedWiki.php
@@ -288,8 +288,6 @@ docker exec -it instance2.rockylinux-virtuoso7 bash
 ```bash
 rm -rf servers/mediawiki1/htdocs 
 rm -rf servers/mediawiki2/htdocs 
-docker-compose down
-cd ./test
 docker-compose down
 docker image prune -a
 

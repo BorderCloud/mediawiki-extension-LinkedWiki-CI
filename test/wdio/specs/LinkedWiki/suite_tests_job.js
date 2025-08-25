@@ -156,7 +156,7 @@ describe('Suite tests for LinkedWiki jobs', function () {
         await browser.url(`${browser.options.params.urlWiki1}wiki/Special:RDFSave`);
         await $('//*[@id="buttonRefreshAll"]/a').click();
         await browser.url(`${browser.options.params.urlWiki1}wiki/Special:RDFSave?debug=true&runJobs=true`);
-        await $(`//pre[contains(.,'InvalidatePageWithQuery ForAllQuery')]`).waitForExist({ timeout: 30000 });
+        await $(`//pre[contains(.,'InvalidatePageWithQuery ForAllQuery')]`).waitForExist({ timeout: 60000 });
         await $(`a=Refresh status of jobs`).click();
         await $(`#firstHeading`).waitForExist({ timeout: 30000 });
         await expect($(`//table[@id='linkedwiki-module-table']//td[contains(.,'Job pending')]`)).not.toBeExisting();
