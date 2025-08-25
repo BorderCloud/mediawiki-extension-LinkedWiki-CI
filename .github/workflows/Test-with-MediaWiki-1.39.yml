@@ -175,7 +175,7 @@ jobs:
             ./test10_searchCategory.sh
 
       - name: Execute the test suite of PushAll extension
-        working-directory: ../test/wdio
+        working-directory: ./test/wdio
         run: |
           cd ./specs/PushAll
           chmod +x clean_mediawiki1.sh
