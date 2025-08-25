@@ -60,7 +60,7 @@ describe('Check mediawiki 1 2', function () {
     });
 
     it('mediawiki2', async () => {
-        // await browser.reloadSession();
+        await browser.reloadSession();
         await LoginPageMediawiki2.open();
         await LoginPageMediawiki2.login(
             browser.options.params.usernameAdmin,
