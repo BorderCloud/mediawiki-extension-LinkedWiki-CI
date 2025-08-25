@@ -17,6 +17,7 @@ describe('Suite tests for LinkedWiki jobs', function () {
     async function clearGraph() {
         await browser.url(`${browser.options.params.urlWiki1}wiki/Special:RDFSave?debug=true&runJobs=true`);
         await browser.pause(3000);
+        await $('//*[@id="buttonClearNamedGraph"]/a').waitForExist({ timeout: 60000 });
         await $('//*[@id="buttonClearNamedGraph"]/a').click();
         await $(`//pre[contains(.,'Clear graph <http://database-test1.localdomain/data> -- done')]`).waitForExist({ timeout: 30000 });
     }
@@ -34,6 +35,7 @@ describe('Suite tests for LinkedWiki jobs', function () {
 
     after(async () => {
         await browser.url(browser.options.params.urlWiki1);
+        await browser.pause(3000);
         await MainPage.logout();
     });
 
