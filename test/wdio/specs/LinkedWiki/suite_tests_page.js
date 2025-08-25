@@ -530,12 +530,13 @@ describe('Suite tests for LinkedWiki pages', function () {
 
     it('test104_special_sparql_T3_html', async () => {
         await browser.url(`${browser.options.params.urlWiki1}wiki/Special:SparqlQuery`);
-        await $(`#execQuery`).waitForDisplayed({ timeout: 30000 });
+        await $(`#execQuery`).waitForExist({ timeout: 30000 });
+        await browser.pause(1000);
         await $(`#config`).selectByVisibleText(`Other`);
-        await $(`#endpointOther`).waitForDisplayed({ timeout: 30000 });
         await $(`#endpointOther`).setValue(`http://database-test1.localdomain:8890/sparql`);
         await $(`.custom-control:nth-child(2) > .custom-control-label`).click();
-        await $(`#execQuery`).waitForDisplayed({ timeout: 30000 });
+        await $(`#execQuery`).waitForExist({ timeout: 30000 });
+        await browser.pause(1000);
         await $(`#execQuery`).click();
         await $(`//div[@id='result']/table/tbody/tr[16]/td[contains(.,'Duration of query')]`).waitForExist({ timeout: 30000 });
         await $(`a=Howto use this query in this wiki`).click();

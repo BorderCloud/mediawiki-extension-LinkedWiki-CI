@@ -39,6 +39,21 @@ describe('Create_users', function () {
 
   });
 
+  it('w1_create_NetworkAuthUser', async () => {
+    await LoginPageMediawiki1.open();
+    await LoginPageMediawiki1.login(
+      browser.options.params.usernameAdmin,
+      browser.options.params.password
+    );
+    await CreateUserPage.navigateToCreateAccount();
+    await CreateUserPage.createAccount(
+      "NetworkAuthUser",
+      browser.options.params.password
+    );
+    await MainPage.logout();
+
+  });
+
   it('w2_create_userClassic', async () => {
     await LoginPageMediawiki2.open();
     await LoginPageMediawiki2.login(
@@ -48,20 +63,6 @@ describe('Create_users', function () {
     await CreateUserPage.navigateToCreateAccount();
     await CreateUserPage.createAccount(
       browser.options.params.usernameClassic,
-      browser.options.params.password
-    );
-    await MainPage.logout();
-
-  });
-  it('w2_create_NetworkAuthUser', async () => {
-    await LoginPageMediawiki2.open();
-    await LoginPageMediawiki2.login(
-      browser.options.params.usernameAdmin,
-      browser.options.params.password
-    );
-    await CreateUserPage.navigateToCreateAccount();
-    await CreateUserPage.createAccount(
-      "NetworkAuthUser",
       browser.options.params.password
     );
     await MainPage.logout();

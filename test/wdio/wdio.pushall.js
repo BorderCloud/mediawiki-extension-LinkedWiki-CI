@@ -11,7 +11,7 @@ exports.config = { ...config,
 	services: [
         ['monocart', {
             name: 'PushAll Coverage Report',
-    		entryFilter: (entry) => entry.url.indexOf("PushAll") !== -1,
+    		entryFilter: (entry) => entry.url.indexOf("pushall") !== -1,
             reports: [
                 //'v8',
 				'v8-json',
