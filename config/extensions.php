@@ -2,7 +2,7 @@
 # wfLoadExtension( 'ExtensionName' );
 # to LocalSettings.php. Check specific extension documentation for more details.
 # The following extensions were automatically enabled:
-wfLoadExtension( 'ApiSandbox' );
+
 wfLoadExtension( 'Babel' );
 wfLoadExtension( 'Capiunto' );
 wfLoadExtension( 'CategoryTree' );
