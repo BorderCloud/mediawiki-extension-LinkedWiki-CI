@@ -101,13 +101,15 @@ describe('Mediawiki Test Suite', function () {
         )
         await MainPage.logout();
 
+        await browser.pause(3000);
         await LoginPageMediawiki1.open();
+        await browser.pause(3000);
         await LoginPageMediawiki1.login(
             browser.options.params.usernameData,
             browser.options.params.password
         );
 
-        await browser.pause(2000);
+        await browser.pause(10000);
     });
 
     after(async () => {
