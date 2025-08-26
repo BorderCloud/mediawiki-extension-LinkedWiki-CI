@@ -107,7 +107,7 @@ jobs:
       - name: Install WDIO
         run: |
             cd ./test/wdio
-            npm install
+            yarn install
         
       - name: Clean log and report
         run: |
@@ -124,8 +124,6 @@ jobs:
       - name: Check Selenium
         working-directory: ./test/wdio
         run: |
-            chmod +x importFile.sh
-            ./importFile.sh check_mediawiki_1_2.side -o check_mediawiki_1_2_final.side
             wget http://serverdev-mediawiki1.localdomain/
             wget http://serverdev-mediawiki2.localdomain/
             _BROWSER=chrome npx wdio wdio.check_selenium.js
