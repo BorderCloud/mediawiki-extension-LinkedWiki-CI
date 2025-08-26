@@ -99,17 +99,17 @@ describe('Mediawiki Test Suite', function () {
             "UserData@mediawiki1",
             "ff38s9u4feh07vjs2s6t88dh2pv5cfgv"
         )
-        await MainPage.logout();
+        // await MainPage.logout();
 
         await browser.pause(3000);
-        await LoginPageMediawiki1.open();
-        await browser.pause(3000);
-        await LoginPageMediawiki1.login(
-            browser.options.params.usernameData,
-            browser.options.params.password
-        );
+        // await LoginPageMediawiki1.open();
+        // await browser.pause(3000);
+        // await LoginPageMediawiki1.login(
+        //     browser.options.params.usernameData,
+        //     browser.options.params.password
+        // );
 
-        await browser.pause(10000);
+        // await browser.pause(10000);
     });
 
     after(async () => {
