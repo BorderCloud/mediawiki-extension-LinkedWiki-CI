@@ -14,12 +14,13 @@ describe('Mediawiki Test Suite', function () {
     before(async () => {
         // Import the pages in the Wiki1
         await LoginPageMediawiki1.open();
+        await browser.pause(10000);
         await LoginPageMediawiki1.login(
             browser.options.params.usernameAdmin,
             browser.options.params.password
         );
 
-        await browser.pause(10000);
+        await browser.pause(3000);
 
         // Test 01
         await imp.importPage("Test01 page","test01_page.txt");
