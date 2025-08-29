@@ -228,7 +228,6 @@ jobs:
             php coverage/tools/createGlobalReportForLinkedWiki.php
           
       - name: Check errors
-        if: always()
         run: |
             echo 'cat /var/log/php-fpm/www-error.log'  | docker exec -i instance1.rockylinux-apache-php-mariadb-rdfunit bash > m1_www-error.log
             echo 'cat /var/log/php-fpm/www-error.log'  | docker exec -i instance2.rockylinux-apache-php-mariadb-rdfunit bash > m2_www-error.log
@@ -240,3 +239,16 @@ jobs:
             wget http://172.19.0.2/w/
             ! [ -s m1_www-error.log ]
             ! [ -s m2_www-error.log ]
+
+
+
+      - name: Check logs 1
+        if: always()
+        run: |
+            echo 'cat /var/log/php-fpm/www-error.log'  | docker exec -i instance1.rockylinux-apache-php-mariadb-rdfunit bash > m1_www-error.log
+            cat m1_www-error.log
+      - name: Check logs 2
+        if: always()
+        run: |
+            echo 'cat /var/log/php-fpm/www-error.log'  | docker exec -i instance2.rockylinux-apache-php-mariadb-rdfunit bash > m2_www-error.log
+            cat m2_www-error.log
