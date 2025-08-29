@@ -55,6 +55,8 @@ describe('Create_users', function () {
   });
 
   it('w2_create_userClassic', async () => {
+    await browser.reloadSession();
+    await browser.pause(1000);
     await LoginPageMediawiki2.open();
     await LoginPageMediawiki2.login(
       browser.options.params.usernameAdmin,
@@ -85,77 +87,3 @@ describe('Create_users', function () {
 
   });
 });
-
-// describe('Create_users', function() {
-//   let username = "Admin";
-//   let usernameClassic = "userClassic";
-//   let password = "dockerpass";
-
-//   it('w1_create_userClassic', async () => {
-//     await browser.url("http://serverdev-mediawiki1.localdomain/")
-//     await $("#pt-login-private span").click();
-//     await $("#wpName1").setValue(username) 
-//     await $("#wpPassword1").setValue(password) 
-//     await $("#wpLoginAttempt").click() 
-//     await $("a=Special pages").click() 
-//     await $("a=Create account").click() 
-//     await $("#wpName2").setValue(usernameClassic) 
-//     await $("#wpPassword2").setValue(password) 
-//     await $("#wpRetype").setValue(password) 
-//     await $("#wpCreateaccount").click() 
-//     await $("a=Log out").click() 
-//   });
-
-//   it('w1_create_userData', async () => {
-//     await browser.url("http://serverdev-mediawiki1.localdomain/") 
-//     await $("#pt-login-private span").click();
-//     await $("#wpName1").setValue(username) 
-//     await $("#wpPassword1").setValue(password) 
-//     await $("#wpLoginAttempt").click() 
-//     await $("a=Special pages").click() 
-//     await $("a=Create account").click() 
-//     await $("#wpName2").setValue("userData") 
-//     await $("#wpPassword2").setValue(password) 
-//     await $("#wpRetype").setValue(password) 
-//     await $("#wpCreateaccount").click() 
-//     await $("a=UserData").click() 
-//     await $("a=Change user groups").click() 
-//     await $("#wpGroup-data").click() 
-//     await $('[name="saveusergroups"]').click() 
-//     await $("a=Log out").click() 
-//   })
-
-//   it('w2_create_userClassic', async () => {
-//     await browser.url("http://serverdev-mediawiki2.localdomain/") 
-//     await $("#pt-login span").click();
-//     await $("#wpName1").setValue(username) 
-//     await $("#wpPassword1").setValue(password) 
-//     await $("#wpLoginAttempt").click() 
-//     await $("a=Special pages").click() 
-//     await $("a=Create account").click() 
-//     await $("#wpName2").setValue(usernameClassic) 
-//     await $("#wpPassword2").setValue(password) 
-//     await $("#wpRetype").setValue(password) 
-//     await $("#wpCreateaccount").click() 
-//     await $("a=Log out").click() 
-//   })
-
-//   it('w2_create_userData', async () => {
-//     await browser.url("http://serverdev-mediawiki2.localdomain/") 
-//     await $("#pt-login span").click();
-//     await $("#wpName1").setValue(username) 
-//     await $("#wpPassword1").setValue(password) 
-//     await $("#wpLoginAttempt").click() 
-//     await $("a=Special pages").click() 
-//     await $("a=Create account").click() 
-//     await $("#wpName2").setValue("userData") 
-//     await $("#wpPassword2").setValue(password) 
-//     await $("#wpRetype").setValue(password) 
-//     await $("#wpCreateaccount").click() 
-//     await $("a=UserData").click() 
-//     await $("a=Change user groups").click() 
-//     await $("#wpGroup-data").click() 
-//     await $('[name="saveusergroups"]').click() 
-//     await $("a=Log out").click() 
-//   })
-// })

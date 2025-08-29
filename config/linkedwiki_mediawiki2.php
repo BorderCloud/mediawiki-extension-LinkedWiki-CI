@@ -31,8 +31,9 @@ $wgLinkedWikiSPARQLServiceByDefault= "http://database-test2.localdomain/data";
 $wgLinkedWikiSPARQLServiceSaveDataOfWiki= "http://database-test2.localdomain/data";
 
 # Log-in unlogged users from these networks
+# Error with ::1 (TODO debug if necessary)
 $wgNetworkAuthUsers[] = [
-        'iprange' => [ '127.0.0.1','::1'],
+        'iprange' => [ '127.0.0.1'],
         'user'    => 'NetworkAuthUser',
 ];
 $wgNetworkAuthSpecialUsers[] = 'NetworkAuthUser';

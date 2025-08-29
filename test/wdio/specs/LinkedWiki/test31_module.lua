@@ -46,6 +46,26 @@ function p.checkString(val1, val2)
     end
     return result
 end
+function p.checkSubString(val1, val2)
+    local result = ''
+    if (val1 == nil or val2 == nil) then
+        result = "KO1"
+    else
+        -- Get the length of the string to compare (val2)
+        local len = #val2
+
+        -- Extract the substring from val1 with the same length as val2
+        local subVal1 = string.sub(val1, 1, len)
+
+        -- Compare the extracted substring with val2
+        if subVal1 == val2 then
+            result = "OK"
+        else
+            result = "KO2"
+        end
+    end
+    return result
+end
 function p.checkNumber(val1, val2)
     local result = ''
     if (val1 ==  nil or val2 ==  nil) then
@@ -570,7 +590,7 @@ html = html .."36 RESULT BEGIN : "..newline ..result ..newline.."END" ..newline
     objWikidata = linkedwiki.new(iriWikidata,idConfigWikidata,taglang)
     result = objWikidata:checkDate(wdt.."P569","",dateFormat)
     html = html .."50 RESULT BEGIN : "..newline ..result ..newline.."END" ..newline
-    html = html .."RESULT : " .. p.checkString(result,'<div>Error, it is not a date/datetime (example \'2021-11-20\' or \'2021-10-20T14:14:52+00:00\'): http://www.wikidata.org/.well-known/genid/e09b6493040f5c09945d1463d1433601</div>') ..newline
+    html = html .."RESULT : " .. p.checkSubString(result,'<div>Error, it is not a date/datetime (example \'2021-11-20\' or \'2021-10-20T14:14:52+00:00\')') ..newline
 
     objWikidata = linkedwiki.new(iriWikidata,idConfigWikidata,taglang)
     result = objWikidata:checkDate(wdt.."P569","Truc",dateFormat)
