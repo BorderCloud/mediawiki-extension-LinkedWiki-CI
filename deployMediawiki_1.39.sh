@@ -57,11 +57,11 @@ git clone --depth 1 -b $1  https://gerrit.wikimedia.org/r/mediawiki/extensions/M
 git clone --depth 1 https://gerrit.wikimedia.org/r/mediawiki/extensions/ApiSandbox.git
 git clone --depth 1 https://gerrit.wikimedia.org/r/mediawiki/extensions/NetworkAuth.git # for private Wiki
 # 3.7.1
-git clone --branch 3.7.1 --depth 1 https://gerrit.wikimedia.org/r/mediawiki/extensions/LinkedWiki.git
+git clone --depth 1 -b $1 --depth 1 https://gerrit.wikimedia.org/r/mediawiki/extensions/LinkedWiki.git
 # cd LinkedWiki
 # git review -d XXXXXX
 # cd ..
-git clone --depth 1 https://github.com/BorderCloud/NamespaceData.git
+git clone --depth 1 -b 2.0.1 https://github.com/BorderCloud/NamespaceData.git
 git clone  --branch 2.1.1 --depth 1 https://gerrit.wikimedia.org/r/mediawiki/extensions/PushAll.git
 
 for D in `find . -maxdepth 1 -type d `
