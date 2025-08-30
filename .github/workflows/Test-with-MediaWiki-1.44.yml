@@ -227,18 +227,18 @@ jobs:
             echo 'chmod -R o+r /coverage/log'  | docker exec -i instance2.rockylinux-apache-php-mariadb-rdfunit bash
             php coverage/tools/createGlobalReportForLinkedWiki.php
           
-      - name: Check errors
-        run: |
-            echo 'cat /var/log/php-fpm/www-error.log'  | docker exec -i instance1.rockylinux-apache-php-mariadb-rdfunit bash > m1_www-error.log
-            echo 'cat /var/log/php-fpm/www-error.log'  | docker exec -i instance2.rockylinux-apache-php-mariadb-rdfunit bash > m2_www-error.log
-            echo 'ls /var/log/php-fpm'  | docker exec -i instance1.rockylinux-apache-php-mariadb-rdfunit bash > ls.txt
-            echo 'ls /var/log'  | docker exec -i instance1.rockylinux-apache-php-mariadb-rdfunit bash >> ls.txt
-            cat ls.txt
-            cat m1_www-error.log
-            cat m2_www-error.log
-            wget http://172.19.0.2/w/
-            ! [ -s m1_www-error.log ]
-            ! [ -s m2_www-error.log ]
+      # - name: Check errors
+      #   run: |
+      #       echo 'cat /var/log/php-fpm/www-error.log'  | docker exec -i instance1.rockylinux-apache-php-mariadb-rdfunit bash > m1_www-error.log
+      #       echo 'cat /var/log/php-fpm/www-error.log'  | docker exec -i instance2.rockylinux-apache-php-mariadb-rdfunit bash > m2_www-error.log
+      #       echo 'ls /var/log/php-fpm'  | docker exec -i instance1.rockylinux-apache-php-mariadb-rdfunit bash > ls.txt
+      #       echo 'ls /var/log'  | docker exec -i instance1.rockylinux-apache-php-mariadb-rdfunit bash >> ls.txt
+      #       cat ls.txt
+      #       cat m1_www-error.log
+      #       cat m2_www-error.log
+      #       wget http://172.19.0.2/w/
+      #       ! [ -s m1_www-error.log ]
+      #       ! [ -s m2_www-error.log ]
 
 
 

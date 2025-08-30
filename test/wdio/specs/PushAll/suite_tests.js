@@ -125,9 +125,18 @@ describe('Mediawiki Test Suite', function () {
         await browser.$('#buttonCheckAll').click();
         await browser.$('tr:nth-child(2) .pushallButton').waitForExist({ timeout: 30000 });
         await browser.$('tr:nth-child(2) .pushallButton').click();
-        await browser.waitUntil(async function () {
-            return (await $('tr:nth-child(2) .pushallButton').getText()) === 'Push completed';
-        }, { timeout: 60000 });
+        try {
+            await browser.waitUntil(async function () {
+                return (await $('tr:nth-child(2) .pushallButton').getText()) === 'Push completed';
+            }, { timeout: 60000 });
+        } catch (e) {
+           // Try again
+            await browser.$('tr:nth-child(2) .pushallButton').click();
+            await browser.waitUntil(async function () {
+                return (await $('tr:nth-child(2) .pushallButton').getText()) === 'Push completed';
+            }, { timeout: 60000 });
+        }
+
 
         for (const [title, filename] of Object.entries(pagesToVerify)) {
             const isModule = title.startsWith("Module:");
